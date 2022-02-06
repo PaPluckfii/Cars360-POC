@@ -62,7 +62,7 @@ class RemoteRepository @Inject constructor(
     }
 
     suspend fun getUserByUserId(userId: String) =
-        apiClient.getUserByUserId(userId)
+        apiClient.getUserByUserId(GeneralRequest(userId,""))
 
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
         apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))

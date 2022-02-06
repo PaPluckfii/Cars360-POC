@@ -8,6 +8,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.ActivityAdminBinding
+import com.sumeet.cars360.util.ViewVisibilityUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,11 +41,16 @@ class AdminActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController!!, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//
-//            }
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.serviceLogMasterFragment2 -> {
+                    ViewVisibilityUtil.gone(binding.navView)
+                }
+                else -> {
+                    ViewVisibilityUtil.visible(binding.navView)
+                }
+            }
+        }
 
     }
 

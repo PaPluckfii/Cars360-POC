@@ -28,7 +28,7 @@ interface ApiClient {
 
     @POST("GetUserByFirebase.php")
     suspend fun getUserByUserId(
-        @Body UserId: String
+        @Body generalRequest: GeneralRequest
     ): Response<UsersByFirebaseIdResponse>
 
     @POST("GetUserCarDetailByMobile.php")
