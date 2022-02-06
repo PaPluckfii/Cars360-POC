@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/_5sdp"
+    android:id="@+id/llCarItem"
+    android:layout_margin="@dimen/_5sdp">
+
+    <LinearLayout
+        android:id="@+id/llActualContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_gravity="center"
+        android:layout_toEndOf="@id/llActualContent"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:src="@drawable/ic_baseline_delete_24"/>
+
+</RelativeLayout>

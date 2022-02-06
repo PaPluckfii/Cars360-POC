@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.staff.fragments.new_service_log.NewServiceLogDetailsFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="@dimen/_10sdp"
+        android:indeterminateDrawable="@drawable/progress_bar_red"
+        android:visibility="gone" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_100sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Customer Information"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Customer Name*"
+                app:hintTextColor="@color/primaryRed"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:layout_editor_absoluteX="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMobile"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Customer Mobile Number"
+                app:hintTextColor="@color/primaryRed"
+                app:layout_constraintTop_toBottomOf="@+id/tilAddress"
+                tools:layout_editor_absoluteX="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmailId"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Customer e-mail id"
+                app:hintTextColor="@color/primaryRed"
+                app:layout_constraintTop_toBottomOf="@+id/tilAddress"
+                tools:layout_editor_absoluteX="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Car Information"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCarPlateNo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Vehicle Plate No*"
+                app:hintTextColor="@color/primaryRed"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                tools:layout_editor_absoluteX="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPlateNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnChooseCar"
+                style="@style/MyTransparentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Choose Car Details" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Car Images"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/frontView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:text="Front View"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/leftSideView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/frontView">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:text="Left View"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/rightSideView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/leftSideView">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:text="Right View"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/backView"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rightSideView">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:text="Back View"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFront"
+                    style="@style/MyFilledButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="28dp"
+                    android:elevation="@dimen/_20sdp"
+                    android:text="Capture"
+                    app:layout_constraintBottom_toBottomOf="@+id/frontView"
+                    app:layout_constraintEnd_toEndOf="@+id/frontView"
+                    app:layout_constraintStart_toEndOf="@+id/frontView"
+                    app:layout_constraintTop_toTopOf="@+id/frontView" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLeft"
+                    style="@style/MyFilledButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_20sdp"
+                    android:text="Capture"
+                    app:layout_constraintBottom_toBottomOf="@+id/leftSideView"
+                    app:layout_constraintEnd_toEndOf="@+id/leftSideView"
+                    app:layout_constraintStart_toEndOf="@+id/leftSideView"
+                    app:layout_constraintTop_toTopOf="@+id/leftSideView" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnRight"
+                    style="@style/MyFilledButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_20sdp"
+                    android:text="Capture"
+                    app:layout_constraintBottom_toBottomOf="@+id/rightSideView"
+                    app:layout_constraintEnd_toEndOf="@+id/rightSideView"
+                    app:layout_constraintStart_toEndOf="@+id/rightSideView"
+                    app:layout_constraintTop_toTopOf="@+id/rightSideView" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBack"
+                    style="@style/MyFilledButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_20sdp"
+                    android:text="Capture"
+                    app:layout_constraintBottom_toBottomOf="@+id/backView"
+                    app:layout_constraintEnd_toEndOf="@+id/backView"
+                    app:layout_constraintStart_toEndOf="@+id/backView"
+                    app:layout_constraintTop_toTopOf="@+id/backView" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.8" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Accessories Information"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="Please Tick "
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/accessoriesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRemarks"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:hint="Remarks"
+                app:hintTextColor="@color/primaryRed"
+                app:layout_constraintTop_toBottomOf="@+id/tilEmailId"
+                tools:layout_editor_absoluteX="15dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRemarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Service Details"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+            <CheckBox
+                android:id="@+id/cbDetailing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:buttonTint="@color/primaryRed"
+                android:padding="@dimen/_8sdp"
+                android:text="Detailing"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <CheckBox
+                android:id="@+id/cbPeriodicMaintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:buttonTint="@color/primaryRed"
+                android:padding="@dimen/_8sdp"
+                android:text="Periodic Maintenance"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <CheckBox
+                android:id="@+id/cbGeneralRepair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:buttonTint="@color/primaryRed"
+                android:padding="@dimen/_8sdp"
+                android:text="General Repair"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <CheckBox
+                android:id="@+id/cbBodyAndPaint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:buttonTint="@color/primaryRed"
+                android:padding="@dimen/_8sdp"
+                android:text="Body &amp; Paint"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/repeatText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="Repeat Job (if any)"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbYesRepeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="Yes"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoRepeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/timeNCostText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="Time &amp; Cost Estimate Explained for all Listed jobs"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbYesTimeNCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="Yes"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoTimeNCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/roadTestText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="Road Test Done Alongwith Customer"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbYesRoadTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="Yes"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoRoadTest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/silver_border_box"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:weightSum="4">
+
+                <TextView
+                    android:id="@+id/cngText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="CNG/LPG Fitted"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbYesCNG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="Yes"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <RadioButton
+                        android:id="@+id/rbNoCNG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/primaryRed"
+                        android:text="No"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Estimates"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:textColor="@color/primaryRed" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@color/primaryRed" />
+
+
+            <LinearLayout
+                android:id="@+id/llEstimates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilRequestedService"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:hint="Requested Repair"
+                    app:hintTextColor="@color/primaryRed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etRequestedService"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEstimate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:hint="Estimated Cost"
+                    app:hintTextColor="@color/primaryRed">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEstimate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddEstimates"
+                style="@style/MyTransparentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Estimate" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

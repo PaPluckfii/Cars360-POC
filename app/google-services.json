@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "829330021427",
+    "firebase_url": "https://cars360-raipur-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cars360-raipur",
+    "storage_bucket": "cars360-raipur.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829330021427:android:8e3e11759646e053fcd746",
+        "android_client_info": {
+          "package_name": "com.sumeet.cars360"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829330021427-bi79opbu30g6fnq7hsu9abu73tvdh8o4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sumeet.cars360",
+            "certificate_hash": "98b2455ef45003244b67710c643015a3cdf10a6d"
+          }
+        },
+        {
+          "client_id": "829330021427-hj5g5m1scue0q4i1m2mm8c877bchijl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHT0vstt45vS9GNDxhuWdwHNbOfXv-RTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829330021427-hj5g5m1scue0q4i1m2mm8c877bchijl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829330021427:android:e70eeafd43a3d032fcd746",
+        "android_client_info": {
+          "package_name": "com.sumeet.cars_360_raipur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829330021427-a73t44jnq6rhsck60qbcg1ifqipcjje6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sumeet.cars_360_raipur",
+            "certificate_hash": "98b2455ef45003244b67710c643015a3cdf10a6d"
+          }
+        },
+        {
+          "client_id": "829330021427-hj5g5m1scue0q4i1m2mm8c877bchijl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHT0vstt45vS9GNDxhuWdwHNbOfXv-RTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829330021427-hj5g5m1scue0q4i1m2mm8c877bchijl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/on_boarding_navigation"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.IntroFragment"
+        android:label="Intro"
+        tools:layout="@layout/fragment_intro" >
+        <action
+            android:id="@+id/action_introFragment_to_customerLoginFragment"
+            app:destination="@id/customerLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerLoginFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.CustomerLoginFragment"
+        android:label=""
+        tools:layout="@layout/fragment_customer_login" >
+        <action
+            android:id="@+id/action_customerLoginFragment_to_OTPFragment"
+            app:destination="@id/OTPFragment" />
+        <action
+            android:id="@+id/action_customerLoginFragment_to_staffLoginFragment"
+            app:destination="@id/staffLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/OTPFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.OTPFragment"
+        android:label=""
+        tools:layout="@layout/fragment_o_t_p" >
+        <action
+            android:id="@+id/action_OTPFragment_to_newCustomerDetailsFragment"
+            app:destination="@id/newCustomerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCustomerDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerDetailsFragment"
+        android:label="New User Registration"
+        tools:layout="@layout/fragment_new_customer_details" >
+        <action
+            android:id="@+id/action_newCustomerDetailsFragment_to_newCarDetailsFragment"
+            app:destination="@id/newCarDetailsFragment" />
+        <action
+            android:id="@+id/action_newCustomerDetailsFragment_to_newCustomerAdditionalDetailsFragment"
+            app:destination="@id/newCustomerAdditionalDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/staffLoginFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.staff.StaffLoginFragment"
+        android:label="Staff Login"
+        tools:layout="@layout/fragment_staff_login" />
+    <fragment
+        android:id="@+id/newCarDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCarDetailsFragment"
+        android:label="Select Your Car"
+        tools:layout="@layout/fragment_new_car_details" />
+    <fragment
+        android:id="@+id/newCustomerAdditionalDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerAdditionalDetailsFragment"
+        android:label="Additional Details"
+        tools:layout="@layout/fragment_new_customer_additional_details" />
+</navigation>

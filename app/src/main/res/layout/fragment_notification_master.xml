@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.admin.fragments.home_navs.NotificationMasterFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="@dimen/_10sdp"
+        android:indeterminateDrawable="@drawable/progress_bar_red"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llDatePickerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparentBlack"
+        android:elevation="@dimen/_5sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <DatePicker
+            android:id="@+id/dobDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:calendarViewShown="true"
+            android:datePickerMode="calendar"
+            android:elevation="@dimen/_8sdp"
+            android:hapticFeedbackEnabled="true"
+            android:headerBackground="@color/primaryRed"
+            android:padding="@dimen/_10sdp"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnSetDate"
+            style="@style/MyFilledButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:elevation="@dimen/_8sdp"
+            android:text="OK" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llNewCustomerDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_100sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ivEditImage"
+                app:layout_constraintBottom_toBottomOf="@+id/ivProfilePic"
+                app:layout_constraintEnd_toEndOf="@+id/ivProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_24sdp"
+                android:text="Edit Image"
+                style="@style/MyFilledButton"
+                android:layout_margin="@dimen/_5sdp"/>
+
+            <ImageView
+                android:id="@+id/ivProfilePic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"
+                android:src="@drawable/logo_cars360"
+                android:layout_margin="@dimen/_5sdp"
+                android:scaleType="fitCenter"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTitle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/primaryRed"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:hint="Notification Title *"
+            tools:layout_editor_absoluteX="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDesc"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/primaryRed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:hint="Notification Description *">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPost"
+        style="@style/MyFilledButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="Post Notification" />
+
+</RelativeLayout>

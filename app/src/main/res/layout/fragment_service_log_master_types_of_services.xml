@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterTypesOfServicesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/silver_border_box"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/repeatText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Repeat Job (if any)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rbYesRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <RadioButton
+                android:id="@+id/rbNoRepeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/silver_border_box"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/timeNCostText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Time &amp; Cost Estimate Explained for all Listed jobs"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rbYesTimeNCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <RadioButton
+                android:id="@+id/rbNoTimeNCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/silver_border_box"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/roadTestText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="Road Test Done Alongwith Customer"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rbYesRoadTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <RadioButton
+                android:id="@+id/rbNoRoadTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/silver_border_box"
+        android:orientation="horizontal"
+        android:padding="@dimen/_5sdp"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/cngText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="CNG/LPG Fitted"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/rbYesCNG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <RadioButton
+                android:id="@+id/rbNoCNG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:buttonTint="@color/primaryRed"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        style="@style/MyFilledButton"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/_10sdp"/>
+
+</LinearLayout>

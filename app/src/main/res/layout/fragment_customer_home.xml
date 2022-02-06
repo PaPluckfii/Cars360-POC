@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.customer.fragments.CustomerHomeFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_10sdp"
+        android:indeterminateDrawable="@drawable/progress_bar_red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/adViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/adViewPager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/viewpager_tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/llMechanicalAndRegularServicing"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_mechanical_and_services" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:text="Mechanical\nand\nRegular Services"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAccidentalRepair"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_accidental_repair" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Accidental\nRepairs"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCarDetailing"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_detailing" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Car\nDetailing"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llServices"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_life_long_service" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Life Long\nCar Care"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/llTires"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_tyres" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Tires"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCarWrapping"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_wrap" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Car\nWrapping"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCarModification"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/red_seperator_bg_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_modification" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Car\nModification"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAccessories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_accessories" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:gravity="center"
+                        android:lines="3"
+                        android:text="Accessories"
+                        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                        android:textColor="@color/primaryRed" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCreateLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MyFilledButton"
+                android:layout_margin="@dimen/_20sdp"
+                android:visibility="gone"
+                android:text="Create A Service Log"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/galleriesReviewRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondaryRed"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Our Socials"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp"
+                    android:weightSum="4">
+
+                    <ImageView
+                        android:id="@+id/ivWebsite"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_website" />
+
+                    <ImageView
+                        android:id="@+id/ivFacebook"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_facebook" />
+
+                    <ImageView
+                        android:id="@+id/ivInstagram"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_instagram" />
+
+                    <ImageView
+                        android:id="@+id/ivYoutube"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_youtube" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clCustomerServicesSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/customerServicesSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:behavior_hideable="true"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:layout_insetEdge="top">
+
+            <include
+                android:id="@+id/customerServicesBottomSheetLayout"
+                layout="@layout/customer_services_bottom_sheet_layout" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <View
+        android:id="@+id/vCustomerTransparentBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparentBlack"
+        android:clickable="true"
+        android:elevation="@dimen/_1sdp"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

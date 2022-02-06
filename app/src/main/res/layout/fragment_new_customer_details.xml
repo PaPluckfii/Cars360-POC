@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".ui.onboarding.fragments.new_customer.NewCustomerDetailsFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="@dimen/_10sdp"
+        android:indeterminateDrawable="@drawable/progress_bar_red"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llNewCustomerDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/ivEditImage"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:elevation="@dimen/_24sdp"
+                android:src="@drawable/ic_edit_pencil"
+                app:layout_constraintBottom_toBottomOf="@+id/ivProfilePic"
+                app:layout_constraintEnd_toEndOf="@+id/ivProfilePic" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivProfilePic"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_dummy_profile_pic"
+                app:civ_border_color="@color/primaryRed"
+                app:civ_border_width="@dimen/_1sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:hint="Your Name*"
+            app:hintTextColor="@color/primaryRed"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:layout_editor_absoluteX="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmailId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:hint="Your e-mail id"
+            app:hintTextColor="@color/primaryRed"
+            app:layout_constraintTop_toBottomOf="@+id/tilAddress"
+            tools:layout_editor_absoluteX="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCompleteProfile"
+                style="@style/MyTransparentButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Complete the profile"
+                android:layout_marginEnd="@dimen/_2sdp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignMeIn"
+                style="@style/MyFilledButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Just Sign Me In"
+                android:layout_marginStart="@dimen/_2sdp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/staff_navigation.xml"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.sumeet.cars360.ui.staff.fragments.bottom_nav.StaffHomeFragment"
+        android:label="Staff Dashboard"
+        tools:layout="@layout/fragment_customer_home">
+        <action
+            android:id="@+id/action_navigation_home_to_newServiceLogDetailsFragment"
+            app:destination="@id/newServiceLogDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_carCompanyMasterFragment"
+            app:destination="@id/carCompanyMasterFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_customerMasterFragment"
+            app:destination="@id/customerMasterFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_serviceAdvisorMasterFragment"
+            app:destination="@id/serviceAdvisorMasterFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_notificationMasterFragment"
+            app:destination="@id/notificationMasterFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_serviceLogMasterFragment"
+            app:destination="@id/serviceLogMasterFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_postServiceFollowUpFragment"
+            app:destination="@id/postServiceFollowUpFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_carHealthReportFragment"
+            app:destination="@id/carHealthReportFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_enquiryAndComlaintFragment"
+            app:destination="@id/enquiryAndComlaintFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_emergencyAndRoadSideAssistanceFragment"
+            app:destination="@id/emergencyAndRoadSideAssistanceFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_invoicesUploadFragment"
+            app:destination="@id/invoicesUploadFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_beforeAfterImagesUploadFragment"
+            app:destination="@id/beforeAfterImagesUploadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_explore"
+        android:name="com.sumeet.cars360.ui.staff.fragments.bottom_nav.StaffExploreFragment"
+        android:label="StaffHomeFragment"
+        tools:layout="@layout/fragment_customer_explore"/>
+    <fragment
+        android:id="@+id/navigation_service_logs"
+        android:name="com.sumeet.cars360.ui.staff.fragments.bottom_nav.StaffServiceLogsFragment"
+        android:label="Service Log Histories"
+        tools:layout="@layout/fragment_staff_service_logs" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.sumeet.cars360.ui.staff.fragments.bottom_nav.StaffProfileFragment"
+        android:label="Staff Profile"
+        tools:layout="@layout/fragment_staff_profile" />
+    <fragment
+        android:id="@+id/newServiceLogDetailsFragment"
+        android:name="com.sumeet.cars360.ui.staff.fragments.new_service_log.NewServiceLogDetailsFragment"
+        android:label="New Service Log"
+        tools:layout="@layout/fragment_new_service_log_details" />
+    <fragment
+        android:id="@+id/carCompanyMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CarCompanyMasterFragment"
+        android:label="Car Company Master"
+        tools:layout="@layout/fragment_car_company_master" />
+    <fragment
+        android:id="@+id/customerMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CustomerMasterFragment"
+        android:label="Customer Master"
+        tools:layout="@layout/fragment_customer_master" />
+    <fragment
+        android:id="@+id/serviceAdvisorMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceAdvisorMasterFragment"
+        android:label="Service Advisor Master"
+        tools:layout="@layout/fragment_service_advisor_master" />
+    <fragment
+        android:id="@+id/notificationMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.NotificationMasterFragment"
+        android:label="Notification Master" />
+    <fragment
+        android:id="@+id/serviceLogMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceLogMasterFragment"
+        android:label="Service Log Master" />
+    <fragment
+        android:id="@+id/postServiceFollowUpFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.PostServiceFollowUpFragment"
+        android:label="Post Service FollowUp" />
+    <fragment
+        android:id="@+id/carHealthReportFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CarHealthReportFragment"
+        android:label="Car Health Report" />
+    <fragment
+        android:id="@+id/enquiryAndComlaintFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.EnquiryAndComlaintFragment"
+        android:label="Enquiry And Complaints" />
+    <fragment
+        android:id="@+id/emergencyAndRoadSideAssistanceFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.EmergencyAndRoadSideAssistanceFragment"
+        android:label="Emergency And RoadSide Assistance" />
+    <fragment
+        android:id="@+id/invoicesUploadFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.InvoicesUploadFragment"
+        android:label="Invoices"
+        tools:layout="@layout/fragment_invoices_upload" />
+    <fragment
+        android:id="@+id/beforeAfterImagesUploadFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.BeforeAfterImagesUploadFragment"
+        android:label="Before/After Images"
+        tools:layout="@layout/fragment_before_after_images_upload" />
+</navigation>

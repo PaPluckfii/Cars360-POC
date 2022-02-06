@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.admin.fragments.home_navs.ServiceLogMasterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp">
+
+        <View
+            android:id="@+id/customerLine"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/primaryRed"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/picturesTick"
+            app:layout_constraintStart_toEndOf="@+id/customerTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/customerTick"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_checked"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/picturesTick"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/picturesLine"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/primaryRed"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/accessoriesTick"
+            app:layout_constraintStart_toEndOf="@+id/picturesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/picturesTick"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/accessoriesTick"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/customerTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/accessoriesLine"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/primaryRed"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/typeOfServicesTick"
+            app:layout_constraintStart_toEndOf="@+id/accessoriesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/accessoriesTick"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/typeOfServicesTick"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/picturesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/typeOfServicesLine"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/primaryRed"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/requestedRepairsTick"
+            app:layout_constraintStart_toEndOf="@+id/typeOfServicesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/typeOfServicesTick"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/requestedRepairsTick"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/accessoriesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/requestedRepairsTick"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:src="@drawable/ic_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/typeOfServicesTick"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_service_log_master"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/service_log_master_navigation"/>
+
+</LinearLayout>

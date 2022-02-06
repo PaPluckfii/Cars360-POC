@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.customer.fragments.CustomerHelpFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintTop_toTopOf="parent"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:id="@+id/llCallUs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/red_seperator_bg_vertical"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_call" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:gravity="center"
+                    android:lines="3"
+                    android:text="Call\nUs"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:textColor="@color/primaryRed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEnquiry"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/red_seperator_bg_vertical"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_enquiry" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:gravity="center"
+                    android:lines="3"
+                    android:text="Enquiry"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:textColor="@color/primaryRed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLocateUs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/red_seperator_bg_vertical"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_locate_us" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:gravity="center"
+                    android:lines="3"
+                    android:text="Locate\nUs"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:textColor="@color/primaryRed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEmailUs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_1sdp"
+                    android:gravity="center"
+                    android:lines="3"
+                    android:text="Email\nUs"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:textColor="@color/primaryRed" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewFAQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="FAQs"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/primaryRed"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@color/primaryRed"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFAQ" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/faqRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

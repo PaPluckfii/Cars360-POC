@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/primaryRed"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRemarks"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Requested Repair"
+        app:hintTextColor="@color/primaryRed"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/typesOfServicesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEstimate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Estimated Amount"
+        app:hintTextColor="@color/primaryRed"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEstimate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/ic_baseline_delete_24"
+        android:background="@android:color/transparent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_20sdp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/primaryRed"/>
+
+</LinearLayout>
