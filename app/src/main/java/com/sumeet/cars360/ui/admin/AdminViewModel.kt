@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
+import com.sumeet.cars360.data.remote.model.service_logs.ServiceLogsByUserIdResponse
 import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.Resource
@@ -26,6 +27,9 @@ class AdminViewModel @Inject constructor(
     private val _carEntities = MutableLiveData<Resource<CarEntitiesResponse>>()
     val carEntities: LiveData<Resource<CarEntitiesResponse>>
         get() = _carEntities
+
+    private val _allServiceLogs = MutableLiveData<Resource<ServiceLogsByUserIdResponse>>()
+    val allServiceLogs:LiveData<Resource<ServiceLogsByUserIdResponse>> = _allServiceLogs
 
     fun getAllCarEntities() {
         _carEntities.postValue(Resource.Loading())
@@ -217,6 +221,22 @@ class AdminViewModel @Inject constructor(
         _allUsers.postValue(Resource.Loading())
         viewModelScope.launch {
             //TODO
+        }
+    }
+
+    fun getAllServiceLogsByUserId(userId:String){
+        _allServiceLogs.postValue(Resource.Loading())
+        viewModelScope.launch {
+            val response = remoteRepository.getAllServiceLogsByUserId(userId)
+
+            if (response.isSuccessful && response.body() != null)
+                if (response.body()?.error == false)
+                    _allServiceLogs.postValue(Resource.Success(response.body()))
+                else
+                    _allServiceLogs.postValue(Resource.Error(response.body()?.message))
+            else
+                _allServiceLogs.postValue(Resource.Error(response.message()))
+
         }
     }
 

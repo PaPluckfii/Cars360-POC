@@ -270,8 +270,8 @@ class RemoteRepository @Inject constructor(
         return apiClient.updateServiceLog(requestBody)
     }
 
-    suspend fun getAllServiceLogsByUserId() =
-        apiClient.getAllServiceLogs(GeneralRequest("11", "2"))
+    suspend fun getAllServiceLogsByUserId(userId: String) =
+        apiClient.getAllServiceLogs(GeneralRequest(userId, "2"))
 
     suspend fun updateServiceLogStatus(
         serviceLogId: String,

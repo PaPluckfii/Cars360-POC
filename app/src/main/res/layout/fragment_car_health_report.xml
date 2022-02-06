@@ -6,16 +6,9 @@
     android:orientation="vertical"
     tools:context=".ui.admin.fragments.home_navs.CarHealthReportFragment">
 
-    <include
-        layout="@layout/item_service_log_layout"/>
-
-    <include
-        layout="@layout/item_service_log_layout"/>
-
-    <Button
-        android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/carHealthReportRecyclerview"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
 </LinearLayout>

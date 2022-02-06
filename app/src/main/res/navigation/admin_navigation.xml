@@ -65,7 +65,11 @@
         android:id="@+id/admin_navigation_service_logs"
         android:name="com.sumeet.cars360.ui.admin.fragments.bottom_navs.AdminServiceLogsFragment"
         android:label="Service Logs"
-        tools:layout="@layout/fragment_admin_service_logs" />
+        tools:layout="@layout/fragment_admin_service_logs" >
+        <action
+            android:id="@+id/action_admin_navigation_service_logs_to_serviceLogDetailsFragment"
+            app:destination="@id/serviceLogDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/carCompanyMasterFragment2"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CarCompanyMasterFragment"
@@ -140,4 +144,13 @@
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AddCarEntitiesFragment"
         android:label="fragment_add_car_entities"
         tools:layout="@layout/fragment_add_car_entities" />
+    <fragment
+        android:id="@+id/serviceLogDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogDetailsFragment"
+        android:label="fragment_service_log_details"
+        tools:layout="@layout/fragment_service_log_details" >
+        <argument
+            android:name="servicelog"
+            app:argType="com.sumeet.cars360.data.remote.model.service_logs.ServiceLogResponse" />
+    </fragment>
 </navigation>
