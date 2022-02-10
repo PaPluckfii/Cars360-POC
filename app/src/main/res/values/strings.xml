@@ -38,6 +38,13 @@
         <item>Accessories</item>
     </string-array>
 
+    <string-array name="RequestedRepairs">
+        <item>Detailing</item>
+        <item>Periodic Maintenance</item>
+        <item>General Repair</item>
+        <item>Body &amp; Paint</item>
+    </string-array>
+
     <string-array name="CarBodyColor">
         <item>Black</item>
         <item>White</item>

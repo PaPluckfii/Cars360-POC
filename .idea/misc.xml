@@ -13,6 +13,7 @@
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/ic_camera_back_arrow.xml" value="0.2703125" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/ic_minimize_sheet.xml" value="0.2703125" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/progress_bar_red.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/red_border_box.xml" value="0.2703125" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/red_seperator_bg_vertical.xml" value="0.2703125" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/shutter.xml" value="0.2703125" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/drawable/silver_border_box.xml" value="0.2703125" />
@@ -32,14 +33,17 @@
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/customer_request_service_bottom_sheet_layout.xml" value="0.176" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/customer_services_bottom_sheet_layout.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/customers_car_select_bottom_sheet_layout.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/dialog_requested_service.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/dialog_upload_document.xml" value="0.2128623188405797" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/employee_new_service_log_bottom_sheet.xml" value="0.18568840579710144" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/explore_tab_custom_views.xml" value="0.23052536231884058" />
+        <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_ad_banner.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_add_car_entities.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_admin_home.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_admin_service_logs.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_admin_statistics.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_all_customers.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_all_service_advisors.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_before_after_images_upload.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_camera.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_car_company_master.xml" value="0.21784420289855072" />
@@ -64,6 +68,7 @@
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_o_t_p.xml" value="0.176" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_post_service_follow_up.xml" value="0.2128623188405797" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_service_advisor_master.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_service_log_details.xml" value="0.19067028985507245" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_service_log_master.xml" value="0.264" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_service_log_master_accessories.xml" value="0.20606884057971014" />
         <entry key="..\:/Users/shAMAn/Desktop/personal/Freelance/final_cars/Cars360Raipur/app/src/main/res/layout/fragment_service_log_master_customer_details.xml" value="0.20606884057971014" />

@@ -111,7 +111,7 @@ interface ApiClient {
         @Body generalRequest: GeneralRequest
     ): Response<CarEntitiesResponse>
 
-    //TODO indivisual model and brand list and delete
+    //TODO individual model and brand list and delete
 //    @POST("ModelList.php")
 //    suspend fun getAllCarModels(
 //        @Body UserId: String,

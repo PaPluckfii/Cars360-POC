@@ -2,6 +2,7 @@ package com.sumeet.cars360.ui.onboarding.fragments.new_customer
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sumeet.cars360.data.remote.model.car_entities.CarBrandResponse

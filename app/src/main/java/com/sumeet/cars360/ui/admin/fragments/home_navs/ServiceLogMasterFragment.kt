@@ -7,21 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterBinding
+import com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogMasterViewModel
+import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
+import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ServiceLogMasterFragment : Fragment() {
 
     private lateinit var binding: FragmentServiceLogMasterBinding
+    private val viewModel: ServiceLogMasterViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentServiceLogMasterBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -29,6 +34,17 @@ class ServiceLogMasterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpNavigation()
+        setUpObserver()
+    }
+
+    private fun setUpObserver() {
+        viewModel.insertOperation.observe(viewLifecycleOwner,{
+            when(it){
+                is Resource.Success -> {
+                    findNavController().navigate(R.id.action_serviceLogMasterFragment2_to_admin_navigation_home2)
+                }
+            }
+        })
     }
 
     private fun setUpNavigation() {

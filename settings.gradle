@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Cars360-Raipur"
 include ':app'
+include ':coffee'

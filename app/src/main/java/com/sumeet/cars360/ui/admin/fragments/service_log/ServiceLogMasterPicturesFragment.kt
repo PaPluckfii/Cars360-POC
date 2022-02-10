@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
@@ -48,14 +49,34 @@ class ServiceLogMasterPicturesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(CurrentPics.picturesDTO.frontPic != null)
+        if(CurrentPics.picturesDTO.frontPic != null) {
             isFrontCaptured = true
-        if(CurrentPics.picturesDTO.leftPic != null)
+            binding.tvFrontView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(),R.color.primaryRed))
+                setBackgroundResource(R.drawable.red_border_box)
+            }
+        }
+        if(CurrentPics.picturesDTO.leftPic != null) {
             isLeftCaptured = true
-        if(CurrentPics.picturesDTO.rightPic != null)
+            binding.tvLeftView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(),R.color.primaryRed))
+                setBackgroundResource(R.drawable.red_border_box)
+            }
+        }
+        if(CurrentPics.picturesDTO.rightPic != null) {
             isRightCaptured = true
-        if(CurrentPics.picturesDTO.backPic != null)
+            binding.tvRightView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(),R.color.primaryRed))
+                setBackgroundResource(R.drawable.red_border_box)
+            }
+        }
+        if(CurrentPics.picturesDTO.backPic != null) {
             isBackCaptured = true
+            binding.tvBackView.apply {
+                setTextColor(ContextCompat.getColor(requireContext(),R.color.primaryRed))
+                setBackgroundResource(R.drawable.red_border_box)
+            }
+        }
     }
 
     private fun handleListeners() {
@@ -104,7 +125,7 @@ data class PicturesDTO(
     var leftPic: File? = null,
     var rightPic: File? = null,
     var backPic: File? = null,
-    var frontPic: File? = null,
+    var frontPic: File? = null
 )
 
 object CurrentPics{

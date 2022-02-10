@@ -83,17 +83,29 @@
         android:id="@+id/customerMasterFragment2"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CustomerMasterFragment"
         android:label="Customer Master"
-        tools:layout="@layout/fragment_customer_master" />
+        tools:layout="@layout/fragment_customer_master" >
+        <action
+            android:id="@+id/action_customerMasterFragment2_to_admin_navigation_home"
+            app:destination="@id/admin_navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/serviceLogMasterFragment2"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceLogMasterFragment"
         android:label="Service Log Master"
-        tools:layout="@layout/fragment_service_log_master" />
+        tools:layout="@layout/fragment_service_log_master" >
+        <action
+            android:id="@+id/action_serviceLogMasterFragment2_to_admin_navigation_home2"
+            app:destination="@id/admin_navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/serviceAdvisorMasterFragment2"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceAdvisorMasterFragment"
         android:label="Service Advisor Master"
-        tools:layout="@layout/fragment_service_advisor_master" />
+        tools:layout="@layout/fragment_service_advisor_master" >
+        <action
+            android:id="@+id/action_serviceAdvisorMasterFragment2_to_admin_navigation_home"
+            app:destination="@id/admin_navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/notificationMasterFragment2"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.NotificationMasterFragment"
@@ -143,14 +155,23 @@
         android:id="@+id/addCarEntitiesFragment"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AddCarEntitiesFragment"
         android:label="fragment_add_car_entities"
-        tools:layout="@layout/fragment_add_car_entities" />
+        tools:layout="@layout/fragment_add_car_entities">
+        <argument
+            android:name="type"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_addCarEntitiesFragment_to_admin_navigation_home"
+            app:destination="@id/admin_navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/serviceLogDetailsFragment"
         android:name="com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogDetailsFragment"
-        android:label="fragment_service_log_details"
+        android:label="Service Log"
         tools:layout="@layout/fragment_service_log_details" >
         <argument
             android:name="servicelog"
             app:argType="com.sumeet.cars360.data.remote.model.service_logs.ServiceLogResponse" />
     </fragment>
+    <include app:graph="@navigation/service_log_master_navigation" />
 </navigation>

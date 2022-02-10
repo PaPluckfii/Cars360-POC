@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tvFrontView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border"
@@ -46,6 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/frontView">
 
             <TextView
+                android:id="@+id/tvLeftView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border"
@@ -68,6 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/leftSideView">
 
             <TextView
+                android:id="@+id/tvRightView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border"
@@ -90,6 +93,7 @@
             app:layout_constraintTop_toBottomOf="@+id/rightSideView">
 
             <TextView
+                android:id="@+id/tvBackView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/border"

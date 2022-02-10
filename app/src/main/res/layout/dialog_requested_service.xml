@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_margin="@dimen/_5sdp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/primaryRed"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRemarks"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Requested Repair"
+        app:hintTextColor="@color/primaryRed"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/typesOfServicesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:entries="@array/RequestedRepairs"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEstimate"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Estimated Amount"
+        app:hintTextColor="@color/primaryRed"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEstimate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddRequestedRepair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MyFilledButton"
+        android:layout_gravity="end"
+        android:text="Add"
+        android:layout_margin="@dimen/_10sdp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/primaryRed"/>
+
+</LinearLayout>

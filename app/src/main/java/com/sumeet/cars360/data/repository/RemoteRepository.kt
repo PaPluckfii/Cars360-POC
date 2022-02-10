@@ -383,7 +383,7 @@ class RemoteRepository @Inject constructor(
 }
 
 data class CarDetailsByMobileNumberRequest(
-    val UserTypeId: String,
+    val UserTypeId: String,     //User Type Id for Customer = 3
     val Mobile: String
 )
 

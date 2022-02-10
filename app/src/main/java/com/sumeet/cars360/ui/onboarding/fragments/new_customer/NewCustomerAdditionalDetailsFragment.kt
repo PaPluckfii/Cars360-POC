@@ -150,6 +150,10 @@ class NewCustomerAdditionalDetailsFragment : Fragment() {
             binding.btnSelectDOB.background = ContextCompat.getDrawable(requireContext(),R.color.secondaryRed)
             validity = false
         }
+        if(viewModel.dom == ""){
+            binding.btnSelectDOM.background = ContextCompat.getDrawable(requireContext(),R.color.secondaryRed)
+            validity = false
+        }
         return validity
     }
 

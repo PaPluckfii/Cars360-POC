@@ -9,7 +9,8 @@
     tools:context=".ui.admin.fragments.home_navs.AddCarEntitiesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/clImage"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp">
 

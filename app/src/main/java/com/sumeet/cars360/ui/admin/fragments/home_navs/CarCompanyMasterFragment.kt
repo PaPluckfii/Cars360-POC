@@ -44,8 +44,20 @@ class CarCompanyMasterFragment : Fragment(),CarSelectAdapter.CarSelectListener {
     private fun handleListeners() {
         binding.apply {
             btnAddCar.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked())
-                    navigate(CarCompanyMasterFragmentDirections.actionCarCompanyMasterFragment2ToAddCarEntitiesFragment())
+                if(ButtonClickHandler.buttonClicked()) {
+                    if (binding.btnAddCar.text == "Add New Model")
+                        navigate(
+                            CarCompanyMasterFragmentDirections.actionCarCompanyMasterFragment2ToAddCarEntitiesFragment(
+                                1
+                            )
+                        )
+                    else
+                        navigate(
+                            CarCompanyMasterFragmentDirections.actionCarCompanyMasterFragment2ToAddCarEntitiesFragment(
+                                0
+                            )
+                        )
+                }
             }
         }
     }
@@ -74,6 +86,7 @@ class CarCompanyMasterFragment : Fragment(),CarSelectAdapter.CarSelectListener {
         if(carModel == null) {
             viewModel.currentBrandId = carBrand.brandId.toString()
             carBrand.carModelResponses?.let { recyclerAdapter.setCarModelList(it) }
+            binding.btnAddCar.text = "Add New Model"
         }
         else{
             //viewModel.modelId = carModel.modelId.toString()
