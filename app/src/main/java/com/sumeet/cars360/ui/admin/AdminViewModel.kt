@@ -8,6 +8,9 @@ import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
 import com.sumeet.cars360.data.remote.model.service_logs.ServiceLogsByUserIdResponse
 import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.data.repository.RemoteRepository
+import com.sumeet.cars360.util.Constants
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -34,14 +37,18 @@ class AdminViewModel @Inject constructor(
     fun getAllCarEntities() {
         _carEntities.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.getAllCarCollections()
-            if (response.isSuccessful && response.body() != null)
-                if (response.body()?.error == false)
-                    _carEntities.postValue(Resource.Success(response.body()))
+            if (hasInternetConnection()){
+                val response = remoteRepository.getAllCarCollections()
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _carEntities.postValue(Resource.Success(response.body()))
+                    else
+                        _carEntities.postValue(Resource.Error(response.body()?.message))
                 else
-                    _carEntities.postValue(Resource.Error(response.body()?.message))
-            else
-                _carEntities.postValue(Resource.Error(response.message()))
+                    _carEntities.postValue(Resource.Error(response.message()))
+            }else{
+                _carEntities.postValue(Resource.Error(Constants.NO_INTERNET_CONNECTION))
+            }
         }
     }
 
@@ -49,20 +56,24 @@ class AdminViewModel @Inject constructor(
     fun insertNewCarBrand(name: String, logo: File) {
         _insertOperation.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.addNewCarBrand(name, logo)
-            if (response.isSuccessful && response.body() != null) {
-                if (response.body()?.error == false)
-                    _insertOperation.postValue(
-                        Resource.Success(
-                            response.body()?.brandInsertResponse?.get(
-                                0
-                            )?.brandId
+            if (hasInternetConnection()){
+                val response = remoteRepository.addNewCarBrand(name, logo)
+                if (response.isSuccessful && response.body() != null) {
+                    if (response.body()?.error == false)
+                        _insertOperation.postValue(
+                            Resource.Success(
+                                response.body()?.brandInsertResponse?.get(
+                                    0
+                                )?.brandId
+                            )
                         )
-                    )
-                else
-                    _insertOperation.postValue(Resource.Error(response.body()?.message))
-            } else
-                _insertOperation.postValue(Resource.Error(response.message()))
+                    else
+                        _insertOperation.postValue(Resource.Error(response.body()?.message))
+                } else
+                    _insertOperation.postValue(Resource.Error(response.message()))
+            }else{
+                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
@@ -70,20 +81,24 @@ class AdminViewModel @Inject constructor(
     fun insertNewCarModel(name: String, logo: File) {
         _insertOperation.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.addNewCarModel(currentBrandId, name, logo)
-            if (response.isSuccessful && response.body() != null) {
-                if (response.body()?.error == false)
-                    _insertOperation.postValue(
-                        Resource.Success(
-                            response.body()?.modelInsertResponse?.get(
-                                0
-                            )?.modelId
+            if (hasInternetConnection()){
+                val response = remoteRepository.addNewCarModel(currentBrandId, name, logo)
+                if (response.isSuccessful && response.body() != null) {
+                    if (response.body()?.error == false)
+                        _insertOperation.postValue(
+                            Resource.Success(
+                                response.body()?.modelInsertResponse?.get(
+                                    0
+                                )?.modelId
+                            )
                         )
-                    )
-                else
-                    _insertOperation.postValue(Resource.Error(response.body()?.message))
-            } else
-                _insertOperation.postValue(Resource.Error(response.message()))
+                    else
+                        _insertOperation.postValue(Resource.Error(response.body()?.message))
+                } else
+                    _insertOperation.postValue(Resource.Error(response.message()))
+            }else{
+                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
@@ -119,37 +134,41 @@ class AdminViewModel @Inject constructor(
         _insertOperation.postValue(Resource.Loading())
 
         viewModelScope.launch(Dispatchers.IO) {
-            val response = remoteRepository.addNewUserToServer(
-                name,
-                email,
-                mobileNo,
-                firebaseId,
-                address,
-                city,
-                state,
-                pinCode,
-                dob,
-                dom,
-                gstIn,
-                profileImage
-            )
+            if (hasInternetConnection()){
+                val response = remoteRepository.addNewUserToServer(
+                    name,
+                    email,
+                    mobileNo,
+                    firebaseId,
+                    address,
+                    city,
+                    state,
+                    pinCode,
+                    dob,
+                    dom,
+                    gstIn,
+                    profileImage
+                )
 
-            if (response.isSuccessful && response.body() != null) {
-                //TODO revert temp changes
-                if (response.body()?.error == true)
-                    _insertOperation.postValue(
-                        Resource.Error(
-                            response.body()?.userInsertResponse?.get(
-                                0
-                            )?.message
+                if (response.isSuccessful && response.body() != null) {
+                    //TODO revert temp changes
+                    if (response.body()?.error == true)
+                        _insertOperation.postValue(
+                            Resource.Error(
+                                response.body()?.userInsertResponse?.get(
+                                    0
+                                )?.message
+                            )
                         )
-                    )
-                else {
-                    val userId = response.body()?.userInsertResponse?.get(0)?.userId
-                    _insertOperation.postValue(Resource.Success(userId))
-                }
-            } else
-                _insertOperation.postValue(Resource.Error(response.message()))
+                    else {
+                        val userId = response.body()?.userInsertResponse?.get(0)?.userId
+                        _insertOperation.postValue(Resource.Success(userId))
+                    }
+                } else
+                    _insertOperation.postValue(Resource.Error(response.message()))
+            }else{
+                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
@@ -174,34 +193,38 @@ class AdminViewModel @Inject constructor(
     fun insertNewCar(userId: String) {
         _insertOperation.postValue(Resource.Loading())
         viewModelScope.launch(Dispatchers.IO) {
-            val response = remoteRepository.addNewCarDetails(
-                userId,
-                modelId,
-                brandId,
-                vehicleNo,
-                bodyColor,
-                vehicleNo,
-                fuelType,
-                insuranceCompany,
-                insuranceExpiryDate,
-                userId
-            )
-            if (response.isSuccessful && response.body() != null) {
-                //TODO revert temp changes
-                if (response.body()?.error == true)
-                    _insertOperation.postValue(
-                        Resource.Error(
-                            response.body()?.carInsertResponse?.get(
-                                0
-                            )?.message
+            if (hasInternetConnection()){
+                val response = remoteRepository.addNewCarDetails(
+                    userId,
+                    modelId,
+                    brandId,
+                    vehicleNo,
+                    bodyColor,
+                    vehicleNo,
+                    fuelType,
+                    insuranceCompany,
+                    insuranceExpiryDate,
+                    userId
+                )
+                if (response.isSuccessful && response.body() != null) {
+                    //TODO revert temp changes
+                    if (response.body()?.error == true)
+                        _insertOperation.postValue(
+                            Resource.Error(
+                                response.body()?.carInsertResponse?.get(
+                                    0
+                                )?.message
+                            )
                         )
-                    )
-                else {
-                    val carId = response.body()?.carInsertResponse?.get(0)?.carId
-                    _insertOperation.postValue(Resource.Success(carId))
-                }
-            } else
-                _insertOperation.postValue(Resource.Error(response.message()))
+                    else {
+                        val carId = response.body()?.carInsertResponse?.get(0)?.carId
+                        _insertOperation.postValue(Resource.Success(carId))
+                    }
+                } else
+                    _insertOperation.postValue(Resource.Error(response.message()))
+            }else{
+                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
@@ -227,16 +250,19 @@ class AdminViewModel @Inject constructor(
     fun getAllServiceLogsByUserId(userId:String){
         _allServiceLogs.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.getAllServiceLogsByUserId(userId)
+            if (hasInternetConnection()){
+                val response = remoteRepository.getAllServiceLogsByUserId(userId)
 
-            if (response.isSuccessful && response.body() != null)
-                if (response.body()?.error == false)
-                    _allServiceLogs.postValue(Resource.Success(response.body()))
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _allServiceLogs.postValue(Resource.Success(response.body()))
+                    else
+                        _allServiceLogs.postValue(Resource.Error(response.body()?.message))
                 else
-                    _allServiceLogs.postValue(Resource.Error(response.body()?.message))
-            else
-                _allServiceLogs.postValue(Resource.Error(response.message()))
-
+                    _allServiceLogs.postValue(Resource.Error(response.message()))
+            }else{
+                _allServiceLogs.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 

@@ -8,9 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.repository.RemoteRepository
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
@@ -80,24 +81,28 @@ class ServiceLogMasterViewModel @Inject constructor(
     fun searchUserByMobileNumber(mobileNo: String) {
         _customerData.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
-            if(response.isSuccessful && response.body() != null && response.body()?.error==false){
-                val userId = response.body()?.carDetailsResponse?.get(0)?.userId
-                if(userId != null){
-                    val userDataResponse = remoteRepository.getUserByUserId("11")
-                    if(userDataResponse.isSuccessful && userDataResponse.body() != null){
-                        if(userDataResponse.body()?.error == true) {
-                            Log.d("USER_DATA",response.message())
-                            _customerData.postValue(Resource.Error(userDataResponse.body()?.message))
-                        }
-                        else{
-                            customerCarData = response.body()
-                            _customerData.postValue(Resource.Success(userDataResponse.body()))
+            if (hasInternetConnection()){
+                val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
+                if(response.isSuccessful && response.body() != null && response.body()?.error==false){
+                    val userId = response.body()?.carDetailsResponse?.get(0)?.userId
+                    if(userId != null){
+                        val userDataResponse = remoteRepository.getUserByUserId("11")
+                        if(userDataResponse.isSuccessful && userDataResponse.body() != null){
+                            if(userDataResponse.body()?.error == true) {
+                                Log.d("USER_DATA",response.message())
+                                _customerData.postValue(Resource.Error(userDataResponse.body()?.message))
+                            }
+                            else{
+                                customerCarData = response.body()
+                                _customerData.postValue(Resource.Success(userDataResponse.body()))
+                            }
                         }
                     }
+                    else
+                        _customerData.postValue(Resource.Error(response.message()))
+                }else{
+                    _customerData.postValue(Resource.Error(NO_INTERNET_CONNECTION))
                 }
-                else
-                    _customerData.postValue(Resource.Error(response.message()))
             }
         }
     }

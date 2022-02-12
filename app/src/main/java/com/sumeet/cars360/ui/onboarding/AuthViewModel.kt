@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.repository.AuthRepository
 import com.sumeet.cars360.data.repository.RemoteRepository
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -50,11 +52,15 @@ class AuthViewModel @Inject constructor(
     fun findUserByFirebaseId(firebaseId: String) {
         viewModelScope.launch {
             _userDataFromServer.postValue(Resource.Loading())
-            val response = remoteRepository.getUserByUserId(firebaseId)
-            if (response.isSuccessful && response.body() != null)
-                _userDataFromServer.postValue(Resource.Success(response.body()))
-            else
-                _userDataFromServer.postValue(Resource.Error(response.message()))
+            if (hasInternetConnection()){
+                val response = remoteRepository.getUserByUserId(firebaseId)
+                if (response.isSuccessful && response.body() != null)
+                    _userDataFromServer.postValue(Resource.Success(response.body()))
+                else
+                    _userDataFromServer.postValue(Resource.Error(response.message()))
+            }else{
+                _userDataFromServer.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 

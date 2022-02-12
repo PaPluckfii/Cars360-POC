@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sumeet.cars360.data.local.room.model.CarEntity
 import com.sumeet.cars360.data.local.room.model.UserEntity
 import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
 import com.sumeet.cars360.data.remote.old_model.Galleries
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.data.repository.RoomRepository
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,14 +33,18 @@ class StaffViewModel @Inject constructor(
     fun getAllCarEntities() {
         _carEntities.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.getAllCarCollections()
-            if (response.isSuccessful && response.body() != null)
-                if (response.body()?.error == false)
-                    _carEntities.postValue(Resource.Success(response.body()))
+            if (hasInternetConnection()){
+                val response = remoteRepository.getAllCarCollections()
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _carEntities.postValue(Resource.Success(response.body()))
+                    else
+                        _carEntities.postValue(Resource.Error(response.body()?.message))
                 else
-                    _carEntities.postValue(Resource.Error(response.body()?.message))
-            else
-                _carEntities.postValue(Resource.Error(response.message()))
+                    _carEntities.postValue(Resource.Error(response.message()))
+            }else{
+                _carEntities.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
