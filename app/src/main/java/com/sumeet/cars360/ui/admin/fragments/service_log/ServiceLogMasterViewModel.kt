@@ -81,7 +81,7 @@ class ServiceLogMasterViewModel @Inject constructor(
         _customerData.postValue(Resource.Loading())
         viewModelScope.launch {
             val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
-            if(response.isSuccessful && response.body() != null){
+            if(response.isSuccessful && response.body() != null && response.body()?.error==false){
                 val userId = response.body()?.carDetailsResponse?.get(0)?.userId
                 if(userId != null){
                     val userDataResponse = remoteRepository.getUserByUserId("11")
@@ -101,5 +101,4 @@ class ServiceLogMasterViewModel @Inject constructor(
             }
         }
     }
-
 }

@@ -38,6 +38,9 @@ android {
         viewBinding true
         dataBinding true
     }
+    lintOptions{
+        disable 'SetTextI18n' // to remove this Suppress add
+    }
 }
 
 def versions = [
