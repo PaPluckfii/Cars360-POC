@@ -64,6 +64,9 @@ class RemoteRepository @Inject constructor(
     suspend fun getUserByUserId(userId: String) =
         apiClient.getUserByUserId(GeneralRequest(userId,""))
 
+    suspend fun getCustomerByUserId(userId:String) =
+        apiClient.getUserByUserId(GeneralRequest(userId,"3"))
+
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
         apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
 
@@ -379,6 +382,9 @@ class RemoteRepository @Inject constructor(
 
     suspend fun getAllCarCollections() =
         apiClient.getAllCarEntities(GeneralRequest("11", "2"))
+
+    suspend fun getCustomerCarDetailsByMobileNumber(mobileNo: String) =
+        apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
 
 }
 

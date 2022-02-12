@@ -42,4 +42,47 @@ class SavePrefs(mContext: Context) {
         editor?.putString("USER_ID", userId)?.apply()
     }
 
+    fun saveUserName(userName: String) {
+        editor?.putString("USER_NAME", userName)?.apply()
+    }
+
+    fun saveUserEmail(userEmail: String) {
+        editor?.putString("USER_EMAIL", userEmail)?.apply()
+    }
+
+    fun saveUserAddress(userAddress: String) {
+        editor?.putString("USER_ADDRESS", userAddress)?.apply()
+    }
+
+    fun saveUserCity(userCity: String) {
+        editor?.putString("USER_CITY", userCity)?.apply()
+    }
+
+    fun saveUserState(userState: String) {
+        editor?.putString("USER_STATE", userState)?.apply()
+    }
+
+    fun saveUserCountry(userCountry: String) {
+        editor?.putString("USER_COUNTRY", userCountry)?.apply()
+    }
+
+    fun saveUserPostalCode(userPcode: String) {
+        editor?.putString("USER_PCODE", userPcode)?.apply()
+    }
+
+    fun saveUserDob(userDob: String) {
+        editor?.putString("USER_DOB", userDob)?.apply()
+    }
+
+    fun saveUserGstin(userGstin:String){
+        editor?.putString("USER_GSTIN", userGstin)?.apply()
+    }
+
+    fun saveProfileImage(userImage: String) {
+        editor?.putString("USER_IMAGE", userImage)?.apply()
+    }
+
+    fun saveUserDom(userDom: String) {
+        editor?.putString("USER_DOM", userDom)?.apply()
+    }
 }

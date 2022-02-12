@@ -35,4 +35,48 @@ class ReadPrefs(mContext : Context) {
         return preferences?.getString("USER_ID","")
     }
 
+    fun readUserName() : String? {
+        return preferences?.getString("USER_NAME","")
+    }
+
+    fun readUserEmail() : String? {
+        return preferences?.getString("USER_EMAIL","")
+    }
+
+    fun readUserAddress() : String? {
+        return preferences?.getString("USER_ADDRESS","")
+    }
+
+    fun readUserCity() : String? {
+        return preferences?.getString("USER_CITY","")
+    }
+
+    fun readUserState() : String? {
+        return preferences?.getString("USER_STATE","")
+    }
+
+    fun readUserCountry() : String? {
+        return preferences?.getString("USER_COUNTRY","")
+    }
+
+    fun readUserPostalCode() : String? {
+        return preferences?.getString("USER_PCODE","")
+    }
+
+    fun readUserDob() : String? {
+        return preferences?.getString("USER_DOB","")
+    }
+
+    fun readUserGstin() : String? {
+        return preferences?.getString("USER_GSTIN","")
+    }
+
+    fun readProfileImage() : String? {
+        return preferences?.getString("USER_IMAGE","")
+    }
+
+    fun readUserDom() : String? {
+        return preferences?.getString("USER_IMAGE","")
+    }
+
 }

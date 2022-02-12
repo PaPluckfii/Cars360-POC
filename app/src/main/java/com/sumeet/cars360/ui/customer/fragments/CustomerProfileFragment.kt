@@ -3,25 +3,34 @@ package com.sumeet.cars360.ui.customer.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sumeet.cars360.R
+import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.room.model.CarEntity
 import com.sumeet.cars360.data.remote.model.user.UserResponse
+import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponse
 import com.sumeet.cars360.data.remote.old_model.Cars360Document
 import com.sumeet.cars360.databinding.CustomerProfileBottomSheetBinding
 import com.sumeet.cars360.databinding.FragmentCustomerProfileBinding
+import com.sumeet.cars360.ui.admin.ServiceLogRecyclerAdapter
 import com.sumeet.cars360.ui.customer.CustomerViewModel
 import com.sumeet.cars360.ui.customer.util.CarItemClickListener
 import com.sumeet.cars360.ui.customer.util.CarsRecyclerAdapter
 import com.sumeet.cars360.ui.customer.util.ProfileBottomSheetItemClickListener
 import com.sumeet.cars360.ui.customer.util.ProfileBottomSheetRecyclerAdapter
+import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +43,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
     private lateinit var bottomSheetLayoutBinding: CustomerProfileBottomSheetBinding
     private var isBottomSheetVisible: Boolean = false
     private lateinit var bottomSheetRecyclerAdapter: ProfileBottomSheetRecyclerAdapter
+    private lateinit var readPrefs:ReadPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +56,33 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
+        readPrefs = ReadPrefs(requireContext())
+        setUpProfileData()
         observeCustomerData()
         setUpBottomSheet()
+    }
+
+    private fun setUpProfileData() {
+        binding.apply {
+            setTextInView(tvName,readPrefs.readUserName())
+            setTextInView(tvMobile,readPrefs.readUserMobileNumber())
+            setTextInView(tvEmailId,readPrefs.readUserEmail())
+            setTextInView(tvAddressLine,readPrefs.readUserAddress())
+            setTextInView(tvCity,readPrefs.readUserCity())
+            setTextInView(tvState,readPrefs.readUserState())
+            setTextInView(tvPostalCode,"Pin Code - ${readPrefs.readUserPostalCode()}")
+            Glide.with(binding.root).load(readPrefs.readProfileImage())
+                .error(R.drawable.ic_dummy_profile_pic).into(ivProfileImage)
+        }
+    }
+    private fun setTextInView(textView: TextView,text:String?){
+        println("viewText: $text")
+        if (text.isNullOrEmpty()){
+            textView.visibility = View.GONE
+        } else{
+            textView.visibility = View.VISIBLE
+            textView.text = text
+        }
     }
 
     private fun setUpBottomSheet() {
@@ -174,94 +209,30 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
         return true
     }
 
-    @SuppressLint("SetTextI18n")
     private fun observeCustomerData() {
-        //        viewModel.myUser.observe(viewLifecycleOwner,{
-//
-//        })
 
-        val myUser = UserResponse(
-            "Flat no -20," +
-                    " 5th Floor, A-13, Chouhan Green Valley", "Bhilai", "India", "Sumeet Das",
-            "", "sumeet1996das@gmail.com",
-            "", "", "", "+919669867977",
-            "Sumeet Das", "490020", "", "", "C.G."
-        ,"","")
-        binding.apply {
-            tvName.text = myUser.name
-            tvEmailId.text = myUser.email
-            tvMobile.text = myUser.mobile
-            tvState.text = myUser.state
-            tvCity.text = myUser.city
-            tvPostalCode.text = myUser.postalCode
+        "+919669867977".let { viewModel.getCustomerCarDetailsByMobileNumber(it) }
+        viewModel.customerCarDetailsData.observe(viewLifecycleOwner, Observer {
 
-            val formattedString = myUser.address?.replace(", ", ",\n")
-
-            tvAddressLine.text = formattedString
-
-//            val addressStringArray: List<String> =
-//                myUser.address?.split(",")?.toList() ?: emptyList()
-//            when (addressStringArray.size) {
-//                1 -> {
-//                    tvAddressLine.text = addressStringArray[0]
-//                }
-//                2 -> {
-//                    tvAddressLine.text = addressStringArray[0] +
-//                            "\n" +
-//                            addressStringArray[1]
-//                }
-//                3 -> {
-//                    tvAddressLine.text = addressStringArray[0] +
-//                            "\n" +
-//                            addressStringArray[1] +
-//                            "\n" +
-//                            addressStringArray[2]
-//                }
-//            }
-
-        }
-
-        viewModel.myCars.observe(viewLifecycleOwner, {
-            //TODO remove Dummy Data
-            binding.customerCarsRecyclerView.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = CarsRecyclerAdapter(
-                    listOf(
-                        CarEntity(
-                            0, "", "BMW",
-                            "https://i2.wp.com/thinkmarketingmagazine.com/wp-content/uploads/2012/08/bmw-logo.png?ssl=1",
-                            "CL 500", "White", "CG-04-K-1223", "Petrol",
-                            "Something", "22/10/2025",
-                            "${Uri.parse("android.resource://com.sumeet.cars360/drawable/image_onboarding_range_rover")}",
-                            null,
-                            "",
-                            ""
-                        ),
-                        CarEntity(
-                            0, "", "BMW",
-                            "https://i2.wp.com/thinkmarketingmagazine.com/wp-content/uploads/2012/08/bmw-logo.png?ssl=1",
-                            "CL 500", "White", "CG-04-K-1223", "Petrol",
-                            "Something", "22/10/2025",
-                            "${Uri.parse("android.resource://com.sumeet.cars360/drawable/image_onboarding_range_rover")}",
-                            null,
-                            "",
-                            ""
-                        )
-                    ), this@CustomerProfileFragment
-                )
+            when(it){
+                is Resource.Loading -> {}
+                is Resource.Error -> {}
+                is Resource.Success -> {
+                    binding.customerCarsRecyclerView.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        adapter = it.data?.carDetailsResponse?.let { data ->
+                            CarsRecyclerAdapter(
+                                data,
+                                this@CustomerProfileFragment
+                            )
+                        }
+                    }
+                }
             }
-//            if(it.isEmpty())
-//                ViewVisibilityUtil.gone(binding.customerCarsRecyclerView)
-//            else{
-//                binding.customerCarsRecyclerView.apply {
-//                    layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-//                    adapter = CarsRecyclerAdapter(it,this@CustomerHomeFragment)
-//                }
-//            }
         })
     }
 
-    override fun onCarItemClicked(carEntity: CarEntity) {
+    override fun onCarItemClicked(carDetailsResponse: CarDetailsResponse) {
         //TODO("Not yet implemented")
     }
 
