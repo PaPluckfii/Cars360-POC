@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.repository.RemoteRepository
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -41,35 +43,39 @@ class NewServiceLogViewModel @Inject constructor(
         _insertOperation.postValue(Resource.Loading())
 
         viewModelScope.launch(Dispatchers.IO) {
-            val response = remoteRepository.addNewServiceLog(
-                carId,
-                accessories,
-                serviceTypes,
-                estimates,
-                additionalDetails,
-                userCarRequests,
-                originalAmount,
-                estimatedAmount,
-                paidAmount,
-                paymentMode,
-                createdBy,
-                leftPic,
-                rightPic,
-                frontPic,
-                backPic
-            )
+            if (hasInternetConnection()){
+                val response = remoteRepository.addNewServiceLog(
+                    carId,
+                    accessories,
+                    serviceTypes,
+                    estimates,
+                    additionalDetails,
+                    userCarRequests,
+                    originalAmount,
+                    estimatedAmount,
+                    paidAmount,
+                    paymentMode,
+                    createdBy,
+                    leftPic,
+                    rightPic,
+                    frontPic,
+                    backPic
+                )
 
-            if (response.isSuccessful && response.body() != null) {
-                //TODO revert temp changes
-                if (response.body()?.error == true)
-                    _insertOperation.postValue(Resource.Success(""))
-                //_userInsertOperation.postValue(Resource.Error(response.body()?.userInsertResponse?.get(0)?.message))
-                else {
-                    val userId = response.body()?.serviceLogInsertResponse?.get(0)?.carServiceId
-                    _insertOperation.postValue(Resource.Success(userId))
-                }
-            } else
-                _insertOperation.postValue(Resource.Error(response.message()))
+                if (response.isSuccessful && response.body() != null) {
+                    //TODO revert temp changes
+                    if (response.body()?.error == true)
+                        _insertOperation.postValue(Resource.Success(""))
+                    //_userInsertOperation.postValue(Resource.Error(response.body()?.userInsertResponse?.get(0)?.message))
+                    else {
+                        val userId = response.body()?.serviceLogInsertResponse?.get(0)?.carServiceId
+                        _insertOperation.postValue(Resource.Success(userId))
+                    }
+                } else
+                    _insertOperation.postValue(Resource.Error(response.message()))
+            }else{
+                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.local.preferences.UserType
@@ -47,7 +48,7 @@ class OTPFragment : Fragment() {
     }
 
     private fun observeData() {
-        viewModel.currentUserOperation.observe(viewLifecycleOwner, { it ->
+        viewModel.currentUserOperation.observe(viewLifecycleOwner, Observer { it ->
             when (it) {
                 is Resource.Success -> {
                     ViewVisibilityUtil.visibilityExchanger(binding.progressBar, binding.btnVerify)
@@ -55,7 +56,7 @@ class OTPFragment : Fragment() {
 
                         viewModel.findUserByFirebaseId(firebaseId)
 
-                        viewModel.userDataFromServer.observe(viewLifecycleOwner, { user ->
+                        viewModel.userDataFromServer.observe(viewLifecycleOwner, Observer { user ->
                             when (user) {
                                 is Resource.Loading -> {}
                                 is Resource.Error -> {

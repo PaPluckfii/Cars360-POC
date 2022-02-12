@@ -4,16 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sumeet.cars360.data.local.room.model.CarEntity
-import com.sumeet.cars360.data.local.room.model.UserEntity
 import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.remote.old_model.Galleries
 import com.sumeet.cars360.data.repository.RemoteRepository
-import com.sumeet.cars360.data.repository.RoomRepository
+import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
+import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,31 +20,46 @@ class CustomerViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ): ViewModel() {
 
-
-    private val _customerDetails = MutableLiveData<UsersByFirebaseIdResponse>()
-    val customerDetails:LiveData<UsersByFirebaseIdResponse> = _customerDetails
+    private val _customerDetails = MutableLiveData<Resource<UsersByFirebaseIdResponse>>()
+    val customerDetails:LiveData<Resource<UsersByFirebaseIdResponse>> = _customerDetails
 
     private val _customerCarDetailsData = MutableLiveData<Resource<CarDetailsResponseByUserId>>()
     val customerCarDetailsData: LiveData<Resource<CarDetailsResponseByUserId>> = _customerCarDetailsData
 
 
     fun getCustomerByUserId(userId:String){
+        _customerDetails.postValue(Resource.Loading())
         viewModelScope.launch {
-            _customerDetails.postValue(remoteRepository.getCustomerByUserId(userId).body())
+            if (hasInternetConnection()){
+                val response = remoteRepository.getCustomerByUserId(userId)
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _customerDetails.postValue(Resource.Success(response.body()))
+                    else
+                        _customerDetails.postValue(Resource.Error(response.body()?.message))
+                else
+                    _customerDetails.postValue(Resource.Error(response.message()))
+            }else{
+                _customerDetails.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 
     fun getCustomerCarDetailsByMobileNumber(mobileNo: String) {
         _customerCarDetailsData.postValue(Resource.Loading())
         viewModelScope.launch {
-            val response = remoteRepository.getCustomerCarDetailsByMobileNumber(mobileNo)
-            if (response.isSuccessful && response.body() != null)
-                if (response.body()?.error == false)
-                    _customerCarDetailsData.postValue(Resource.Success(response.body()))
+            if (hasInternetConnection()){
+                val response = remoteRepository.getCustomerCarDetailsByMobileNumber(mobileNo)
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _customerCarDetailsData.postValue(Resource.Success(response.body()))
+                    else
+                        _customerCarDetailsData.postValue(Resource.Error(response.body()?.message))
                 else
-                    _customerCarDetailsData.postValue(Resource.Error(response.body()?.message))
-            else
-                _customerCarDetailsData.postValue(Resource.Error(response.message()))
+                    _customerCarDetailsData.postValue(Resource.Error(response.message()))
+            }else{
+                _customerCarDetailsData.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
         }
     }
 

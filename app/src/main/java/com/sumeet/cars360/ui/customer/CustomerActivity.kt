@@ -9,11 +9,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.databinding.ActivityCustomerBinding
 import com.sumeet.cars360.ui.customer.util.observeOnce
+import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +37,13 @@ class CustomerActivity : AppCompatActivity() {
         viewModel.getCustomerByUserId("11")
         viewModel.customerDetails.observeOnce(this, Observer {
             it?.let {
-                    setUserData(it.userResponse!![0])
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Error -> {}
+                    is Resource.Success -> {
+                        setUserData(it.data?.userResponse!![0])
+                    }
+                }
             }
         })
     }
