@@ -18,11 +18,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.databinding.FragmentAddCarEntitiesBinding
 import com.sumeet.cars360.ui.admin.AdminViewModel
-import com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogDetailsFragmentArgs
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.navigate

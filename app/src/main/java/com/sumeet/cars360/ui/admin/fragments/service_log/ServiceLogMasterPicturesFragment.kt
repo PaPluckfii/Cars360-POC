@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterPicturesBinding
 import com.sumeet.cars360.ui.abstract_fragments.CameraActivity

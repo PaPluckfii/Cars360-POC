@@ -1,9 +1,7 @@
 package com.sumeet.cars360.ui.abstract_fragments
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,14 +13,12 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.databinding.FragmentCameraBinding
 import com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogMasterViewModel

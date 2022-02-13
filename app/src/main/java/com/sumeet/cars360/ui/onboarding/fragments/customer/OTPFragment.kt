@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.local.preferences.UserType
@@ -70,17 +72,28 @@ class OTPFragment : Fragment() {
                                 is Resource.Success -> {
                                     val userId = ReadPrefs(requireContext()).readUserId()
                                     if (user.data?.error == true && userId == "") {
-                                        navigate(OTPFragmentDirections.actionOTPFragmentToNewCustomerDetailsFragment())
+                                        if (findNavController().currentDestination?.id == R.id.OTPFragment2) {
+                                            Toast.makeText(requireContext(),"${user.data.message}",Toast.LENGTH_LONG).show()
+                                            findNavController().popBackStack()
+                                        }else{
+                                            navigate(R.id.newCustomerDetailsFragment)
+//                                            navigate(OTPFragmentDirections.actionOTPFragmentToNewCustomerDetailsFragment())
+                                        }
                                     } else {
                                         savePrefs.apply {
                                             saveLoginStatus(true)
                                             saveUserType(UserType.Customer)
                                         }
-                                        startActivity(
-                                            Intent(activity, CustomerActivity::class.java)
-                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        ).also { activity?.finish() }
+                                        if (findNavController().currentDestination?.id == R.id.OTPFragment2) {
+                                            navigate(R.id.action_OTPFragment2_to_navigation_profile)
+                                            findNavController().popBackStack(R.id.navigation_profile,false)
+                                        }else{
+                                            startActivity(
+                                                Intent(activity, CustomerActivity::class.java)
+                                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            ).also { activity?.finish() }
+                                        }
                                     }
                                 }
                             }

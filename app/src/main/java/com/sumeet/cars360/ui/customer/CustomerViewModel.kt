@@ -1,9 +1,12 @@
 package com.sumeet.cars360.ui.customer
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sumeet.cars360.data.local.preferences.SavePrefs
+import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.remote.old_model.Galleries
@@ -25,6 +28,22 @@ class CustomerViewModel @Inject constructor(
 
     private val _customerCarDetailsData = MutableLiveData<Resource<CarDetailsResponseByUserId>>()
     val customerCarDetailsData: LiveData<Resource<CarDetailsResponseByUserId>> = _customerCarDetailsData
+
+    fun setUserData(context: Context,userResponse: UserResponse) {
+        SavePrefs(context).apply {
+            saveUserName(userResponse.name.toString())
+            saveUserEmail(userResponse.email.toString())
+            saveUserAddress(userResponse.address.toString())
+            saveUserCity(userResponse.city.toString())
+            saveUserCountry(userResponse.country.toString())
+            saveUserState(userResponse.state.toString())
+            saveUserPostalCode(userResponse.postalCode.toString())
+            saveUserDob(userResponse.dOB.toString())
+            saveUserGstin(userResponse.gSTIN.toString())
+            saveProfileImage(userResponse.profileImage.toString())
+            saveUserDom(userResponse.dOM.toString())
+        }
+    }
 
 
     fun getCustomerByUserId(userId:String){

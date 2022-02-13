@@ -41,7 +41,7 @@ class CustomerActivity : AppCompatActivity() {
                     is Resource.Loading -> {}
                     is Resource.Error -> {}
                     is Resource.Success -> {
-                        setUserData(it.data?.userResponse!![0])
+                        viewModel.setUserData(this,it.data?.userResponse!![0])
                     }
                 }
             }
