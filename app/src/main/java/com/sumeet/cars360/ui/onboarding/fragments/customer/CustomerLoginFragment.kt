@@ -15,7 +15,6 @@ import com.sumeet.cars360.databinding.FragmentCustomerLoginBinding
 import com.sumeet.cars360.ui.admin.AdminActivity
 import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.onboarding.AuthViewModel
-import com.sumeet.cars360.ui.staff.StaffActivity
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.ViewVisibilityUtil
 import com.sumeet.cars360.util.navigate

@@ -24,5 +24,26 @@
         android:name="com.sumeet.cars360.ui.customer.fragments.CustomerProfileFragment"
         android:label="YOUR CAR SALON"
         tools:layout="@layout/fragment_customer_profile" />
+    <fragment
+        android:id="@+id/customerLoginProfileFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.CustomerLoginProfileFragment"
+        android:label="LOGIN PAGE"
+        tools:layout="@layout/fragment_customer_login_profile" >
+        <action
+            android:id="@+id/action_customerLoginProfileFragment_to_OTPFragment2"
+            app:destination="@id/OTPFragment2" />
+        <action
+            android:id="@+id/action_customerLoginProfileFragment_to_navigation_profile2"
+            app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/OTPFragment2"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.OTPFragment"
+        android:label="OTP PAGE"
+        tools:layout="@layout/fragment_o_t_p" >
+        <action
+            android:id="@+id/action_OTPFragment2_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 
 </navigation>

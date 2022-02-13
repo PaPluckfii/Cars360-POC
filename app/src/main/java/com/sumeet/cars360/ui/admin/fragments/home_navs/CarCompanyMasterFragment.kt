@@ -11,7 +11,6 @@ import com.sumeet.cars360.data.remote.model.car_entities.CarModelResponse
 import com.sumeet.cars360.databinding.FragmentCarCompanyMasterBinding
 import com.sumeet.cars360.ui.admin.AdminViewModel
 import com.sumeet.cars360.ui.onboarding.fragments.new_customer.CarSelectAdapter
-import com.sumeet.cars360.ui.staff.StaffViewModel
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil

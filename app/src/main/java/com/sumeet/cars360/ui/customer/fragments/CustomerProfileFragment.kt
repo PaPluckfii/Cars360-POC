@@ -1,15 +1,12 @@
 package com.sumeet.cars360.ui.customer.fragments
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
-import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -18,18 +15,12 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
-import com.sumeet.cars360.data.local.room.model.CarEntity
-import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponse
 import com.sumeet.cars360.data.remote.old_model.Cars360Document
 import com.sumeet.cars360.databinding.CustomerProfileBottomSheetBinding
 import com.sumeet.cars360.databinding.FragmentCustomerProfileBinding
-import com.sumeet.cars360.ui.admin.ServiceLogRecyclerAdapter
 import com.sumeet.cars360.ui.customer.CustomerViewModel
-import com.sumeet.cars360.ui.customer.util.CarItemClickListener
-import com.sumeet.cars360.ui.customer.util.CarsRecyclerAdapter
-import com.sumeet.cars360.ui.customer.util.ProfileBottomSheetItemClickListener
-import com.sumeet.cars360.ui.customer.util.ProfileBottomSheetRecyclerAdapter
+import com.sumeet.cars360.ui.customer.util.*
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,17 +55,42 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
 
     private fun setUpProfileData() {
         binding.apply {
+            if (readPrefs.readUserName()?.isEmpty()==true){
+                getAndSetUserData()
+            }
             setTextInView(tvName,readPrefs.readUserName())
             setTextInView(tvMobile,readPrefs.readUserMobileNumber())
             setTextInView(tvEmailId,readPrefs.readUserEmail())
             setTextInView(tvAddressLine,readPrefs.readUserAddress())
             setTextInView(tvCity,readPrefs.readUserCity())
             setTextInView(tvState,readPrefs.readUserState())
-            setTextInView(tvPostalCode,"Pin Code - ${readPrefs.readUserPostalCode()}")
+            if (readPrefs.readUserPostalCode()?.isNotEmpty() == true){
+                setTextInView(tvPostalCode,"Pin Code - ${readPrefs.readUserPostalCode()}")
+            }
             Glide.with(binding.root).load(readPrefs.readProfileImage())
                 .error(R.drawable.ic_dummy_profile_pic).into(ivProfileImage)
+
         }
+
     }
+
+    private fun getAndSetUserData() {
+        viewModel.getCustomerByUserId("11")
+        viewModel.customerDetails.observeOnce(this, Observer {
+            it?.let {
+                when(it){
+                    is Resource.Loading -> {}
+                    is Resource.Error -> {}
+                    is Resource.Success -> {
+                        viewModel.setUserData(requireContext(),it.data?.userResponse!![0])
+                        setUpProfileData()
+                    }
+                }
+            }
+        })
+    }
+
+
     private fun setTextInView(textView: TextView,text:String?){
         println("viewText: $text")
         if (text.isNullOrEmpty()){
@@ -239,5 +255,4 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
     override fun onBottomSheetItemClicked() {
         //TODO("Not yet implemented")
     }
-
 }

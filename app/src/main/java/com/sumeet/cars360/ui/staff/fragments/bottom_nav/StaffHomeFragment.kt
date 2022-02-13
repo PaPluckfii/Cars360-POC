@@ -7,16 +7,10 @@ import android.view.*
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.tabs.TabLayoutMediator
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentStaffHomeBinding
-import com.sumeet.cars360.ui.customer.util.AdViewPagerAdapter
-import com.sumeet.cars360.ui.customer.util.GalleriesRecyclerAdapter
 import com.sumeet.cars360.ui.staff.StaffViewModel
 import com.sumeet.cars360.util.*
 import dagger.hilt.android.AndroidEntryPoint
