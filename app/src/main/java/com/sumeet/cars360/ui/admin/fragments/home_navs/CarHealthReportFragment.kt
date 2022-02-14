@@ -18,7 +18,9 @@ import com.sumeet.cars360.databinding.FragmentCarHealthReportBinding
 import com.sumeet.cars360.ui.admin.AdminViewModel
 import com.sumeet.cars360.ui.admin.OnServiceItemClickListener
 import com.sumeet.cars360.ui.admin.ServiceLogRecyclerAdapter
+import com.sumeet.cars360.util.Constants
 import com.sumeet.cars360.util.Resource
+import com.sumeet.cars360.util.ViewVisibilityUtil
 
 class CarHealthReportFragment : Fragment(), OnServiceItemClickListener {
 
@@ -42,9 +44,25 @@ class CarHealthReportFragment : Fragment(), OnServiceItemClickListener {
         viewModel.getAllServiceLogsByUserId("11")
         viewModel.allServiceLogs.observe(viewLifecycleOwner, Observer {
             when(it){
-                is Resource.Loading -> {}
-                is Resource.Error -> {}
+                is Resource.Loading -> {
+                    ViewVisibilityUtil.visibilityExchanger(visible = binding.progressBar
+                        ,gone = binding.carHealthReportRecyclerview)
+                    ViewVisibilityUtil.gone(binding.errorMessage)
+                }
+                is Resource.Error -> {
+                    ViewVisibilityUtil.gone(binding.carHealthReportRecyclerview)
+                    ViewVisibilityUtil.gone(binding.progressBar)
+                    ViewVisibilityUtil.visible(binding.errorMessage)
+
+                    if (it.message.equals(Constants.NO_INTERNET_CONNECTION))
+                        binding.tvError.text = Constants.NO_INTERNET_CONNECTION
+                    else
+                        binding.tvError.text = it.message
+                }
                 is Resource.Success -> {
+                    ViewVisibilityUtil.visibilityExchanger(visible = binding.carHealthReportRecyclerview
+                        ,gone = binding.progressBar)
+                    ViewVisibilityUtil.gone(binding.errorMessage)
                     binding.carHealthReportRecyclerview.apply {
                         layoutManager = LinearLayoutManager(context)
                         adapter = it.data?.serviceLogResponse?.let { data ->

@@ -66,6 +66,8 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
             setTextInView(tvState,readPrefs.readUserState())
             if (readPrefs.readUserPostalCode()?.isNotEmpty() == true){
                 setTextInView(tvPostalCode,"Pin Code - ${readPrefs.readUserPostalCode()}")
+            }else{
+                setTextInView(tvPostalCode,"")
             }
             Glide.with(binding.root).load(readPrefs.readProfileImage())
                 .error(R.drawable.ic_dummy_profile_pic).into(ivProfileImage)

@@ -140,12 +140,28 @@
         android:id="@+id/allCustomersFragment"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllCustomersFragment"
         android:label="All Customers"
-        tools:layout="@layout/fragment_all_customers" />
+        tools:layout="@layout/fragment_all_customers" >
+        <action
+            android:id="@+id/action_allCustomersFragment_to_allCustomerDetailsFragment"
+            app:destination="@id/allCustomerDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/allServiceAdvisorsFragment"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllServiceAdvisorsFragment"
         android:label="All Services"
-        tools:layout="@layout/fragment_all_service_advisors" />
+        tools:layout="@layout/fragment_all_service_advisors" >
+        <action
+            android:id="@+id/action_allServiceAdvisorsFragment_to_allCustomerDetailsFragment"
+            app:destination="@id/allCustomerDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/adBannerFragment"
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AdBannerFragment"
@@ -174,4 +190,13 @@
             app:argType="com.sumeet.cars360.data.remote.model.service_logs.ServiceLogResponse" />
     </fragment>
     <include app:graph="@navigation/service_log_master_navigation" />
+    <fragment
+        android:id="@+id/allCustomerDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllCustomerDetailsFragment"
+        android:label="fragment_all_customer_details"
+        tools:layout="@layout/fragment_all_customer_details" >
+        <argument
+            android:name="userResponse"
+            app:argType="com.sumeet.cars360.data.remote.model.user.UserResponse" />
+    </fragment>
 </navigation>

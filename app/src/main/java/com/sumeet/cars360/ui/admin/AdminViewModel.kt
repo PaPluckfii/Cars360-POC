@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
 import com.sumeet.cars360.data.remote.model.service_logs.ServiceLogsByUserIdResponse
 import com.sumeet.cars360.data.remote.model.user.UserResponse
+import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.Constants
 import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
@@ -33,6 +34,12 @@ class AdminViewModel @Inject constructor(
 
     private val _allServiceLogs = MutableLiveData<Resource<ServiceLogsByUserIdResponse>>()
     val allServiceLogs:LiveData<Resource<ServiceLogsByUserIdResponse>> = _allServiceLogs
+
+    private val _allCustomers = MutableLiveData<Resource<UsersByFirebaseIdResponse>>()
+    val allCustomers:LiveData<Resource<UsersByFirebaseIdResponse>> = _allCustomers
+
+    private val _allServiceAdvisors = MutableLiveData<Resource<UsersByFirebaseIdResponse>>()
+    val allServiceAdvisors:LiveData<Resource<UsersByFirebaseIdResponse>> = _allServiceAdvisors
 
     fun getAllCarEntities() {
         _carEntities.postValue(Resource.Loading())
@@ -262,6 +269,42 @@ class AdminViewModel @Inject constructor(
                     _allServiceLogs.postValue(Resource.Error(response.message()))
             }else{
                 _allServiceLogs.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
+        }
+    }
+
+    fun getAllCustomerByUserId(userId: String){
+        _allCustomers.postValue(Resource.Loading())
+        viewModelScope.launch {
+            if (hasInternetConnection()){
+                val response = remoteRepository.getUserByUserTypeId(userId)
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _allCustomers.postValue(Resource.Success(response.body()))
+                    else
+                        _allCustomers.postValue(Resource.Error(response.body()?.message))
+                else
+                    _allCustomers.postValue(Resource.Error(response.message()))
+            }else{
+                _allCustomers.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
+        }
+    }
+
+    fun getAllServiceAdvisorByUserId(userId: String){
+        _allServiceAdvisors.postValue(Resource.Loading())
+        viewModelScope.launch {
+            if (hasInternetConnection()){
+                val response = remoteRepository.getUserByUserTypeId(userId)
+                if (response.isSuccessful && response.body() != null)
+                    if (response.body()?.error == false)
+                        _allServiceAdvisors.postValue(Resource.Success(response.body()))
+                    else
+                        _allServiceAdvisors.postValue(Resource.Error(response.body()?.message))
+                else
+                    _allServiceAdvisors.postValue(Resource.Error(response.message()))
+            }else{
+                _allServiceAdvisors.postValue(Resource.Error(NO_INTERNET_CONNECTION))
             }
         }
     }
