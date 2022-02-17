@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterAccessoriesBinding
+import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
 import com.sumeet.cars360.util.AccessoriesItemAdapter
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.CheckBoxClickListener
@@ -41,12 +42,11 @@ class ServiceLogMasterAccessoriesFragment : Fragment(), CheckBoxClickListener {
     private fun handleListeners() {
         binding.btnNext.setOnClickListener {
             if (ButtonClickHandler.buttonClicked()) {
-                viewModel.accessories = getAccessoriesData()
+                ServiceLogCreationHelper.serviceLogDTO.accessories = getAccessoriesData()
                 navigate(
                     ServiceLogMasterAccessoriesFragmentDirections
                         .actionServiceLogMasterAccessoriesFragmentToServiceLogMasterTypesOfServicesFragment()
                 )
-
             }
         }
     }

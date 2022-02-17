@@ -12,11 +12,6 @@
         android:title="@string/title_explore" />
 
     <item
-        android:id="@+id/navigation_help"
-        android:icon="@drawable/ic_baseline_help_center_24"
-        android:title="@string/title_help" />
-
-    <item
         android:id="@+id/customerLoginProfileFragment"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/title_profile" />

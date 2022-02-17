@@ -18,6 +18,15 @@ class ReadPrefs(mContext : Context) {
         return preferences?.getBoolean("LOGIN_DATA", false) ?: false
     }
 
+    fun readCustomerLoginType(): CustomerLoginType{
+        return when(preferences?.getInt("CUSTOMER_LOGIN_TYPE",1)){
+            1 -> CustomerLoginType.LoggedIn
+            2 -> CustomerLoginType.SkippedLogin
+            3 -> CustomerLoginType.TakeATour
+            else -> CustomerLoginType.TakeATour
+        }
+    }
+
     fun readUserType() : UserType {
         return when(preferences?.getInt("USER_TYPE",1)){
             1 -> UserType.Customer
@@ -28,11 +37,15 @@ class ReadPrefs(mContext : Context) {
     }
 
     fun readUserMobileNumber(): String? {
-        return preferences?.getString("MOBILE_NUMBER","")
+        return preferences?.getString("MOBILE","")
     }
 
     fun readUserId() : String? {
         return preferences?.getString("USER_ID","")
+    }
+
+    fun readFirebaseId(): String? {
+        return preferences?.getString("FIREBASE_ID","")
     }
 
     fun readUserName() : String? {
@@ -77,6 +90,10 @@ class ReadPrefs(mContext : Context) {
 
     fun readUserDom() : String? {
         return preferences?.getString("USER_IMAGE","")
+    }
+
+    fun readSavedCarModelId(): String? {
+        return preferences?.getString("CAR_MODEL_ID","")
     }
 
 }

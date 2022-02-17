@@ -81,28 +81,24 @@ class ServiceLogMasterViewModel @Inject constructor(
     fun searchUserByMobileNumber(mobileNo: String) {
         _customerData.postValue(Resource.Loading())
         viewModelScope.launch {
-            if (hasInternetConnection()){
-                val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
-                if(response.isSuccessful && response.body() != null && response.body()?.error==false){
-                    val userId = response.body()?.carDetailsResponse?.get(0)?.userId
-                    if(userId != null){
-                        val userDataResponse = remoteRepository.getUserByUserId("11")
-                        if(userDataResponse.isSuccessful && userDataResponse.body() != null){
-                            if(userDataResponse.body()?.error == true) {
-                                Log.d("USER_DATA",response.message())
-                                _customerData.postValue(Resource.Error(userDataResponse.body()?.message))
-                            }
-                            else{
-                                customerCarData = response.body()
-                                _customerData.postValue(Resource.Success(userDataResponse.body()))
-                            }
+            val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
+            if(response.isSuccessful && response.body() != null && response.body()?.error==false){
+                val userId = response.body()?.carDetailsResponse?.get(0)?.userId
+                if(userId != null){
+                    val userDataResponse = remoteRepository.getUserByUserId("11")
+                    if(userDataResponse.isSuccessful && userDataResponse.body() != null){
+                        if(userDataResponse.body()?.error == true) {
+                            Log.d("USER_DATA",response.message())
+                            _customerData.postValue(Resource.Error(userDataResponse.body()?.message))
+                        }
+                        else{
+                            customerCarData = response.body()
+                            _customerData.postValue(Resource.Success(userDataResponse.body()))
                         }
                     }
-                    else
-                        _customerData.postValue(Resource.Error(response.message()))
-                }else{
-                    _customerData.postValue(Resource.Error(NO_INTERNET_CONNECTION))
                 }
+                else
+                    _customerData.postValue(Resource.Error(response.message()))
             }
         }
     }

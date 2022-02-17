@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.sumeet.cars360"
         minSdk 21
-        targetSdk 31
+        targetSdk 28
         versionCode 1
         versionName "1.0"
 
@@ -103,7 +103,7 @@ dependencies {
     // CameraX
     implementation "androidx.camera:camera-camera2:1.0.2"
     implementation "androidx.camera:camera-lifecycle:1.0.2"
-    implementation "androidx.camera:camera-view:1.0.0-alpha32"
+    implementation "androidx.camera:camera-view:1.1.0-beta01"
 
     //Intro Video
     implementation "com.yqritc:android-scalablevideoview:1.0.4"
@@ -113,4 +113,7 @@ dependencies {
 
     //Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
+
+    //fab-loading
+    implementation 'io.saeid:fab-loading:1.0.0'
 }

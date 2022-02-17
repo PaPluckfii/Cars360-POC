@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterCustomerDetailsBinding
+import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
@@ -56,7 +57,7 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
                 if (ButtonClickHandler.buttonClicked() && checkDataValidity()) {
                     viewModel.searchUserByMobileNumber("+91${binding.etSearch.text}")
 
-                    viewModel.customerData.observe(viewLifecycleOwner, {
+                    viewModel.customerData.observe(viewLifecycleOwner) {
                         when (it) {
                             is Resource.Loading -> {
                                 ViewVisibilityUtil.visibilityExchanger(
@@ -69,7 +70,7 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
                                     binding.llCustomerData,
                                     binding.progressBar
                                 )
-                                Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                             }
                             is Resource.Success -> {
                                 val user = it.data?.userResponse?.get(0)
@@ -100,13 +101,13 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
                                 isCustomerSelected = true
                             }
                         }
-                    })
+                    }
                 }
             }
             btnNext.setOnClickListener {
                 if(ButtonClickHandler.buttonClicked() && isCustomerSelected){
                     val selectedCar = binding.carsSpinner.selectedItemPosition
-                    viewModel.carId = viewModel.customerCarData?.carDetailsResponse?.get(selectedCar)?.carId.toString()
+                    ServiceLogCreationHelper.serviceLogDTO.carId = viewModel.customerCarData?.carDetailsResponse?.get(selectedCar)?.carId.toString()
                     navigate(ServiceLogMasterCustomerDetailsFragmentDirections.actionServiceLogMasterCustomerDetailsFragmentToServiceLogMasterPicturesFragment())
                 }
             }

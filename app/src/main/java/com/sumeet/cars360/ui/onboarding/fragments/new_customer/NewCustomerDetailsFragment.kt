@@ -32,6 +32,8 @@ import android.os.Build
 import android.os.FileUtils
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import java.io.FileOutputStream
 import java.io.IOException
 
@@ -41,6 +43,8 @@ class NewCustomerDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewCustomerDetailsBinding
     private val viewModel: NewCustomerViewModel by activityViewModels()
+
+    private lateinit var readPrefs: ReadPrefs
 
     private var isReadPermissionGranted = false
     private var isWritePermissionGranted = false
@@ -55,7 +59,7 @@ class NewCustomerDetailsFragment : Fragment() {
                 val data: Intent? = result.data
                 val _uri: Uri? = data?.data
                 try {
-                    var filePath: String = "${ReadPrefs(requireContext()).readUserMobileNumber()}_profile_pic.jpg"
+                    val filePath: String = "${ReadPrefs(requireContext()).readUserMobileNumber()}_profile_pic.jpg"
                     Log.d("FILEPATH", "URI = $_uri")
                     if (_uri != null && "content" == _uri.scheme) {
                         val inputStream = requireActivity().contentResolver.openInputStream(_uri)
@@ -80,6 +84,7 @@ class NewCustomerDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        readPrefs = ReadPrefs(requireContext())
         binding = FragmentNewCustomerDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -94,7 +99,6 @@ class NewCustomerDetailsFragment : Fragment() {
         return true
     }
 
-    //TODO profile pic
     private fun handleListeners() {
         binding.apply {
             btnCompleteProfile.setOnClickListener {
@@ -102,8 +106,9 @@ class NewCustomerDetailsFragment : Fragment() {
 
                     viewModel.apply {
                         name = etName.text.toString()
-                        mobileNo = ReadPrefs(requireContext()).readUserMobileNumber() ?: ""
+                        mobileNo = FirebaseAuth.getInstance().currentUser?.phoneNumber.toString()
                         email = etEmail.text.toString()
+                        firebaseId = readPrefs.readFirebaseId().toString()
                         profileImage = userCaptureImage
                     }
                     navigate(NewCustomerDetailsFragmentDirections.actionNewCustomerDetailsFragmentToNewCustomerAdditionalDetailsFragment())
@@ -114,14 +119,15 @@ class NewCustomerDetailsFragment : Fragment() {
 
                     viewModel.apply {
                         name = etName.text.toString()
-                        mobileNo = ReadPrefs(requireContext()).readUserMobileNumber() ?: ""
+                        mobileNo = FirebaseAuth.getInstance().currentUser?.phoneNumber.toString()
                         email = etEmail.text.toString()
+                        firebaseId = FirebaseAuth.getInstance().uid.toString()
                         profileImage = userCaptureImage
                     }
-
+                    Toast.makeText(context, viewModel.mobileNo,Toast.LENGTH_SHORT).show()
                     viewModel.insertNewUserData()
 
-                    viewModel.insertOperation.observe(viewLifecycleOwner, {
+                    viewModel.insertOperation.observe(viewLifecycleOwner) {
                         when (it) {
                             is Resource.Loading -> ViewVisibilityUtil.visibilityExchanger(
                                 progressBar,
@@ -132,20 +138,21 @@ class NewCustomerDetailsFragment : Fragment() {
                                     llNewCustomerDetails,
                                     progressBar
                                 )
-                                Toast.makeText(context, "Oops! ${it.message}", Toast.LENGTH_LONG)
+                                Toast.makeText(context, "Oops! ${viewModel.mobileNo} ${it.message}", Toast.LENGTH_LONG)
                                     .show()
                             }
                             is Resource.Success -> {
                                 SavePrefs(requireContext()).apply {
                                     saveLoginStatus(true)
                                     saveUserType(UserType.Customer)
+                                    saveCustomerLoginType(CustomerLoginType.LoggedIn)
                                     if (it.data != "")
-                                        it.data?.let { it1 -> saveUserId(it1) }
+                                        it.data?.let { id -> saveUserId(id) }
                                 }
                                 navigate(NewCustomerDetailsFragmentDirections.actionNewCustomerDetailsFragmentToNewCarDetailsFragment())
                             }
                         }
-                    })
+                    }
                 }
             }
 
@@ -199,6 +206,12 @@ class NewCustomerDetailsFragment : Fragment() {
         }
         else{
             requestPermission()
+            if(isReadPermissionGranted){
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                profilePicResultLauncher.launch(intent)
+            }
         }
     }
 

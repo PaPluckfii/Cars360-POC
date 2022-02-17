@@ -56,12 +56,9 @@ class NewCustomerViewModel @Inject constructor(
                     gstIn,
                     profileImage
                 )
-
                 if (response.isSuccessful && response.body() != null) {
-                    //TODO revert temp changes
                     if (response.body()?.error == true)
-                        _insertOperation.postValue(Resource.Success(""))
-                    //_userInsertOperation.postValue(Resource.Error(response.body()?.userInsertResponse?.get(0)?.message))
+                        _insertOperation.postValue(Resource.Error(response.body()?.message))
                     else {
                         val userId = response.body()?.userInsertResponse?.get(0)?.userId
                         _insertOperation.postValue(Resource.Success(userId))

@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_introFragment_to_customerLoginFragment"
             app:destination="@id/customerLoginFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_newCarDetailsFragment"
+            app:destination="@id/newCarDetailsFragment" />
+        <action
+            android:id="@+id/action_introFragment_to_staffLoginFragment"
+            app:destination="@id/staffLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/customerLoginFragment"
@@ -20,11 +26,8 @@
         android:label=""
         tools:layout="@layout/fragment_customer_login" >
         <action
-            android:id="@+id/action_customerLoginFragment_to_OTPFragment"
-            app:destination="@id/OTPFragment" />
-        <action
-            android:id="@+id/action_customerLoginFragment_to_staffLoginFragment"
-            app:destination="@id/staffLoginFragment" />
+            android:id="@+id/action_customerLoginFragment_to_newCustomerDetailsFragment"
+            app:destination="@id/newCustomerDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment"

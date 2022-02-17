@@ -54,24 +54,24 @@ class CarSelectAdapter(
                 Glide.with(holder.binding.root).load(listOfCarBrands[position].brandLogo)
                     .into(holder.binding.ivIcon)
                 tvText.text = listOfCarBrands[position].brandName
-                root.setOnClickListener {
+                rlCarEntity.setOnClickListener {
                     if (ButtonClickHandler.buttonClicked()) {
                         selectedBrand = listOfCarBrands[position]
                         itemClicked(carBrand = listOfCarBrands[position], null)
                     }
                 }
-                ivIcon.setOnClickListener {
-                    if (ButtonClickHandler.buttonClicked()) {
-                        selectedBrand = listOfCarBrands[position]
-                        itemClicked(carBrand = listOfCarBrands[position], null)
-                    }
-                }
-                tvText.setOnClickListener {
-                    if (ButtonClickHandler.buttonClicked()) {
-                        selectedBrand = listOfCarBrands[position]
-                        itemClicked(carBrand = listOfCarBrands[position], null)
-                    }
-                }
+//                ivIcon.setOnClickListener {
+//                    if (ButtonClickHandler.buttonClicked()) {
+//                        selectedBrand = listOfCarBrands[position]
+//                        itemClicked(carBrand = listOfCarBrands[position], null)
+//                    }
+//                }
+//                tvText.setOnClickListener {
+//                    if (ButtonClickHandler.buttonClicked()) {
+//                        selectedBrand = listOfCarBrands[position]
+//                        itemClicked(carBrand = listOfCarBrands[position], null)
+//                    }
+//                }
             }
         } else {
             holder.binding.tvText.text = listOfCarModels[position].modelName

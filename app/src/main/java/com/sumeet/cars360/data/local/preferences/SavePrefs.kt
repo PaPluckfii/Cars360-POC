@@ -3,6 +3,7 @@ package com.sumeet.cars360.data.local.preferences
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import java.lang.Exception
 
 class SavePrefs(mContext: Context) {
@@ -22,6 +23,17 @@ class SavePrefs(mContext: Context) {
         editor?.putBoolean("LOGIN_DATA", loginStatus)?.apply()
     }
 
+    fun saveCustomerLoginType(loginType: CustomerLoginType){
+        editor?.putInt(
+            "CUSTOMER_LOGIN_TYPE",
+            when(loginType){
+                CustomerLoginType.LoggedIn -> 1
+                CustomerLoginType.SkippedLogin -> 2
+                CustomerLoginType.TakeATour -> 3
+            }
+        )?.apply()
+    }
+
     fun saveUserType(userType: UserType) {
         editor?.putInt(
             "USER_TYPE",
@@ -29,17 +41,20 @@ class SavePrefs(mContext: Context) {
                 UserType.Customer -> 1
                 UserType.Employee -> 2
                 UserType.Admin -> 3
-                else -> 1
             }
         )?.apply()
     }
 
     fun saveUserMobileNumber(mobileNo: String){
-        editor?.putString("MOBILE_NUMBER",mobileNo)
+        editor?.putString("MOBILE",mobileNo)
     }
 
     fun saveUserId(userId: String) {
         editor?.putString("USER_ID", userId)?.apply()
+    }
+
+    fun saveFirebaseId(firebaseId: String){
+        editor?.putString("FIREBASE_ID",firebaseId)
     }
 
     fun saveUserName(userName: String) {
@@ -85,4 +100,13 @@ class SavePrefs(mContext: Context) {
     fun saveUserDom(userDom: String) {
         editor?.putString("USER_DOM", userDom)?.apply()
     }
+
+    fun saveCarModelId(carModelId: String){
+        editor?.putString("CAR_MODEL_ID",carModelId)?.apply()
+    }
+
+    fun resetAppData(){
+        editor?.clear()?.commit()
+    }
+
 }

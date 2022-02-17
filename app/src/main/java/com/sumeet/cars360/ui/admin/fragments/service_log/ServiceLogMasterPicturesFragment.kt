@@ -11,10 +11,10 @@ import androidx.fragment.app.activityViewModels
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterPicturesBinding
 import com.sumeet.cars360.ui.abstract_fragments.CameraActivity
+import com.sumeet.cars360.ui.admin.util.CurrentPics
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class ServiceLogMasterPicturesFragment : Fragment() {
@@ -103,12 +103,12 @@ class ServiceLogMasterPicturesFragment : Fragment() {
             }
             btnNext.setOnClickListener {
                 if(ButtonClickHandler.buttonClicked() && checkDataValidity()) {
-                    viewModel.apply {
-                        frontPic = CurrentPics.picturesDTO.frontPic
-                        leftPic = CurrentPics.picturesDTO.leftPic
-                        rightPic = CurrentPics.picturesDTO.rightPic
-                        backPic = CurrentPics.picturesDTO.backPic
-                    }
+//                    viewModel.apply {
+//                        frontPic = CurrentPics.picturesDTO.frontPic
+//                        leftPic = CurrentPics.picturesDTO.leftPic
+//                        rightPic = CurrentPics.picturesDTO.rightPic
+//                        backPic = CurrentPics.picturesDTO.backPic
+//                    }
                     navigate(ServiceLogMasterPicturesFragmentDirections.actionServiceLogMasterPicturesFragmentToServiceLogMasterAccessoriesFragment())
                 }
             }
@@ -118,15 +118,4 @@ class ServiceLogMasterPicturesFragment : Fragment() {
     private fun checkDataValidity(): Boolean {
         return isFrontCaptured && isRightCaptured && isLeftCaptured && isBackCaptured
     }
-}
-
-data class PicturesDTO(
-    var leftPic: File? = null,
-    var rightPic: File? = null,
-    var backPic: File? = null,
-    var frontPic: File? = null
-)
-
-object CurrentPics{
-    val picturesDTO = PicturesDTO()
 }

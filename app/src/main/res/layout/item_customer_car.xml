@@ -59,10 +59,10 @@
 
             <ImageView
                 android:id="@+id/ivBrandLogo"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_margin="@dimen/_2sdp"
-                app:layout_constraintBottom_toTopOf="@+id/tvLicencePlate"
+                app:layout_constraintBottom_toTopOf="@+id/cardView3"
                 app:layout_constraintEnd_toStartOf="@+id/guideline5"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,44 +83,44 @@
                 app:layout_constraintTop_toTopOf="@+id/ivBrandLogo"
                 tools:text="Maruti Suzuki" />
 
-            <TextView
-                android:id="@+id/tvLicencePlate"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/secondaryRed"
-                android:gravity="center"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardView2"
-                tools:text="CG-04-M-0072" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvLicencePlate"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:background="@color/secondaryRed"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_marginStart="@dimen/_2sdp"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/guideline4"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/guideline5"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/cardView2"-->
+<!--                tools:text="CG-04-M-0072" />-->
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:cardElevation="@dimen/_10sdp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline5">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/cardView2"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardElevation="@dimen/_10sdp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/guideline4"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/guideline5">-->
 
-                <TextView
-                    android:id="@+id/tvTextLastServiceDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparentBlack"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sdp"
-                    android:text="Last Service Date :\nNo Data Available"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvTextLastServiceDate"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/transparentBlack"-->
+<!--                    android:gravity="center"-->
+<!--                    android:padding="@dimen/_10sdp"-->
+<!--                    android:text="Last Service Date :\nNo Data Available"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textStyle="bold" />-->
 
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"
