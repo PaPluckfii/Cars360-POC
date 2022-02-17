@@ -23,7 +23,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.sumeet.cars360.ui.customer.fragments.CustomerProfileFragment"
         android:label="YOUR CAR SALON"
-        tools:layout="@layout/fragment_customer_profile" />
+        tools:layout="@layout/fragment_customer_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_customerLoginFromProfile"
+            app:destination="@id/customerLoginFromProfile" />
+    </fragment>
     <fragment
         android:id="@+id/customerLoginProfileFragment"
         android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.CustomerLoginProfileFragment"
@@ -32,17 +36,43 @@
         <action
             android:id="@+id/action_customerLoginProfileFragment_to_OTPFragment2"
             app:destination="@id/OTPFragment2" />
-        <action
-            android:id="@+id/action_customerLoginProfileFragment_to_navigation_profile2"
-            app:destination="@id/navigation_profile" />
     </fragment>
     <fragment
         android:id="@+id/OTPFragment2"
         android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.OTPFragment"
         android:label="OTP PAGE"
-        tools:layout="@layout/fragment_o_t_p" >
+        tools:layout="@layout/fragment_o_t_p" />
+    <fragment
+        android:id="@+id/customerLoginFromProfile"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.CustomerLoginFromProfile"
+        android:label="CustomerLoginFromProfile" >
         <action
-            android:id="@+id/action_OTPFragment2_to_navigation_profile"
+            android:id="@+id/action_customerLoginFromProfile_to_newCustomerFromProfile"
+            app:destination="@id/newCustomerFromProfile" />
+        <action
+            android:id="@+id/action_customerLoginFromProfile_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_customerLoginFromProfile_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCustomerFromProfile"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.NewCustomerDetailsFromProfile"
+        android:label="NewCustomerFromProfile" >
+        <action
+            android:id="@+id/action_newCustomerFromProfile_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_newCustomerFromProfile_to_newCustomerAdditionalDetailsFromProfile"
+            app:destination="@id/newCustomerAdditionalDetailsFromProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCustomerAdditionalDetailsFromProfile"
+        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.NewCustomerAdditionalDetailsFromProfile"
+        android:label="NewCustomerAdditionalDetailsFromProfile" >
+        <action
+            android:id="@+id/action_newCustomerAdditionalDetailsFromProfile_to_navigation_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
 

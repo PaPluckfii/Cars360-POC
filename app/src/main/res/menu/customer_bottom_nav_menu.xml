@@ -12,7 +12,7 @@
         android:title="@string/title_explore" />
 
     <item
-        android:id="@+id/customerLoginProfileFragment"
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/title_profile" />
 

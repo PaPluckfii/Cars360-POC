@@ -29,6 +29,7 @@ import com.sumeet.cars360.ui.onboarding.OnBoardingActivity
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
+import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -63,6 +64,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
                 setUpBottomSheet()
             }
             else -> {
+                navigate(CustomerProfileFragmentDirections.actionNavigationProfileToCustomerLoginFromProfile())
                 ViewVisibilityUtil.gone(binding.clCustomerProfileSheet)
                 ViewVisibilityUtil.gone(binding.customerCarsRecyclerView)
                 ViewVisibilityUtil.gone(binding.llProfileButtons)
