@@ -1,24 +1,20 @@
 package com.sumeet.cars360.ui.abstract_fragments
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.databinding.ActivityCameraBinding
-import com.sumeet.cars360.ui.admin.fragments.service_log.CurrentPics
-import com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogMasterViewModel
+import com.sumeet.cars360.ui.admin.util.CurrentPics
 import com.sumeet.cars360.util.ButtonClickHandler
 import java.io.File
 
@@ -60,7 +56,7 @@ class CameraActivity : AppCompatActivity() {
     private fun takePhoto() {
         val photoFile = File(
             externalMediaDirs.firstOrNull(),
-            "userId_${ReadPrefs(this).readUserId()}_${imageIndex}_${System.currentTimeMillis()}.jpg"
+            "userId_${ReadPrefs(this).readUserId()}_${imageIndex}_${System.currentTimeMillis()}.png"
         )
         val output = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(

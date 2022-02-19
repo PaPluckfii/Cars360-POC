@@ -12,9 +12,14 @@
     <color name="primaryRed">#c0272c</color>
     <color name="secondaryRed">#C54E57</color>
     <color name="backgroundGrey">#DFDFDF</color>
+    
+    <color name="primary_bg">#1e1e1e</color>
+    <color name="secondary_bg">#6a6a6a</color>
 
     <!--Util Colors-->
     <color name="gray">#D3D3D3</color>
     <color name="transparentBlack">#70000000</color>
+
+    <color name="bright_green">#60D07D</color>
 
 </resources>

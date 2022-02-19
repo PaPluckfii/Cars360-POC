@@ -52,7 +52,7 @@ class AddCarEntitiesFragment : Fragment() {
                 val data: Intent? = result.data
                 val _uri: Uri? = data?.data
                 try {
-                    var filePath: String = "${ReadPrefs(requireContext()).readUserMobileNumber()}_profile_pic.jpg"
+                    var filePath: String = "${viewModel.currentBrandId}_${System.currentTimeMillis()}.png"
                     Log.d("FILEPATH", "URI = $_uri")
                     if (_uri != null && "content" == _uri.scheme) {
                         val inputStream = requireActivity().contentResolver.openInputStream(_uri)
@@ -101,31 +101,33 @@ class AddCarEntitiesFragment : Fragment() {
                     if(type == 0){
                         viewModel.insertNewCarBrand(binding.etName.text.toString(),userCaptureImage!!)
 
-                        viewModel.insertOperation.observe(viewLifecycleOwner,{
-                            when(it){
+                        viewModel.insertOperation.observe(viewLifecycleOwner) {
+                            when (it) {
                                 is Resource.Loading -> {}
                                 is Resource.Error -> {}
                                 is Resource.Success -> {
-                                    Toast.makeText(context,"Brand Added",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Brand Added", Toast.LENGTH_SHORT)
+                                        .show()
                                     navigate(AddCarEntitiesFragmentDirections.actionAddCarEntitiesFragmentToAdminNavigationHome())
                                 }
                             }
-                        })
+                        }
 
                     }
                     else{
                         viewModel.insertNewCarModel(binding.etName.text.toString(),userCaptureImage!!)
 
-                        viewModel.insertOperation.observe(viewLifecycleOwner,{
-                            when(it){
+                        viewModel.insertOperation.observe(viewLifecycleOwner) {
+                            when (it) {
                                 is Resource.Loading -> {}
                                 is Resource.Error -> {}
                                 is Resource.Success -> {
-                                    Toast.makeText(context,"Model Added",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Model Added", Toast.LENGTH_SHORT)
+                                        .show()
                                     navigate(AddCarEntitiesFragmentDirections.actionAddCarEntitiesFragmentToAdminNavigationHome())
                                 }
                             }
-                        })
+                        }
                     }
                 }
                 else{
@@ -144,6 +146,12 @@ class AddCarEntitiesFragment : Fragment() {
         }
         else{
             requestPermission()
+            if(isReadPermissionGranted){
+                val intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+                profilePicResultLauncher.launch(intent)
+            }
         }
     }
 

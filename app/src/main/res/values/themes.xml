@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Cars360Raipur" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Cars360Raipur" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryRed</item>
         <item name="colorPrimaryVariant">@color/secondaryRed</item>
@@ -9,10 +9,10 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/primary_bg</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/secondaryRed</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:windowActivityTransitions">true</item>

@@ -64,16 +64,19 @@ class CarCompanyMasterFragment : Fragment(),CarSelectAdapter.CarSelectListener {
     private fun getDataAndObserve() {
         viewModel.getAllCarEntities()
 
-        viewModel.carEntities.observe(viewLifecycleOwner,{
-            when(it){
+        viewModel.carEntities.observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Loading -> {}
                 is Resource.Error -> {}
                 is Resource.Success -> {
                     it.data?.carBrandResponse?.let { it1 -> recyclerAdapter.setCarBrandList(it1) }
-                    ViewVisibilityUtil.visibilityExchanger(binding.carCompanyRecyclerView,binding.shimmerFrameLayout)
+                    ViewVisibilityUtil.visibilityExchanger(
+                        binding.carCompanyRecyclerView,
+                        binding.shimmerFrameLayout
+                    )
                 }
             }
-        })
+        }
     }
 
     private fun setUpRecyclerAdapter() {

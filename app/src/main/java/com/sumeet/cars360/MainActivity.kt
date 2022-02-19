@@ -1,9 +1,8 @@
 package com.sumeet.cars360
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.UserType
@@ -44,13 +43,14 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
             }
-        } else
-            startActivity(
-                Intent(this, OnBoardingActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            ).also {
-                finish()
-            }
+        } else {
+                startActivity(
+                    Intent(this, OnBoardingActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                ).also {
+                    finish()
+                }
+        }
     }
 }

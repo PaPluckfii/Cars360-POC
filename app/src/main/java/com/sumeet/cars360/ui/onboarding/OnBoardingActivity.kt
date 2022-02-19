@@ -35,7 +35,9 @@ class OnBoardingActivity : AppCompatActivity() {
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when(destination.id){
-                    R.id.introFragment -> {
+                    R.id.introFragment,
+                    R.id.customerLoginFragment,
+                    R.id.OTPFragment -> {
                         hideSystemUI()
                     }
                     else -> {
@@ -50,22 +52,22 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun hideSystemUI() {
         supportActionBar?.hide()
-        WindowCompat.setDecorFitsSystemWindows(window, true)
-        WindowInsetsControllerCompat(window, binding.root).let { controller ->
-            controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+//        WindowCompat.setDecorFitsSystemWindows(window, true)
+//        WindowInsetsControllerCompat(window, binding.root).let { controller ->
+//            controller.hide(WindowInsetsCompat.Type.systemBars())
+//            controller.systemBarsBehavior =
+//                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//        }
     }
 
     private fun showSystemUI() {
         supportActionBar?.show()
-        WindowCompat.setDecorFitsSystemWindows(window, true)
-        WindowInsetsControllerCompat(window, binding.root).let { controller ->
-            controller.show(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior =
-                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
+//        WindowCompat.setDecorFitsSystemWindows(window, true)
+//        WindowInsetsControllerCompat(window, binding.root).let { controller ->
+//            controller.show(WindowInsetsCompat.Type.systemBars())
+//            controller.systemBarsBehavior =
+//                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//        }
     }
 
 }

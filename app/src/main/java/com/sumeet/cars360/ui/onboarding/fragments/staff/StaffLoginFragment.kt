@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.local.preferences.UserType
 import com.sumeet.cars360.databinding.FragmentStaffLoginBinding
+import com.sumeet.cars360.ui.admin.AdminActivity
+import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.onboarding.AuthViewModel
 import com.sumeet.cars360.ui.staff.StaffActivity
 import com.sumeet.cars360.util.Resource
@@ -51,14 +53,14 @@ class StaffLoginFragment : Fragment() {
                     binding.etPassword.text.toString()
                 )
 
-                viewModel.currentUserOperation.observe(viewLifecycleOwner, { firebaseId ->
+                viewModel.currentUserOperation.observe(viewLifecycleOwner) { firebaseId ->
                     savePrefs = SavePrefs(requireContext())
                     when (firebaseId) {
                         is Resource.Success -> {
 
                             firebaseId.data?.let { it1 -> viewModel.findUserByFirebaseId(it1) }
 
-                            viewModel.userDataFromServer.observe(viewLifecycleOwner, {
+                            viewModel.userDataFromServer.observe(viewLifecycleOwner) {
                                 when (it) {
                                     is Resource.Loading -> {}
                                     is Resource.Success -> {
@@ -72,14 +74,14 @@ class StaffLoginFragment : Fragment() {
                                             savePrefs.saveUserType(UserType.Employee)
 
                                         startActivity(
-                                            Intent(activity, StaffActivity::class.java)
+                                            Intent(activity, AdminActivity::class.java)
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                         ).also { activity?.finish() }
                                     }
                                     is Resource.Error -> {
                                         ViewVisibilityUtil.visibilityExchanger(
-                                            binding.cardView,
+                                            binding.llLogin,
                                             binding.progressBar
                                         )
                                         Toast.makeText(
@@ -89,19 +91,19 @@ class StaffLoginFragment : Fragment() {
                                         ).show()
                                     }
                                 }
-                            })
+                            }
 
 
                         }
                         is Resource.Loading -> {
                             ViewVisibilityUtil.visibilityExchanger(
                                 binding.progressBar,
-                                binding.cardView
+                                binding.llLogin
                             )
                         }
                         is Resource.Error -> {
                             ViewVisibilityUtil.visibilityExchanger(
-                                binding.cardView,
+                                binding.llLogin,
                                 binding.progressBar
                             )
                             Toast.makeText(
@@ -111,16 +113,36 @@ class StaffLoginFragment : Fragment() {
                             ).show()
                         }
                     }
-                })
+                }
             }
         }
         binding.btnGoBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.btnSkipLogin.setOnClickListener {
+            startActivity(
+                Intent(activity, AdminActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            ).also {
+                activity?.finish()
+            }
+        }
+
     }
 
     private fun checkValidity(): Boolean {
-        return true
+        var validity = true
+        if(binding.etEmail.text.isNullOrEmpty()){
+            binding.tilEmail.error = "Email Cannot be Empty"
+            validity = false
+        }
+        if(binding.etPassword.text.isNullOrEmpty()){
+            binding.tilPassword.error = "Password Cannot be Empty"
+            validity = false
+        }
+        return validity
     }
 
 }

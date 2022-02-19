@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondaryRed"
+        android:text="\n  \u2022 Let us know what all services you need"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/secondaryRed"
+        android:text="  \u2022 We will be calling you soon for any assistance\n"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilServices"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Enter Required Services"
+        app:hintTextColor="@color/primaryRed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etServices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

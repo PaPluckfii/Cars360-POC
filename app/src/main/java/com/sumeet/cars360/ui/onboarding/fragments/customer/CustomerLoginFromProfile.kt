@@ -31,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class CustomerLoginFragment : Fragment() {
+class CustomerLoginFromProfile: Fragment() {
 
     private lateinit var binding: FragmentCustomerLoginBinding
     private val viewModel: AuthViewModel by activityViewModels()
@@ -80,7 +80,8 @@ class CustomerLoginFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        findNavController().popBackStack()
+
+        navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNavigationHome())
         return true
     }
 
@@ -98,6 +99,7 @@ class CustomerLoginFragment : Fragment() {
             })
 
             btnSend.setOnClickListener {
+                navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNewCustomerFromProfile())
                 if (isMobileEnterScreen && checkValidity()) {
                     ViewVisibilityUtil.visibilityExchanger(progressBar, clCustomerLogin)
                     verifyingMobileNumber = binding.etNumber.text.toString()
@@ -184,18 +186,14 @@ class CustomerLoginFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     if (user.data?.error == true)
-                        navigate(CustomerLoginFragmentDirections.actionCustomerLoginFragmentToNewCustomerDetailsFragment())
+                        navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNewCustomerFromProfile())
                     else {
                         savePrefs.apply {
                             saveLoginStatus(true)
                             saveUserType(UserType.Customer)
                             saveCustomerLoginType(CustomerLoginType.LoggedIn)
                         }
-                        startActivity(
-                            Intent(activity, CustomerActivity::class.java)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        ).also { activity?.finish() }
+                        navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNavigationProfile())
                     }
                 }
             }
@@ -346,5 +344,6 @@ class CustomerLoginFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
     }
+
 
 }

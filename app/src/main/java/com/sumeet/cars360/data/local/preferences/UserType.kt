@@ -5,3 +5,9 @@ sealed class UserType{
     object Employee : UserType()
     object Admin : UserType()
 }
+
+sealed class CustomerLoginType{
+    object LoggedIn: CustomerLoginType()
+    object SkippedLogin: CustomerLoginType()
+    object TakeATour: CustomerLoginType()
+}

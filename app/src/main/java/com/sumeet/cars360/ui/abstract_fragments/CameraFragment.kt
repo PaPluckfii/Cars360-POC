@@ -155,10 +155,10 @@ class CameraFragment : Fragment() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     when(args.imageIndex){
-                        1 -> viewModel.frontPic = photoFile
-                        2 -> viewModel.leftPic = photoFile
-                        3 -> viewModel.rightPic = photoFile
-                        4 -> viewModel.backPic = photoFile
+//                        1 -> viewModel.frontPic = photoFile
+//                        2 -> viewModel.leftPic = photoFile
+//                        3 -> viewModel.rightPic = photoFile
+//                        4 -> viewModel.backPic = photoFile
                     }
                     navigate(CameraFragmentDirections.actionCameraFragmentToServiceLogMasterPicturesFragment())
                 }

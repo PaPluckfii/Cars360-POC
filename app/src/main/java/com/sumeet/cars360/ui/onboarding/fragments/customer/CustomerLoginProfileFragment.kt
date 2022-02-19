@@ -39,7 +39,6 @@ class CustomerLoginProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         if (readPrefs.readLoginStatus()){
-            navigate(CustomerLoginProfileFragmentDirections.actionCustomerLoginProfileFragmentToNavigationProfile2())
         }
         binding = FragmentCustomerLoginProfileBinding.inflate(inflater,container,false)
         return binding.root

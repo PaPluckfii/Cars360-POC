@@ -8,21 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.DialogRequestedServiceBinding
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterRequestedRepairsBinding
 import com.sumeet.cars360.databinding.ItemRequestedServiceBinding
-import com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceLogMasterFragment
-import com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceLogMasterFragmentDirections
+import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
-import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,22 +68,30 @@ class ServiceLogMasterRequestedRepairsFragment : Fragment() {
                         ViewVisibilityUtil.gone(binding.llButtons)
                         ViewVisibilityUtil.visible(binding.progressBar)
 
-                        viewModel.additionalDetails = createData()
-                        viewModel.estimatedAmount = getTotalEstimate()
+                        ServiceLogCreationHelper.serviceLogDTO.additionalDetails = createData()
+                        ServiceLogCreationHelper.serviceLogDTO.estimatedAmount = getTotalEstimate()
 
                         viewModel.insertNewServiceLog()
 
-                        viewModel.insertOperation.observe(viewLifecycleOwner, {
-                            when(it){
+                        viewModel.insertOperation.observe(viewLifecycleOwner) {
+                            when (it) {
                                 is Resource.Loading -> {}
                                 is Resource.Error -> {
-                                    Toast.makeText(context,"Oops ${it.message}",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Oops ${it.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                                 is Resource.Success -> {
-                                    Toast.makeText(context,"Uploaded Service Log with ID : ${it.data}",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Uploaded Service Log with ID : ${it.data}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
-                        })
+                        }
 
                     }
 

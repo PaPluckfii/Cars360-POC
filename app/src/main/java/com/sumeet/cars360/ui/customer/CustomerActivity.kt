@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.user.UserResponse
@@ -34,7 +35,7 @@ class CustomerActivity : AppCompatActivity() {
     }
 
     private fun getAndSetUserData() {
-        viewModel.getCustomerByUserId("11")
+        viewModel.getCustomerByUserId(FirebaseAuth.getInstance().uid.toString())
         viewModel.customerDetails.observeOnce(this, Observer {
             it?.let {
                 when(it){
@@ -73,7 +74,6 @@ class CustomerActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_explore,
-                R.id.navigation_help,
                 R.id.navigation_profile
             )
         )

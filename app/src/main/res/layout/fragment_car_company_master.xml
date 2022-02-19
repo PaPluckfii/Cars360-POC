@@ -204,15 +204,6 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <TextView
-        android:id="@+id/deleteUnvavility"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete is Currenty not available"
-        android:layout_above="@id/btnAddCar"
-        android:textColor="@color/primaryRed"/>
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carCompanyRecyclerView"
         android:layout_width="match_parent"

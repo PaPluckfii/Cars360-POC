@@ -1,5 +1,6 @@
 package com.sumeet.cars360.data.repository
 
+import android.util.Log
 import com.sumeet.cars360.data.ServiceLogStatus
 import com.sumeet.cars360.data.remote.ApiClient
 import com.sumeet.cars360.data.remote.model.car_entities.insert.BrandInsertOperation
@@ -62,10 +63,10 @@ class RemoteRepository @Inject constructor(
     }
 
     suspend fun getUserByUserId(userId: String) =
-        apiClient.getUserByUserId(GeneralRequest(userId,""))
+        apiClient.getUserByUserId(LoginByFirebaseRequest("0",userId))
 
     suspend fun getCustomerByUserId(userId:String) =
-        apiClient.getUserByUserId(GeneralRequest(userId,"3"))
+        apiClient.getUserByUserId(LoginByFirebaseRequest("0",userId))
 
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
         apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
@@ -170,6 +171,8 @@ class RemoteRepository @Inject constructor(
         backPic: File?
     ): Response<ServiceLogInsertOperation> {
 
+        Log.d("SERVICE_LOG_CHECK","$carId-----$accessories----$serviceTypes----$estimates----$additionalDetails")
+
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("CarId", carId)
@@ -178,11 +181,13 @@ class RemoteRepository @Inject constructor(
             .addFormDataPart("Estimates", estimates)
             .addFormDataPart("AdditionalDetail", additionalDetails)
             .addFormDataPart("UserCarRequests", userCarRequest)
-            .addFormDataPart("OriginalAmount", originalAmount)
+            .addFormDataPart("OriginalAmount", "0")
             .addFormDataPart("EstimatedAmount", estimatedAmount)
-            .addFormDataPart("PaidAmount", paidAmount)
+            .addFormDataPart("PaidAmount", "0")
             .addFormDataPart("PaymentMode", paymentMode)
             .addFormDataPart("CreatedBy", createdBy)
+            .addFormDataPart("InvoiceFile","")
+            .addFormDataPart("CarHealthReport","")
 
         if (leftPic != null)
             requestBody.addFormDataPart(
@@ -387,6 +392,11 @@ class RemoteRepository @Inject constructor(
         apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
 
 }
+
+data class LoginByFirebaseRequest(
+    val UserId: String,
+    val FirebaseId: String
+)
 
 data class CarDetailsByMobileNumberRequest(
     val UserTypeId: String,     //User Type Id for Customer = 3

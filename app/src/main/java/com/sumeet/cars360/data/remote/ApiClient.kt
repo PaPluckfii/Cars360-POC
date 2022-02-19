@@ -9,10 +9,7 @@ import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user.insert.UserInsertOperation
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.remote.model.user_cars.insert.CarDetailsInsertOperation
-import com.sumeet.cars360.data.repository.CarDetailsByMobileNumberRequest
-import com.sumeet.cars360.data.repository.CarDetailsRequest
-import com.sumeet.cars360.data.repository.GeneralRequest
-import com.sumeet.cars360.data.repository.ServiceStatusChangeRequest
+import com.sumeet.cars360.data.repository.*
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
@@ -28,7 +25,7 @@ interface ApiClient {
 
     @POST("GetUserByFirebase.php")
     suspend fun getUserByUserId(
-        @Body generalRequest: GeneralRequest
+        @Body generalRequest: LoginByFirebaseRequest
     ): Response<UsersByFirebaseIdResponse>
 
     @POST("GetUserCarDetailByMobile.php")

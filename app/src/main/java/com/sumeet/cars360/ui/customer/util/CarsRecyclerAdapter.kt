@@ -31,7 +31,7 @@ class CarsRecyclerAdapter(
     override fun onBindViewHolder(holder: CarsViewHolder, position: Int) {
         holder.binding.apply {
             tvCarName.text = "${listOfCars[position].brandName} ${listOfCars[position].modelName}"
-            tvLicencePlate.text = listOfCars[position].plateNo
+//            tvLicencePlate.text = listOfCars[position].plateNo
 //            tvTextLastServiceDate.text =
 //                if (listOfCars[position].lastServiceDate != null)
 //                    "Last Service Date : ${listOfCars[position].lastServiceDate}"

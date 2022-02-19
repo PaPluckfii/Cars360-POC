@@ -13,15 +13,23 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.auth.FirebaseAuth
 import com.sumeet.cars360.R
+import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
+import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponse
 import com.sumeet.cars360.data.remote.old_model.Cars360Document
 import com.sumeet.cars360.databinding.CustomerProfileBottomSheetBinding
 import com.sumeet.cars360.databinding.FragmentCustomerProfileBinding
+import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.customer.CustomerViewModel
 import com.sumeet.cars360.ui.customer.util.*
+import com.sumeet.cars360.ui.onboarding.OnBoardingActivity
+import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
+import com.sumeet.cars360.util.ViewVisibilityUtil
+import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,9 +56,35 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         readPrefs = ReadPrefs(requireContext())
-        setUpProfileData()
-        observeCustomerData()
-        setUpBottomSheet()
+
+        when(readPrefs.readCustomerLoginType()){
+            is CustomerLoginType.LoggedIn -> {
+                setUpProfileData()
+                observeCustomerData()
+                setUpBottomSheet()
+            }
+            else -> {
+                navigate(CustomerProfileFragmentDirections.actionNavigationProfileToCustomerLoginFromProfile())
+                ViewVisibilityUtil.gone(binding.clCustomerProfileSheet)
+                ViewVisibilityUtil.gone(binding.customerCarsRecyclerView)
+                ViewVisibilityUtil.gone(binding.llProfileButtons)
+                ViewVisibilityUtil.visible(binding.llNonLoginButton)
+
+                binding.btnGoHome.setOnClickListener {
+                    if(ButtonClickHandler.buttonClicked()){
+                        SavePrefs(requireContext()).resetAppData()
+                        Toast.makeText(context, "Logged Out", Toast.LENGTH_SHORT)
+                            .show()
+                        startActivity(
+                            Intent(activity, OnBoardingActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        ).also { activity?.finish() }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun setUpProfileData() {
@@ -77,7 +111,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
     }
 
     private fun getAndSetUserData() {
-        viewModel.getCustomerByUserId("11")
+        FirebaseAuth.getInstance().uid?.let { viewModel.getCustomerByUserId(it) }
         viewModel.customerDetails.observeOnce(this, Observer {
             it?.let {
                 when(it){
@@ -145,49 +179,60 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
                 if (isBottomSheetVisible)
                     hideBottomSheet()
             }
-            llEditProfile.setOnClickListener {
+            btnEditProfile.setOnClickListener {
                 Toast.makeText(context, "Profile Details are disabled for now", Toast.LENGTH_SHORT)
                     .show()
             }
-            llInvoices.setOnClickListener {
-                bottomSheetLayoutBinding.tvTitle.text = "Invoices"
-                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
-                bottomSheetRecyclerAdapter.setStaticList(listOf(
-                    Cars360Document(0,"","","20 Jan 2022"),
-                    Cars360Document(0,"","","20 Dec 2021"),
-                    Cars360Document(0,"","","30 Oct 2021")
-                ))
-                showBottomSheet()
-                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
-                    hideBottomSheet()
-                }
+            btnLogout.setOnClickListener {
+                SavePrefs(requireContext()).resetAppData()
+                Toast.makeText(context, "Logged Out", Toast.LENGTH_SHORT)
+                    .show()
+                startActivity(
+                    Intent(activity, OnBoardingActivity::class.java)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                ).also { activity?.finish() }
+
             }
-            llRecentServiceHistory.setOnClickListener {
-                bottomSheetLayoutBinding.tvTitle.text = "Recent Service History"
-                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
-                bottomSheetRecyclerAdapter.setStaticList(listOf(
-                    Cars360Document(0,"","","20 Jan 2022"),
-                    Cars360Document(0,"","","20 Dec 2021"),
-                    Cars360Document(0,"","","30 Oct 2021")
-                ))
-                showBottomSheet()
-                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
-                    hideBottomSheet()
-                }
-            }
-            llHealthReport.setOnClickListener {
-                bottomSheetLayoutBinding.tvTitle.text = "Health Report"
-                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
-                bottomSheetRecyclerAdapter.setStaticList(listOf(
-                    Cars360Document(0,"","","20 Jan 2022"),
-                    Cars360Document(0,"","","20 Dec 2021"),
-                    Cars360Document(0,"","","30 Oct 2021")
-                ))
-                showBottomSheet()
-                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
-                    hideBottomSheet()
-                }
-            }
+//            llInvoices.setOnClickListener {
+//                bottomSheetLayoutBinding.tvTitle.text = "Invoices"
+//                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
+//                bottomSheetRecyclerAdapter.setStaticList(listOf(
+//                    Cars360Document(0,"","","20 Jan 2022"),
+//                    Cars360Document(0,"","","20 Dec 2021"),
+//                    Cars360Document(0,"","","30 Oct 2021")
+//                ))
+//                showBottomSheet()
+//                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
+//                    hideBottomSheet()
+//                }
+//            }
+//            llRecentServiceHistory.setOnClickListener {
+//                bottomSheetLayoutBinding.tvTitle.text = "Recent Service History"
+//                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
+//                bottomSheetRecyclerAdapter.setStaticList(listOf(
+//                    Cars360Document(0,"","","20 Jan 2022"),
+//                    Cars360Document(0,"","","20 Dec 2021"),
+//                    Cars360Document(0,"","","30 Oct 2021")
+//                ))
+//                showBottomSheet()
+//                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
+//                    hideBottomSheet()
+//                }
+//            }
+//            llHealthReport.setOnClickListener {
+//                bottomSheetLayoutBinding.tvTitle.text = "Health Report"
+//                bottomSheetLayoutBinding.bottomSheetRecyclerView.adapter = bottomSheetRecyclerAdapter
+//                bottomSheetRecyclerAdapter.setStaticList(listOf(
+//                    Cars360Document(0,"","","20 Jan 2022"),
+//                    Cars360Document(0,"","","20 Dec 2021"),
+//                    Cars360Document(0,"","","30 Oct 2021")
+//                ))
+//                showBottomSheet()
+//                bottomSheetLayoutBinding.ibMinimizeBottomSheet.setOnClickListener {
+//                    hideBottomSheet()
+//                }
+//            }
         }
 
     }
@@ -229,7 +274,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
 
     private fun observeCustomerData() {
 
-        "+919669867977".let { viewModel.getCustomerCarDetailsByMobileNumber(it) }
+        "+91${FirebaseAuth.getInstance().currentUser?.phoneNumber}".let { viewModel.getCustomerCarDetailsByMobileNumber(it) }
         viewModel.customerCarDetailsData.observe(viewLifecycleOwner, Observer {
 
             when(it){

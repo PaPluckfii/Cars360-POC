@@ -43,6 +43,7 @@ class AuthRepository @Inject constructor(){
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken
         ) {
+//            OtpSentListener._isOtpSent?.postValue(true)
             verificationCode = verificationId
             resendToken = token
         }

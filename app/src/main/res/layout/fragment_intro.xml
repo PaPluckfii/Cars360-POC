@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ui.onboarding.fragments.IntroFragment">
 
     <com.yqritc.scalablevideoview.ScalableVideoView
@@ -10,16 +12,58 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNext"
-        style="@style/MyFilledButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:text="@string/login_sign_up"
-        android:layout_alignParentBottom="true"
-        android:elevation="@dimen/_5sdp"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/transparentBlack"
+        android:elevation="@dimen/_5sdp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSkipLogin"
+            style="@style/MyFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:text="Skip Login And Continue" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTour"
+            style="@style/MyFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:text="Just Take A Tour" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            style="@style/MyFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:text="@string/login_sign_up" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStaff"
+            style="@style/MyFilledButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:elevation="@dimen/_5sdp"
+            android:text="Staff/Admin Login" />
+
+    </LinearLayout>
 
 </RelativeLayout>

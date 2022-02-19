@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -12,9 +13,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.sumeet.cars360.R
+import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
+import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.car_entities.CarBrandResponse
 import com.sumeet.cars360.data.remote.model.car_entities.CarModelResponse
 import com.sumeet.cars360.databinding.CarDetailsBottomSheetBinding
@@ -51,9 +55,15 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         handleBottomSheet()
         setUpRecyclerAdapter()
         setUpCarBrand()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().popBackStack()
+        return true
     }
 
     private fun handleBottomSheet() {
@@ -106,19 +116,23 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
         bottomSheetLayoutBinding.apply {
             llPetrol.setOnClickListener {
                 viewModel.fuelType = "Petrol"
-                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+//                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+                goToHome()
             }
             llDiesel.setOnClickListener {
                 viewModel.fuelType = "Diesel"
-                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+//                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+                goToHome()
             }
             llElectric.setOnClickListener {
                 viewModel.fuelType = "Electric"
-                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+//                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+                goToHome()
             }
             llCNG.setOnClickListener {
                 viewModel.fuelType = "CNG"
-                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+//                ViewVisibilityUtil.visibilityExchanger(llAdditionalDetails,llFuelType)
+                goToHome()
             }
 
             bodyColorSpinner.adapter = ArrayAdapter(
@@ -140,14 +154,20 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
 
                     viewModel.insertNewCar(ReadPrefs(requireContext()).readUserId().toString())
 
-                    viewModel.insertOperation.observe(viewLifecycleOwner,{
-                        when(it){
+                    viewModel.insertOperation.observe(viewLifecycleOwner) {
+                        when (it) {
                             is Resource.Loading -> {
                                 hideBottomSheet()
-                                ViewVisibilityUtil.visibilityExchanger(binding.progressBar,binding.carsRecyclerView)
+                                ViewVisibilityUtil.visibilityExchanger(
+                                    binding.progressBar,
+                                    binding.carsRecyclerView
+                                )
                             }
                             is Resource.Error -> {
-                                ViewVisibilityUtil.visibilityExchanger(binding.carsRecyclerView,binding.progressBar)
+                                ViewVisibilityUtil.visibilityExchanger(
+                                    binding.carsRecyclerView,
+                                    binding.progressBar
+                                )
                             }
                             is Resource.Success -> {
                                 startActivity(
@@ -157,13 +177,28 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
                                 ).also { activity?.finish() }
                             }
                         }
-                    })
+                    }
 
                 }
             }
 
         }
 
+    }
+
+    private fun goToHome() {
+        SavePrefs(requireContext()).apply {
+            saveCarModelId(viewModel.modelId)
+            if(ReadPrefs(requireContext()).readFirebaseId() != "")
+                saveCustomerLoginType(CustomerLoginType.LoggedIn)
+            else
+                saveCustomerLoginType(CustomerLoginType.SkippedLogin)
+        }
+            startActivity(
+                Intent(activity, CustomerActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            ).also { activity?.finish() }
     }
 
     private fun checkDataValidity(): Boolean {
@@ -186,19 +221,22 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
 
     private fun setUpCarBrand() {
         viewModel.getAllCarEntities()
-        viewModel.carEntities.observe(viewLifecycleOwner,{
-            when(it){
+        viewModel.carEntities.observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Loading -> {}
                 is Resource.Error -> {
                     ViewVisibilityUtil.gone(binding.shimmerFrameLayout)
-                    Toast.makeText(context,"Oops! ${it.message}",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Oops! ${it.message}", Toast.LENGTH_LONG).show()
                 }
                 is Resource.Success -> {
                     it.data?.carBrandResponse?.let { list -> recyclerAdapter.setCarBrandList(list) }
-                    ViewVisibilityUtil.visibilityExchanger(binding.carsRecyclerView,binding.shimmerFrameLayout)
+                    ViewVisibilityUtil.visibilityExchanger(
+                        binding.carsRecyclerView,
+                        binding.shimmerFrameLayout
+                    )
                 }
             }
-        })
+        }
     }
 
     private fun showBottomSheet() {

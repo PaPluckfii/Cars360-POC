@@ -1,45 +1,46 @@
-package com.sumeet.cars360.ui.onboarding.fragments.new_customer
+package com.sumeet.cars360.ui.onboarding.fragments.customer
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.FileUtils
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.local.preferences.UserType
 import com.sumeet.cars360.databinding.FragmentNewCustomerDetailsBinding
+import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerDetailsFragmentDirections
+import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerViewModel
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
 import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-import java.lang.Exception
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.FileUtils
-import android.util.Log
-import androidx.core.content.ContextCompat
-import com.google.firebase.auth.FirebaseAuth
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import java.io.FileOutputStream
 import java.io.IOException
-
+import java.lang.Exception
 
 @AndroidEntryPoint
-class NewCustomerDetailsFragment : Fragment() {
+class NewCustomerDetailsFromProfile:Fragment() {
 
     private lateinit var binding: FragmentNewCustomerDetailsBinding
     private val viewModel: NewCustomerViewModel by activityViewModels()
@@ -78,8 +79,8 @@ class NewCustomerDetailsFragment : Fragment() {
                 }catch (e: Exception){}
             }
         }
-    private var userCaptureImage: File? = null
 
+    private var userCaptureImage: File? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -111,7 +112,7 @@ class NewCustomerDetailsFragment : Fragment() {
                         firebaseId = readPrefs.readFirebaseId().toString()
                         profileImage = userCaptureImage
                     }
-                    navigate(NewCustomerDetailsFragmentDirections.actionNewCustomerDetailsFragmentToNewCustomerAdditionalDetailsFragment())
+                    navigate(NewCustomerDetailsFromProfileDirections.actionNewCustomerFromProfileToNewCustomerAdditionalDetailsFromProfile())
                 }
             }
             btnSignMeIn.setOnClickListener {
@@ -124,7 +125,7 @@ class NewCustomerDetailsFragment : Fragment() {
                         firebaseId = FirebaseAuth.getInstance().uid.toString()
                         profileImage = userCaptureImage
                     }
-                    Toast.makeText(context, viewModel.mobileNo,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, viewModel.mobileNo, Toast.LENGTH_SHORT).show()
                     viewModel.insertNewUserData()
 
                     viewModel.insertOperation.observe(viewLifecycleOwner) {
@@ -149,7 +150,7 @@ class NewCustomerDetailsFragment : Fragment() {
                                     if (it.data != "")
                                         it.data?.let { id -> saveUserId(id) }
                                 }
-                                navigate(NewCustomerDetailsFragmentDirections.actionNewCustomerDetailsFragmentToNewCarDetailsFragment())
+                                navigate(NewCustomerDetailsFromProfileDirections.actionNewCustomerFromProfileToNavigationProfile())
                             }
                         }
                     }
