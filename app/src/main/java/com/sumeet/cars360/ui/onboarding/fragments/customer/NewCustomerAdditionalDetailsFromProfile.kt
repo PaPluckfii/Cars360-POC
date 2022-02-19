@@ -5,17 +5,21 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
+import com.sumeet.cars360.data.local.CityStateEntity
 import com.sumeet.cars360.databinding.FragmentNewCustomerAdditionalDetailsBinding
 import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerViewModel
 import com.sumeet.cars360.util.ButtonClickHandler
+import com.sumeet.cars360.util.CityStateManagementTool
 import com.sumeet.cars360.util.ViewVisibilityUtil
 import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
+import gr.escsoft.michaelprimez.searchablespinner.interfaces.OnItemSelectedListener
 
 @AndroidEntryPoint
 class NewCustomerAdditionalDetailsFromProfile :Fragment() {
@@ -23,6 +27,8 @@ class NewCustomerAdditionalDetailsFromProfile :Fragment() {
     private lateinit var binding: FragmentNewCustomerAdditionalDetailsBinding
     private val viewModel: NewCustomerViewModel by activityViewModels()
 
+    private lateinit var listOfCityState: List<String>
+    private lateinit var listOfCities: List<String>
     private var isDatePickerVisible = false
 
     override fun onCreateView(
@@ -35,7 +41,22 @@ class NewCustomerAdditionalDetailsFromProfile :Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+        getCityStateData()
         handleListeners()
+    }
+
+    private fun getCityStateData() {
+        listOfCityState = CityStateManagementTool.getParsedStateData(
+            resources.assets.open("in_city_state_data.json")
+        )
+        binding.stateSpinner.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.item_services_spinner,
+                listOfCityState
+            )
+        )
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -49,6 +70,31 @@ class NewCustomerAdditionalDetailsFromProfile :Fragment() {
     }
     private fun handleListeners() {
         binding.apply {
+
+            stateSpinner.setOnItemSelectedListener(object : OnItemSelectedListener {
+                override fun onItemSelected(view: View?, position: Int, id: Long) {
+                    listOfCities = CityStateManagementTool.getParsedCityData(
+                        resources.assets.open("in_city_state_data.json"),
+                        listOfCityState[position]
+                    )
+
+                    binding.citySpinner.setAdapter(
+                        ArrayAdapter(
+                            requireContext(),
+                            R.layout.item_services_spinner,
+                            listOfCities
+                        )
+                    )
+
+                    ViewVisibilityUtil.visible(citySpinner)
+                }
+
+                override fun onNothingSelected() {
+                    ViewVisibilityUtil.gone(citySpinner)
+                }
+
+            })
+
             dobDatePicker.maxDate = System.currentTimeMillis() - 1000
 
             btnSelectDOB.setOnClickListener {
@@ -116,8 +162,8 @@ class NewCustomerAdditionalDetailsFromProfile :Fragment() {
 
                     viewModel.apply {
                         address = etAddress1.text.toString()
-                        city = etAddressCity.text.toString()
-                        state = etAddressState.text.toString()
+                        city = citySpinner.selectedItem.toString()
+                        state = stateSpinner.selectedItem.toString()
                         pinCode = etAddressPinCode.text.toString()
                         gstIn = etGstIn.text.toString()
                     }
@@ -136,12 +182,12 @@ class NewCustomerAdditionalDetailsFromProfile :Fragment() {
             binding.tilAddress1.error = "Address Field Cannot be Empty"
             validity = false
         }
-        if (binding.etAddressState.text.isNullOrEmpty()) {
-            binding.tilAddressState.error = "Email Cannot be Empty"
+        if (binding.citySpinner.isSelected) {
+            binding.citySpinner.background = ContextCompat.getDrawable(requireContext(),R.color.primaryRed)
             validity = false
         }
-        if (binding.etAddressCity.text.isNullOrEmpty()) {
-            binding.tilAddressCity.error = "Email Cannot be Empty"
+        if (binding.stateSpinner.isSelected) {
+            binding.stateSpinner.background = ContextCompat.getDrawable(requireContext(),R.color.primaryRed)
             validity = false
         }
         if (binding.etAddressPinCode.text.toString().length != 6) {

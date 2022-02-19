@@ -80,8 +80,7 @@ class CustomerLoginFromProfile: Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNavigationHome())
+        findNavController().popBackStack()
         return true
     }
 
@@ -99,7 +98,7 @@ class CustomerLoginFromProfile: Fragment() {
             })
 
             btnSend.setOnClickListener {
-                navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNewCustomerFromProfile())
+//                navigate(CustomerLoginFromProfileDirections.actionCustomerLoginFromProfileToNewCustomerFromProfile())
                 if (isMobileEnterScreen && checkValidity()) {
                     ViewVisibilityUtil.visibilityExchanger(progressBar, clCustomerLogin)
                     verifyingMobileNumber = binding.etNumber.text.toString()

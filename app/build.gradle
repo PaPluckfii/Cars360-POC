@@ -116,4 +116,7 @@ dependencies {
 
     //fab-loading
     implementation 'io.saeid:fab-loading:1.0.0'
+
+    //Searchable Spinner
+    implementation 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
 }

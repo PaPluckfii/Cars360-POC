@@ -99,44 +99,37 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/border">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilAddressCity"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="wrap_content"
+                <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                    android:id="@+id/citySpinner"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:hint="City*"
-                    app:hintTextColor="@color/primaryRed"
-                    app:layout_constraintTop_toBottomOf="@+id/tilName">
+                    app:RevealEmptyText="Select City"
+                    app:ShowBorders="true"
+                    android:visibility="gone"
+                    app:SpinnerExpandHeight="@dimen/_150sdp"
+                    app:StartSearchTintColor="@android:color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/tilName" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etAddressCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+            </LinearLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/border">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilAddressState"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="wrap_content"
+                <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                    android:id="@+id/stateSpinner"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:hint="State*"
-                    app:hintTextColor="@color/primaryRed"
-                    app:layout_constraintTop_toBottomOf="@+id/tilName">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etAddressState"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:RevealEmptyText="Select State"
+                    app:ShowBorders="true"
+                    app:SpinnerExpandHeight="@dimen/_150sdp"
+                    app:StartSearchTintColor="@android:color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/tilName" />
 
             </LinearLayout>
 

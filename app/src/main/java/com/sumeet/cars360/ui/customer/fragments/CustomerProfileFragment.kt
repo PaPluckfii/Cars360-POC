@@ -93,7 +93,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
                 getAndSetUserData()
             }
             setTextInView(tvName,readPrefs.readUserName())
-            setTextInView(tvMobile,readPrefs.readUserMobileNumber())
+            setTextInView(tvMobile,FirebaseAuth.getInstance().currentUser?.phoneNumber)
             setTextInView(tvEmailId,readPrefs.readUserEmail())
             setTextInView(tvAddressLine,readPrefs.readUserAddress())
             setTextInView(tvCity,readPrefs.readUserCity())
@@ -185,6 +185,7 @@ class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomS
             }
             btnLogout.setOnClickListener {
                 SavePrefs(requireContext()).resetAppData()
+                FirebaseAuth.getInstance().signOut()
                 Toast.makeText(context, "Logged Out", Toast.LENGTH_SHORT)
                     .show()
                 startActivity(

@@ -39,7 +39,7 @@ class CustomerLoginFragment : Fragment() {
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private var verifyingMobileNumber = ""
     private var isMobileEnterScreen = true
-    private var sentCode: String? = null
+    private var sentCode: String = ""
     private var resendToken:  PhoneAuthProvider.ForceResendingToken? = null
     private lateinit var savePrefs: SavePrefs
 
@@ -129,7 +129,7 @@ class CustomerLoginFragment : Fragment() {
 
                         mAuth.signInWithCredential(
                             PhoneAuthProvider.getCredential(
-                                sentCode!!,
+                                sentCode,
                                 code
                             )
                         )

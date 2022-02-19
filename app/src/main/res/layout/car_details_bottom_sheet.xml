@@ -102,6 +102,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/red_seperator_bg_vertical"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
@@ -129,6 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <ImageView
