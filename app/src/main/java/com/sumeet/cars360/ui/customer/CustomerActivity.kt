@@ -82,7 +82,9 @@ class CustomerActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_explore -> {
+                R.id.navigation_explore,
+                R.id.navigation_profile,
+                R.id.customerLoginFromProfile-> {
                     supportActionBar?.hide()
                 }
                 else -> {

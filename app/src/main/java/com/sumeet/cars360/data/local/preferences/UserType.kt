@@ -7,7 +7,7 @@ sealed class UserType{
 }
 
 sealed class CustomerLoginType{
-    object LoggedIn: CustomerLoginType()
-    object SkippedLogin: CustomerLoginType()
-    object TakeATour: CustomerLoginType()
+    object LoggedIn: CustomerLoginType()        //All Data
+    object SkippedLogin: CustomerLoginType()    //Only Car data
+    object TakeATour: CustomerLoginType()       //No Data
 }

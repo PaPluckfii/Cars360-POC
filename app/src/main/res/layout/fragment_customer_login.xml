@@ -181,29 +181,29 @@
             app:layout_constraintStart_toStartOf="@+id/guideline9"
             app:layout_constraintTop_toBottomOf="@+id/llOtpFields" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvNotCustomer"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/_45sdp"-->
-<!--            android:drawablePadding="@dimen/_5sdp"-->
-<!--            android:padding="@dimen/_5sdp"-->
-<!--            android:text="@string/not_a_customer"-->
-<!--            app:drawableStartCompat="@drawable/ic_staff"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
-<!--            app:layout_constraintHorizontal_bias="0.503"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/guideline9"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btnCustomer" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvNotCustomer"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/_45sdp"-->
+        <!--            android:drawablePadding="@dimen/_5sdp"-->
+        <!--            android:padding="@dimen/_5sdp"-->
+        <!--            android:text="@string/not_a_customer"-->
+        <!--            app:drawableStartCompat="@drawable/ic_staff"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
+        <!--            app:layout_constraintHorizontal_bias="0.503"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/guideline9"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/btnCustomer" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvClickHere"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Click Here for Staff Login"-->
-<!--            android:textColor="@color/primaryRed"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/guideline9"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tvNotCustomer" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvClickHere"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Click Here for Staff Login"-->
+        <!--            android:textColor="@color/primaryRed"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/guideline9"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/guideline9"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tvNotCustomer" />-->
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
