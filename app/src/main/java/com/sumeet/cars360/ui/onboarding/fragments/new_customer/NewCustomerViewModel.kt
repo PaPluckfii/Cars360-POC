@@ -1,10 +1,15 @@
 package com.sumeet.cars360.ui.onboarding.fragments.new_customer
 
+import android.util.Log
+import android.widget.Filter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sumeet.cars360.data.remote.model.car_entities.CarBrandResponse
 import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
+import com.sumeet.cars360.data.remote.model.car_entities.car_brand.AllCarBrandsResponse
+import com.sumeet.cars360.data.remote.model.car_entities.car_model.AllCarModelResponse
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
 import com.sumeet.cars360.util.Constants.hasInternetConnection
@@ -13,7 +18,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class NewCustomerViewModel @Inject constructor(
@@ -41,7 +48,7 @@ class NewCustomerViewModel @Inject constructor(
         _insertOperation.postValue(Resource.Loading())
 
         viewModelScope.launch(Dispatchers.IO) {
-            if (hasInternetConnection()){
+            if (hasInternetConnection()) {
                 val response = remoteRepository.addNewUserToServer(
                     name,
                     email,
@@ -65,7 +72,7 @@ class NewCustomerViewModel @Inject constructor(
                     }
                 } else
                     _insertOperation.postValue(Resource.Error(response.message()))
-            }else{
+            } else {
                 _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
             }
         }
@@ -78,7 +85,7 @@ class NewCustomerViewModel @Inject constructor(
     fun getAllCarEntities() {
         _carEntities.postValue(Resource.Loading())
         viewModelScope.launch {
-            if (hasInternetConnection()){
+            if (hasInternetConnection()) {
                 val response = remoteRepository.getAllCarCollections()
                 if (response.isSuccessful && response.body() != null)
                     if (response.body()?.error == false)
@@ -87,7 +94,7 @@ class NewCustomerViewModel @Inject constructor(
                         _carEntities.postValue(Resource.Error(response.body()?.message))
                 else
                     _carEntities.postValue(Resource.Error(response.message()))
-            }else{
+            } else {
                 _carEntities.postValue(Resource.Error(NO_INTERNET_CONNECTION))
             }
         }
@@ -106,7 +113,7 @@ class NewCustomerViewModel @Inject constructor(
         _insertOperation.postValue(Resource.Loading())
 
         viewModelScope.launch(Dispatchers.IO) {
-            if (hasInternetConnection()){
+            if (hasInternetConnection()) {
                 val response = remoteRepository.addNewCarDetails(
                     userId,
                     modelId,
@@ -131,8 +138,58 @@ class NewCustomerViewModel @Inject constructor(
                     }
                 } else
                     _insertOperation.postValue(Resource.Error(response.message()))
-            }else{
+            } else {
                 _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+            }
+        }
+    }
+
+    private val _allCarBrands = MutableLiveData<Resource<AllCarBrandsResponse>>()
+    val allCarBrands: LiveData<Resource<AllCarBrandsResponse>>
+        get() = _allCarBrands
+
+    fun getAllCarBrands() {
+        _allCarBrands.postValue(Resource.Loading())
+
+        viewModelScope.launch {
+            if (hasInternetConnection()) {
+                val response = remoteRepository.getAllCarBrands()
+                if (response.isSuccessful && response.body() != null) {
+                    if (response.body()?.error == false)
+                        _allCarBrands.postValue(Resource.Success(response.body()))
+                    else
+                        _allCarBrands.postValue(Resource.Error(response.body()?.message))
+                } else
+                    _allCarBrands.postValue(Resource.Error(response.message()))
+            }
+        }
+    }
+
+    private val _allCarModels = MutableLiveData<Resource<AllCarModelResponse>>()
+    val allCarModels: LiveData<Resource<AllCarModelResponse>>
+        get() = _allCarModels
+
+    fun getAllCarModels() {
+        _allCarModels.postValue(Resource.Loading())
+
+        viewModelScope.launch {
+            if (hasInternetConnection()) {
+                val response = remoteRepository.getAllCarModels()
+                if (response.isSuccessful && response.body() != null) {
+                    if (response.body()?.error == false)
+                        _allCarModels.postValue(Resource.Success(response.body()))
+                    else
+                        _allCarModels.postValue(Resource.Error(response.body()?.message))
+                } else
+                    _allCarModels.postValue(Resource.Error(response.message()))
+            }
+        }
+    }
+
+    fun filterCarResults(text: String) {
+        viewModelScope.launch {
+            _carEntities.value?.data?.carBrandResponse?.filter {
+                text == it.brandName
             }
         }
     }

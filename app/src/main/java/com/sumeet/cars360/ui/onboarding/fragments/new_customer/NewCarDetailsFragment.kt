@@ -1,47 +1,50 @@
 package com.sumeet.cars360.ui.onboarding.fragments.new_customer
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
-import androidx.core.view.get
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.car_entities.CarBrandResponse
 import com.sumeet.cars360.data.remote.model.car_entities.CarModelResponse
 import com.sumeet.cars360.databinding.CarDetailsBottomSheetBinding
-import com.sumeet.cars360.databinding.CustomerRequestServiceBottomSheetLayoutBinding
-import com.sumeet.cars360.databinding.CustomerServicesBottomSheetLayoutBinding
 import com.sumeet.cars360.databinding.FragmentNewCarDetailsBinding
 import com.sumeet.cars360.ui.customer.CustomerActivity
-import com.sumeet.cars360.ui.staff.StaffActivity
-import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
+import com.sumeet.cars360.util.hideVirtualKeyBoard
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
+class NewCarDetailsFragment : Fragment(),
+    CarBrandSelectAdapter.CarBrandSelectListener,
+    CarModelSelectAdapter.CarModelSelectListener
+{
 
     private lateinit var binding: FragmentNewCarDetailsBinding
     private val viewModel: NewCustomerViewModel by activityViewModels()
 
-    private lateinit var recyclerAdapter: CarSelectAdapter
-    private var isBrandSelected = false
-    private var isBottomSheetVisible = false
+    private lateinit var brandAdapterBrand: CarBrandSelectAdapter
+    private lateinit var modelAdapterBrand: CarModelSelectAdapter
+    private var isCarModelSelected = false
+    private var listOfCarEntities = emptyList<CarBrandResponse>()
 
+    private var isBottomSheetVisible = false
     private lateinit var mCarsBottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
     private lateinit var bottomSheetLayoutBinding: CarDetailsBottomSheetBinding
 
@@ -49,7 +52,7 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewCarDetailsBinding.inflate(inflater,container,false)
+        binding = FragmentNewCarDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,7 +65,11 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        findNavController().popBackStack()
+        if (isBottomSheetVisible) {
+            hideBottomSheet()
+        }
+        else
+            findNavController().popBackStack()
         return true
     }
 
@@ -108,8 +115,9 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
 
         binding.apply {
             vCustomerTransparentBg.setOnClickListener {
-                if (isBottomSheetVisible)
+                if (isBottomSheetVisible) {
                     hideBottomSheet()
+                }
             }
         }
 
@@ -135,53 +143,6 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
                 goToHome()
             }
 
-            bodyColorSpinner.adapter = ArrayAdapter(
-                requireContext(),
-                R.layout.item_services_spinner,
-                resources.getStringArray(R.array.CarBodyColor)
-            )
-
-            btnSelectDate.setOnClickListener {
-                //TODO
-            }
-
-            //TODO check body color
-            btnAddCar.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked() && checkDataValidity()){
-                    viewModel.vehicleNo = etVehicleNo.text.toString()
-                    viewModel.insuranceCompany = etInsuranceCompany.text.toString()
-                    viewModel.bodyColor = bodyColorSpinner.selectedItem.toString()
-
-                    viewModel.insertNewCar(ReadPrefs(requireContext()).readUserId().toString())
-
-                    viewModel.insertOperation.observe(viewLifecycleOwner) {
-                        when (it) {
-                            is Resource.Loading -> {
-                                hideBottomSheet()
-                                ViewVisibilityUtil.visibilityExchanger(
-                                    binding.progressBar,
-                                    binding.carsRecyclerView
-                                )
-                            }
-                            is Resource.Error -> {
-                                ViewVisibilityUtil.visibilityExchanger(
-                                    binding.carsRecyclerView,
-                                    binding.progressBar
-                                )
-                            }
-                            is Resource.Success -> {
-                                startActivity(
-                                    Intent(activity, CustomerActivity::class.java)
-                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                ).also { activity?.finish() }
-                            }
-                        }
-                    }
-
-                }
-            }
-
         }
 
     }
@@ -189,47 +150,64 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
     private fun goToHome() {
         SavePrefs(requireContext()).apply {
             saveCarModelId(viewModel.modelId)
-            if(ReadPrefs(requireContext()).readFirebaseId() != "")
+            if (ReadPrefs(requireContext()).readFirebaseId() != "")
                 saveCustomerLoginType(CustomerLoginType.LoggedIn)
             else
                 saveCustomerLoginType(CustomerLoginType.SkippedLogin)
         }
-            startActivity(
-                Intent(activity, CustomerActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            ).also { activity?.finish() }
-    }
-
-    private fun checkDataValidity(): Boolean {
-        var validity = true
-        if (bottomSheetLayoutBinding.etVehicleNo.text.isNullOrEmpty()) {
-            bottomSheetLayoutBinding.tilVehicleNo.error = "Vehicle Number Cannot be Empty"
-            validity = false
-        }
-        if (bottomSheetLayoutBinding.etInsuranceCompany.text.isNullOrEmpty()) {
-            bottomSheetLayoutBinding.tilInsuranceCompany.error = "Insurance Company Cannot be Empty"
-            validity = false
-        }
-        return validity
+        startActivity(
+            Intent(activity, CustomerActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        ).also { activity?.finish() }
     }
 
     private fun setUpRecyclerAdapter() {
-        recyclerAdapter = CarSelectAdapter(this)
-        binding.carsRecyclerView.adapter = recyclerAdapter
+
+
     }
 
     private fun setUpCarBrand() {
+
         viewModel.getAllCarEntities()
         viewModel.carEntities.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                }
                 is Resource.Error -> {
                     ViewVisibilityUtil.gone(binding.shimmerFrameLayout)
                     Toast.makeText(context, "Oops! ${it.message}", Toast.LENGTH_LONG).show()
                 }
                 is Resource.Success -> {
-                    it.data?.carBrandResponse?.let { list -> recyclerAdapter.setCarBrandList(list) }
+                    it.data?.carBrandResponse?.let { list ->
+                        brandAdapterBrand = CarBrandSelectAdapter(list as ArrayList<CarBrandResponse>,this@NewCarDetailsFragment)
+                        binding.carsRecyclerView.adapter = brandAdapterBrand
+
+                        binding.etSearch.apply {
+
+                            setOnClickListener {
+                                if(isBottomSheetVisible){
+                                    hideBottomSheet()
+                                }
+                            }
+
+                            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                                override fun onQueryTextSubmit(query: String?): Boolean {
+                                    brandAdapterBrand.getFilter().filter(query)
+                                    return true
+                                }
+
+                                override fun onQueryTextChange(newText: String?): Boolean {
+                                    brandAdapterBrand.getFilter().filter(newText)
+                                    return true
+                                }
+
+                            })
+
+
+                        }
+
+                    }
                     ViewVisibilityUtil.visibilityExchanger(
                         binding.carsRecyclerView,
                         binding.shimmerFrameLayout
@@ -237,9 +215,14 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
                 }
             }
         }
+
     }
 
     private fun showBottomSheet() {
+        ViewVisibilityUtil.visibilityExchanger(
+            bottomSheetLayoutBinding.carModelsRecyclerView,
+            bottomSheetLayoutBinding.llFuelType
+        )
         mCarsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         binding.vCustomerTransparentBg.visibility = View.VISIBLE
         isBottomSheetVisible = true
@@ -249,17 +232,25 @@ class NewCarDetailsFragment : Fragment(), CarSelectAdapter.CarSelectListener {
         mCarsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         binding.vCustomerTransparentBg.visibility = View.GONE
         isBottomSheetVisible = false
+        isCarModelSelected = false
     }
 
-    override fun onCarItemSelected(carBrand: CarBrandResponse, carModel: CarModelResponse?) {
-        if(carModel == null) {
-            viewModel.brandId = carBrand.brandId.toString()
-            carBrand.carModelResponses?.let { recyclerAdapter.setCarModelList(it) }
+    override fun onCarItemSelected(id: String) {
+        if (!isCarModelSelected) {
+            viewModel.modelId = id
+            isCarModelSelected = true
+            ViewVisibilityUtil.visibilityExchanger(
+                bottomSheetLayoutBinding.llFuelType,
+                bottomSheetLayoutBinding.carModelsRecyclerView
+            )
         }
-        else{
-            viewModel.modelId = carModel.modelId.toString()
-            showBottomSheet()
-        }
+    }
+
+    override fun onCarBrandSelected(listOfModels: List<CarModelResponse>) {
+        hideVirtualKeyBoard(requireActivity(),requireContext())
+        modelAdapterBrand = CarModelSelectAdapter(listOfModels,this)
+        bottomSheetLayoutBinding.carModelsRecyclerView.adapter = modelAdapterBrand
+        showBottomSheet()
     }
 
 }

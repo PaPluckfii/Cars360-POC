@@ -6,24 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.sumeet.cars360.data.remote.model.car_entities.CarBrandResponse
-import com.sumeet.cars360.data.remote.model.car_entities.CarModelResponse
 import com.sumeet.cars360.databinding.FragmentCarCompanyMasterBinding
 import com.sumeet.cars360.ui.admin.AdminViewModel
-import com.sumeet.cars360.ui.onboarding.fragments.new_customer.CarSelectAdapter
+import com.sumeet.cars360.ui.onboarding.fragments.new_customer.CarBrandSelectAdapter
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
-import com.sumeet.cars360.util.ViewVisibilityUtil
 import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CarCompanyMasterFragment : Fragment(),CarSelectAdapter.CarSelectListener {
+class CarCompanyMasterFragment : Fragment() {
 
     private lateinit var binding: FragmentCarCompanyMasterBinding
     private val viewModel: AdminViewModel by activityViewModels()
 
-    private lateinit var recyclerAdapter: CarSelectAdapter
+    private lateinit var recyclerAdapterBrand: CarBrandSelectAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,30 +66,30 @@ class CarCompanyMasterFragment : Fragment(),CarSelectAdapter.CarSelectListener {
                 is Resource.Loading -> {}
                 is Resource.Error -> {}
                 is Resource.Success -> {
-                    it.data?.carBrandResponse?.let { it1 -> recyclerAdapter.setCarBrandList(it1) }
-                    ViewVisibilityUtil.visibilityExchanger(
-                        binding.carCompanyRecyclerView,
-                        binding.shimmerFrameLayout
-                    )
+//                    it.data?.carBrandResponse?.let { it1 -> recyclerAdapter.setCarBrandList(it1) }
+//                    ViewVisibilityUtil.visibilityExchanger(
+//                        binding.carCompanyRecyclerView,
+//                        binding.shimmerFrameLayout
+//                    )
                 }
             }
         }
     }
 
     private fun setUpRecyclerAdapter() {
-        recyclerAdapter = CarSelectAdapter(this)
-        binding.carCompanyRecyclerView.adapter = recyclerAdapter
+//        recyclerAdapter = CarSelectAdapter(this)
+//        binding.carCompanyRecyclerView.adapter = recyclerAdapter
     }
 
-    override fun onCarItemSelected(carBrand: CarBrandResponse, carModel: CarModelResponse?) {
-        if(carModel == null) {
-            viewModel.currentBrandId = carBrand.brandId.toString()
-            carBrand.carModelResponses?.let { recyclerAdapter.setCarModelList(it) }
-            binding.btnAddCar.text = "Add New Model"
-        }
-        else{
-            //viewModel.modelId = carModel.modelId.toString()
-        }
-    }
+//    override fun onCarItemSelected(id: String) {
+////        if(carModel == null) {
+////            viewModel.currentBrandId = carBrand.brandId.toString()
+////            carBrand.carModelResponses?.let { recyclerAdapter.setCarModelList(it) }
+////            binding.btnAddCar.text = "Add New Model"
+////        }
+////        else{
+////            //viewModel.modelId = carModel.modelId.toString()
+////        }
+//    }
 
 }
