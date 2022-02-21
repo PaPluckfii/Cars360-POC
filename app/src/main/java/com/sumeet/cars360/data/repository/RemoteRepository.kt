@@ -63,9 +63,9 @@ class RemoteRepository @Inject constructor(
     }
 
     suspend fun getUserByUserId(userId: String) =
-        apiClient.getUserByUserId(LoginByFirebaseRequest("0",userId))
+        apiClient.getUserByUserId(LoginByFirebaseRequest(userId,""))
 
-    suspend fun getCustomerByUserId(userId:String) =
+    suspend fun getCustomerByFirebaseId(userId:String) =
         apiClient.getUserByUserId(LoginByFirebaseRequest("0",userId))
 
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
@@ -168,7 +168,9 @@ class RemoteRepository @Inject constructor(
         leftPic: File?,
         rightPic: File?,
         frontPic: File?,
-        backPic: File?
+        backPic: File?,
+        fuelIndicator: File?,
+        carHealthReportFile: File?,
     ): Response<ServiceLogInsertOperation> {
 
         Log.d("SERVICE_LOG_CHECK","$carId-----$accessories----$serviceTypes----$estimates----$additionalDetails")
@@ -187,7 +189,6 @@ class RemoteRepository @Inject constructor(
             .addFormDataPart("PaymentMode", paymentMode)
             .addFormDataPart("CreatedBy", createdBy)
             .addFormDataPart("InvoiceFile","")
-            .addFormDataPart("CarHealthReport","")
 
         if (leftPic != null)
             requestBody.addFormDataPart(
@@ -215,6 +216,20 @@ class RemoteRepository @Inject constructor(
                 name = "BackPic",
                 filename = backPic.name,
                 body = backPic.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+            )
+
+        if (fuelIndicator != null)
+            requestBody.addFormDataPart(
+                name = "FuelIndicator",
+                filename = fuelIndicator.name,
+                body = fuelIndicator.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+            )
+
+        if(carHealthReportFile != null)
+            requestBody.addFormDataPart(
+                name = "CarHealthReport",
+                filename = carHealthReportFile.name,
+                body = carHealthReportFile.asRequestBody("application/octet-stream".toMediaTypeOrNull())
             )
 
         return apiClient.addNewServiceLog(requestBody.build())

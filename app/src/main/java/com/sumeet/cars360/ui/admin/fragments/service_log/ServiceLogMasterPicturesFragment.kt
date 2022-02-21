@@ -82,7 +82,7 @@ class ServiceLogMasterPicturesFragment : Fragment() {
         binding.apply {
             btnFront.setOnClickListener {
                 if(ButtonClickHandler.buttonClicked())
-                    startActivity(Intent(activity,CameraActivity::class.java).apply { putExtra("INDEX", 1) })
+                    startActivity(Intent(activity,ServiceLogMasterCameraActivity::class.java))
             }
             btnLeft.setOnClickListener {
                 if(ButtonClickHandler.buttonClicked()) {

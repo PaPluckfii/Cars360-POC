@@ -53,7 +53,7 @@ class AuthViewModel @Inject constructor(
         viewModelScope.launch {
             _userDataFromServer.postValue(Resource.Loading())
             if (hasInternetConnection()){
-                val response = remoteRepository.getCustomerByUserId(firebaseId)
+                val response = remoteRepository.getCustomerByFirebaseId(firebaseId)
                 if (response.isSuccessful && response.body() != null) {
                     if(response.body()?.error == false)
                         _userDataFromServer.postValue(Resource.Success(response.body()))

@@ -114,11 +114,20 @@
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/drawable/rectangle_serach_edit_text_gray.xml" value="0.236" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/drawable/rectangle_serach_edit_text_selector.xml" value="0.239" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/drawable/red_border_box.xml" value="0.236" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/drawable/shutter.xml" value="0.239" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/activity_service_log_master_camera.xml" value="0.2" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/activity_service_log_master_image_preview.xml" value="0.2" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/car_details_bottom_sheet.xml" value="0.19293478260869565" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_customer_home.xml" value="0.1956521739130435" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_new_car_details.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_new_customer_additional_details.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_new_customer_details.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_service_log_master_camera.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_service_log_master_customer_details.xml" value="0.1956521739130435" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_service_log_master_pictures.xml" value="0.2509057971014493" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/fragment_staff_login.xml" value="0.1956521739130435" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/item_new_car_layout.xml" value="0.19293478260869565" />
+        <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/pictures_left_side_sheet.xml" value="0.264" />
         <entry key="..\:/Users/sumee/Desktop/Android_Repos/Personal/Cars360-Raipur/app/src/main/res/layout/shimmer_item_car_entities_layout.xml" value="0.16799999999999998" />
       </map>
     </option>

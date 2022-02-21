@@ -36,9 +36,6 @@
         <action
             android:id="@+id/action_serviceLogMasterPicturesFragment_to_serviceLogMasterAccessoriesFragment"
             app:destination="@id/serviceLogMasterAccessoriesFragment" />
-        <action
-            android:id="@+id/action_serviceLogMasterPicturesFragment_to_cameraFragment"
-            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/serviceLogMasterRequestedRepairsFragment"
@@ -57,17 +54,5 @@
         <action
             android:id="@+id/action_serviceLogMasterTypesOfServicesFragment_to_serviceLogMasterRequestedRepairsFragment"
             app:destination="@id/serviceLogMasterRequestedRepairsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cameraFragment"
-        android:name="com.sumeet.cars360.ui.abstract_fragments.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" >
-        <argument
-            android:name="imageIndex"
-            app:argType="integer"/>
-        <action
-            android:id="@+id/action_cameraFragment_to_serviceLogMasterPicturesFragment"
-            app:destination="@id/serviceLogMasterPicturesFragment" />
     </fragment>
 </navigation>

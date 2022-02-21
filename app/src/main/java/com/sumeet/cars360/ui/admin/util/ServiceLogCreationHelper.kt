@@ -6,11 +6,13 @@ data class PicturesDTO(
     var leftPic: File? = null,
     var rightPic: File? = null,
     var backPic: File? = null,
-    var frontPic: File? = null
+    var frontPic: File? = null,
+    var odometer: File? = null
 )
 
 object CurrentPics{
     val picturesDTO = PicturesDTO()
+    var currentImageIndex = 0
 }
 
 data class ServiceLogDTO(

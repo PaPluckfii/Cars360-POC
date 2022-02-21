@@ -104,6 +104,29 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fuelIndicator"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/backView">
+
+            <TextView
+                android:id="@+id/tvFuelIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/border"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="Odometer"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnFront"
             style="@style/MyFilledButton"
@@ -152,6 +175,18 @@
             app:layout_constraintEnd_toEndOf="@+id/backView"
             app:layout_constraintStart_toEndOf="@+id/backView"
             app:layout_constraintTop_toTopOf="@+id/backView" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFuelIndicator"
+            style="@style/MyFilledButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_20sdp"
+            android:text="Capture"
+            app:layout_constraintBottom_toBottomOf="@+id/fuelIndicator"
+            app:layout_constraintEnd_toEndOf="@+id/backView"
+            app:layout_constraintStart_toEndOf="@+id/backView"
+            app:layout_constraintTop_toTopOf="@+id/fuelIndicator" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline12"

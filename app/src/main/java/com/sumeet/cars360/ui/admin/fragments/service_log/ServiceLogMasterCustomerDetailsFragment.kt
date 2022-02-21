@@ -13,10 +13,7 @@ import androidx.fragment.app.activityViewModels
 import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterCustomerDetailsBinding
 import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
-import com.sumeet.cars360.util.ButtonClickHandler
-import com.sumeet.cars360.util.Resource
-import com.sumeet.cars360.util.ViewVisibilityUtil
-import com.sumeet.cars360.util.navigate
+import com.sumeet.cars360.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,8 +42,10 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
             etSearch.addTextChangedListener(object : TextWatcher {
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     tilSearch.error = null
-                    if (p0?.length == 10)
+                    if (p0?.length == 10) {
+                        hideVirtualKeyBoard(requireActivity(), requireContext())
                         binding.btnSearch.requestFocus()
+                    }
                 }
 
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -55,6 +54,7 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
 
             btnSearch.setOnClickListener {
                 if (ButtonClickHandler.buttonClicked() && checkDataValidity()) {
+
                     viewModel.searchUserByMobileNumber("+91${binding.etSearch.text}")
 
                     viewModel.customerData.observe(viewLifecycleOwner) {
@@ -66,10 +66,7 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
                                 )
                             }
                             is Resource.Error -> {
-                                ViewVisibilityUtil.visibilityExchanger(
-                                    binding.llCustomerData,
-                                    binding.progressBar
-                                )
+                                ViewVisibilityUtil.gone(binding.progressBar)
                                 Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                             }
                             is Resource.Success -> {
@@ -105,17 +102,22 @@ class ServiceLogMasterCustomerDetailsFragment : Fragment() {
                 }
             }
             btnNext.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked() && isCustomerSelected){
-                    val selectedCar = binding.carsSpinner.selectedItemPosition
-                    ServiceLogCreationHelper.serviceLogDTO.carId = viewModel.customerCarData?.carDetailsResponse?.get(selectedCar)?.carId.toString()
-                    navigate(ServiceLogMasterCustomerDetailsFragmentDirections.actionServiceLogMasterCustomerDetailsFragmentToServiceLogMasterPicturesFragment())
+                if (ButtonClickHandler.buttonClicked()) {
+                    if (isCustomerSelected) {
+                        val selectedCar = binding.carsSpinner.selectedItemPosition
+                        ServiceLogCreationHelper.serviceLogDTO.carId =
+                            viewModel.customerCarData?.carDetailsResponse?.get(selectedCar)?.carId.toString()
+                        navigate(ServiceLogMasterCustomerDetailsFragmentDirections.actionServiceLogMasterCustomerDetailsFragmentToServiceLogMasterPicturesFragment())
+                    }
+                    else
+                        Toast.makeText(context,"Please select a customer to continue",Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
     private fun checkDataValidity(): Boolean {
-        if(binding.etSearch.text?.length == 10)
+        if (binding.etSearch.text?.length == 10)
             return true
         binding.tilSearch.error = "Enter A Valid Mobile Number"
         return false

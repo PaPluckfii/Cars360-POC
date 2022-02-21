@@ -38,7 +38,7 @@ class CameraFragment : Fragment() {
 
     private lateinit var binding: FragmentCameraBinding
     private val viewModel: ServiceLogMasterViewModel by activityViewModels()
-    private val args: CameraFragmentArgs by navArgs()
+//    private val args: CameraFragmentArgs by navArgs()
 
     private lateinit var camera: Camera
     private lateinit var preview: Preview
@@ -144,31 +144,31 @@ class CameraFragment : Fragment() {
      * Function to take picture
      */
     private fun takePhoto() {
-        val photoFile = File(
-            requireActivity().externalMediaDirs.firstOrNull(),
-            "userId_${ReadPrefs(requireContext()).readUserId()}_${args.imageIndex}_${System.currentTimeMillis()}.jpg"   //TODO rename
-        )
-        val output = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-        imageCapture.takePicture(
-            output,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    when(args.imageIndex){
-//                        1 -> viewModel.frontPic = photoFile
-//                        2 -> viewModel.leftPic = photoFile
-//                        3 -> viewModel.rightPic = photoFile
-//                        4 -> viewModel.backPic = photoFile
-                    }
-                    navigate(CameraFragmentDirections.actionCameraFragmentToServiceLogMasterPicturesFragment())
-                }
-                override fun onError(exception: ImageCaptureException) {
-                    Toast.makeText(context, "Sorry, Please try again", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-            }
-        )
+//        val photoFile = File(
+//            requireActivity().externalMediaDirs.firstOrNull(),
+//            "userId_${ReadPrefs(requireContext()).readUserId()}_${args.imageIndex}_${System.currentTimeMillis()}.jpg"   //TODO rename
+//        )
+//        val output = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+//        imageCapture.takePicture(
+//            output,
+//            ContextCompat.getMainExecutor(requireContext()),
+//            object : ImageCapture.OnImageSavedCallback {
+//                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+//                    when(args.imageIndex){
+////                        1 -> viewModel.frontPic = photoFile
+////                        2 -> viewModel.leftPic = photoFile
+////                        3 -> viewModel.rightPic = photoFile
+////                        4 -> viewModel.backPic = photoFile
+//                    }
+//                    navigate(CameraFragmentDirections.actionCameraFragmentToServiceLogMasterPicturesFragment())
+//                }
+//                override fun onError(exception: ImageCaptureException) {
+//                    Toast.makeText(context, "Sorry, Please try again", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//
+//            }
+//        )
     }
 
 }

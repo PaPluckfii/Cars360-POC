@@ -102,9 +102,9 @@
                 style="@style/MyTransparentButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:text="Complete the profile"
-                android:layout_marginEnd="@dimen/_2sdp"/>
+                android:text="Complete the profile" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignMeIn"

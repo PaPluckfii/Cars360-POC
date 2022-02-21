@@ -39,44 +39,44 @@ class NewServiceLogViewModel @Inject constructor(
     lateinit var backPic: File
     lateinit var frontPic: File
 
-    fun insertServiceLog(){
-        _insertOperation.postValue(Resource.Loading())
-
-        viewModelScope.launch(Dispatchers.IO) {
-            if (hasInternetConnection()){
-                val response = remoteRepository.addNewServiceLog(
-                    carId,
-                    accessories,
-                    serviceTypes,
-                    estimates,
-                    additionalDetails,
-                    userCarRequests,
-                    originalAmount,
-                    estimatedAmount,
-                    paidAmount,
-                    paymentMode,
-                    createdBy,
-                    leftPic,
-                    rightPic,
-                    frontPic,
-                    backPic
-                )
-
-                if (response.isSuccessful && response.body() != null) {
-                    //TODO revert temp changes
-                    if (response.body()?.error == true)
-                        _insertOperation.postValue(Resource.Success(""))
-                    //_userInsertOperation.postValue(Resource.Error(response.body()?.userInsertResponse?.get(0)?.message))
-                    else {
-                        val userId = response.body()?.serviceLogInsertResponse?.get(0)?.carServiceId
-                        _insertOperation.postValue(Resource.Success(userId))
-                    }
-                } else
-                    _insertOperation.postValue(Resource.Error(response.message()))
-            }else{
-                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
-            }
-        }
-    }
+//    fun insertServiceLog(){
+//        _insertOperation.postValue(Resource.Loading())
+//
+//        viewModelScope.launch(Dispatchers.IO) {
+//            if (hasInternetConnection()){
+//                val response = remoteRepository.addNewServiceLog(
+//                    carId,
+//                    accessories,
+//                    serviceTypes,
+//                    estimates,
+//                    additionalDetails,
+//                    userCarRequests,
+//                    originalAmount,
+//                    estimatedAmount,
+//                    paidAmount,
+//                    paymentMode,
+//                    createdBy,
+//                    leftPic,
+//                    rightPic,
+//                    frontPic,
+//                    backPic
+//                )
+//
+//                if (response.isSuccessful && response.body() != null) {
+//                    //TODO revert temp changes
+//                    if (response.body()?.error == true)
+//                        _insertOperation.postValue(Resource.Success(""))
+//                    //_userInsertOperation.postValue(Resource.Error(response.body()?.userInsertResponse?.get(0)?.message))
+//                    else {
+//                        val userId = response.body()?.serviceLogInsertResponse?.get(0)?.carServiceId
+//                        _insertOperation.postValue(Resource.Success(userId))
+//                    }
+//                } else
+//                    _insertOperation.postValue(Resource.Error(response.message()))
+//            }else{
+//                _insertOperation.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+//            }
+//        }
+//    }
 
 }

@@ -50,7 +50,7 @@ class CustomerViewModel @Inject constructor(
         _customerDetails.postValue(Resource.Loading())
         viewModelScope.launch {
             if (hasInternetConnection()){
-                val response = remoteRepository.getCustomerByUserId(userId)
+                val response = remoteRepository.getCustomerByFirebaseId(userId)
                 if (response.isSuccessful && response.body() != null)
                     if (response.body()?.error == false)
                         _customerDetails.postValue(Resource.Success(response.body()))

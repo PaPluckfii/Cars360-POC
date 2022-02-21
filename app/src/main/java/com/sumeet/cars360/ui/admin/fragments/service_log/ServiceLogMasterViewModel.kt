@@ -40,26 +40,30 @@ class ServiceLogMasterViewModel @Inject constructor(
     var rightPic: File? = null
     var backPic: File? = null
     var frontPic: File? = null
+    var fuelIndicator: File? = null
+    var carHealthReportFile: File? = null
 
     fun insertNewServiceLog() {
         _insertOperation.postValue(Resource.Loading())
         viewModelScope.launch {
             val response = remoteRepository.addNewServiceLog(
-                carId,
-                accessories,
-                serviceTypes,
-                estimates,
-                additionalDetails,
-                userCarRequests,
-                originalAmount,
-                estimatedAmount,
-                paidAmount,
-                paymentMode,
-                createdBy,
-                leftPic,
-                rightPic,
-                frontPic,
-                backPic
+                carId = carId,
+                accessories = accessories,
+                serviceTypes = serviceTypes,
+                estimates = estimates,
+                additionalDetails = additionalDetails,
+                userCarRequest = userCarRequests,
+                originalAmount = originalAmount,
+                estimatedAmount = estimatedAmount,
+                paidAmount = paidAmount,
+                paymentMode = paymentMode,
+                createdBy = createdBy,
+                leftPic = leftPic,
+                rightPic = rightPic,
+                frontPic = frontPic,
+                backPic = backPic,
+                fuelIndicator = fuelIndicator,
+                carHealthReportFile = carHealthReportFile
             )
             if(response.isSuccessful && response.body() != null){
                 if(response.body()?.error == true)
@@ -82,10 +86,10 @@ class ServiceLogMasterViewModel @Inject constructor(
         _customerData.postValue(Resource.Loading())
         viewModelScope.launch {
             val response = remoteRepository.getCarDetailsByMobileNumber(mobileNo)
-            if(response.isSuccessful && response.body() != null && response.body()?.error==false){
+            if(response.isSuccessful && response.body() != null && response.body()?.error == false){
                 val userId = response.body()?.carDetailsResponse?.get(0)?.userId
                 if(userId != null){
-                    val userDataResponse = remoteRepository.getUserByUserId("11")
+                    val userDataResponse = remoteRepository.getUserByUserId(userId)
                     if(userDataResponse.isSuccessful && userDataResponse.body() != null){
                         if(userDataResponse.body()?.error == true) {
                             Log.d("USER_DATA",response.message())
@@ -100,6 +104,8 @@ class ServiceLogMasterViewModel @Inject constructor(
                 else
                     _customerData.postValue(Resource.Error(response.message()))
             }
+            else
+                _customerData.postValue(Resource.Error(response.body()?.message))
         }
     }
 }

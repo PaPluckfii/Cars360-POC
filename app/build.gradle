@@ -119,4 +119,11 @@ dependencies {
 
     //Searchable Spinner
     implementation 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
+
+    //CameraView Library
+    implementation 'com.otaliastudios:cameraview:2.7.2'
+
+    //Lottie Animation
+    implementation "com.airbnb.android:lottie:4.2.2"
+
 }
