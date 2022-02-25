@@ -16,39 +16,36 @@
         android:layout_margin="@dimen/_5sdp"
         android:padding="@dimen/_5sdp">
 
+<!--        <CheckBox-->
+<!--            android:id="@+id/deleteCheckBox"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="visible"-->
+<!--            android:elevation="@dimen/_5sdp"/>-->
+
         <LinearLayout
             android:id="@+id/llActualContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/ivIcon"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_80sdp"
-                app:civ_border_width="@dimen/_1sdp"
-                app:civ_border_color="@color/primaryRed"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/tvText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
                 android:textAppearance="@android:style/TextAppearance.Small"
                 android:textColor="@color/black" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/btnDelete"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_toEndOf="@id/llActualContent"
-            android:src="@drawable/ic_baseline_delete_24" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

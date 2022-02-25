@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.repository.RemoteRepository
-import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
-import com.sumeet.cars360.util.Constants.hasInternetConnection
 import com.sumeet.cars360.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

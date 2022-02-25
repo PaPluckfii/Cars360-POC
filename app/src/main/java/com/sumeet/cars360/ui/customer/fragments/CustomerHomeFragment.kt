@@ -16,9 +16,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
-import com.sumeet.cars360.databinding.CustomerServicesBottomSheetLayoutBinding
+import com.sumeet.cars360.databinding.BottomSheetCustomerServicesBinding
 import com.sumeet.cars360.databinding.FragmentCustomerHomeBinding
 import com.sumeet.cars360.ui.customer.CustomerViewModel
 import com.sumeet.cars360.ui.customer.util.*
@@ -57,7 +57,7 @@ class CustomerHomeFragment : Fragment(), CustomerMenuListener {
     private lateinit var readPrefs: ReadPrefs
 
     private lateinit var mCustomerBottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
-    private lateinit var bottomSheetLayoutBinding: CustomerServicesBottomSheetLayoutBinding
+    private lateinit var bottomSheetLayoutBinding: BottomSheetCustomerServicesBinding
 //    private lateinit var customerRequestServiceSheetBinding: CustomerRequestServiceBottomSheetLayoutBinding
 
     private var isBottomSheetVisible: Boolean = false
@@ -109,7 +109,7 @@ class CustomerHomeFragment : Fragment(), CustomerMenuListener {
                         Intent(
                             Intent.ACTION_VIEW,
                             Uri.parse(
-                                "https://cars-360.in/index.php"
+                                "https://www.facebook.com/carsraipur360/?ref=bookmarks"
                             )
                         )
                     )
@@ -583,7 +583,7 @@ class CustomerHomeFragment : Fragment(), CustomerMenuListener {
                     resetData()
                     populateData(
                         requireContext(),
-                        BottomSheetMenuDataHandler.MenuType.MECHANICAL_SERVICES
+                        BottomSheetMenuDataHandler.MenuType.PERIODIC_SERVICES
                     )
                 }
                 showBottomSheet()

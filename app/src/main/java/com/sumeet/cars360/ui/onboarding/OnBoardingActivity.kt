@@ -36,8 +36,7 @@ class OnBoardingActivity : AppCompatActivity() {
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when(destination.id){
                     R.id.introFragment,
-                    R.id.customerLoginFragment,
-                    R.id.OTPFragment -> {
+                    R.id.customerLoginFragment -> {
                         hideSystemUI()
                     }
                     else -> {

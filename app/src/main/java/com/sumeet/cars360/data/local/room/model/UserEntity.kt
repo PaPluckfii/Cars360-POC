@@ -3,7 +3,7 @@ package com.sumeet.cars360.data.local.room.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user")
+@Entity(tableName = "users")
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,

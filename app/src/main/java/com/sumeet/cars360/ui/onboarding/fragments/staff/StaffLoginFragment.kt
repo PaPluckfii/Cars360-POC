@@ -3,20 +3,18 @@ package com.sumeet.cars360.ui.onboarding.fragments.staff
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.sumeet.cars360.data.local.preferences.SavePrefs
-import com.sumeet.cars360.data.local.preferences.UserType
+import com.sumeet.cars360.data.wrapper.UserType
 import com.sumeet.cars360.databinding.FragmentStaffLoginBinding
 import com.sumeet.cars360.ui.admin.AdminActivity
-import com.sumeet.cars360.ui.customer.CustomerActivity
-import com.sumeet.cars360.ui.onboarding.AuthViewModel
-import com.sumeet.cars360.ui.staff.StaffActivity
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StaffLoginFragment : Fragment() {
 
     private lateinit var binding: FragmentStaffLoginBinding
-    private val viewModel: AuthViewModel by activityViewModels()
+    private val viewModel: StaffLoginViewModel by viewModels()
 
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var savePrefs: SavePrefs
@@ -46,6 +44,12 @@ class StaffLoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleListeners()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().popBackStack()
+        return true
     }
 
     private fun handleListeners() {
@@ -98,21 +102,17 @@ class StaffLoginFragment : Fragment() {
                     mAuth.currentUser?.uid.let { id ->
                         savePrefs.saveUserId(id.toString())
                     }
-                    if (it.data?.userResponse?.get(0)?.userTypeId == "1") {
+
+                    if (it.data?.userResponse?.get(0)?.userTypeId == "1")
                         savePrefs.saveUserType(UserType.Admin)
-                        startActivity(
-                            Intent(activity, AdminActivity::class.java)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        ).also { activity?.finish() }
-                    } else {
+                    else
                         savePrefs.saveUserType(UserType.Employee)
-                        startActivity(
-                            Intent(activity, StaffActivity::class.java)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        ).also { activity?.finish() }
-                    }
+
+                    startActivity(
+                        Intent(activity, AdminActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    ).also { activity?.finish() }
                 }
                 is Resource.Error -> {
                     ViewVisibilityUtil.visibilityExchanger(

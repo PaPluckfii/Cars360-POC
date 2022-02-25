@@ -251,7 +251,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnFront"
+                    android:id="@+id/btnOpenCamera"
                     style="@style/MyFilledButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

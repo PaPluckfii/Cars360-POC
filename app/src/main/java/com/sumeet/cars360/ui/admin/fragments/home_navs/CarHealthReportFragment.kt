@@ -20,9 +20,7 @@ import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.remote.model.service_logs.ServiceLogResponse

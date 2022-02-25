@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.local.CityStateEntity
 import com.sumeet.cars360.databinding.FragmentNewCustomerAdditionalDetailsBinding
-import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerViewModel
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.CityStateManagementTool
 import com.sumeet.cars360.util.ViewVisibilityUtil

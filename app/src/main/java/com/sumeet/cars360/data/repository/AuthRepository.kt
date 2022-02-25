@@ -1,7 +1,6 @@
 package com.sumeet.cars360.data.repository
 
 import android.app.Activity
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

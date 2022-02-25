@@ -3,6 +3,8 @@ package com.sumeet.cars360.data.local.preferences
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.UserType
 
 class ReadPrefs(mContext : Context) {
 
@@ -18,7 +20,7 @@ class ReadPrefs(mContext : Context) {
         return preferences?.getBoolean("LOGIN_DATA", false) ?: false
     }
 
-    fun readCustomerLoginType(): CustomerLoginType{
+    fun readCustomerLoginType(): CustomerLoginType {
         return when(preferences?.getInt("CUSTOMER_LOGIN_TYPE",1)){
             1 -> CustomerLoginType.LoggedIn
             2 -> CustomerLoginType.SkippedLogin

@@ -1,6 +1,5 @@
 package com.sumeet.cars360.ui.onboarding.fragments.customer
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,11 +16,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.SavePrefs
-import com.sumeet.cars360.data.local.preferences.UserType
+import com.sumeet.cars360.data.wrapper.UserType
 import com.sumeet.cars360.databinding.FragmentCustomerLoginBinding
-import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.onboarding.AuthViewModel
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil

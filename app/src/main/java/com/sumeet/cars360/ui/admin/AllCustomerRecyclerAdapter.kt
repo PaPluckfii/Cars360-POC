@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.remote.model.user.UserResponse
-import com.sumeet.cars360.databinding.AllCustomerItemLayoutBinding
+import com.sumeet.cars360.databinding.ItemAllCustomerLayoutBinding
 
 class AllCustomerRecyclerAdapter(
     private val listOfCars: List<UserResponse>,
     private val allCustomerItemClickListener: OnAllCustomerItemClickListener
 ) : RecyclerView.Adapter<AllCustomerRecyclerAdapter.ItemAllCustomerViewHolder>() {
 
-    inner class ItemAllCustomerViewHolder(val binding: AllCustomerItemLayoutBinding) :
+    inner class ItemAllCustomerViewHolder(val binding: ItemAllCustomerLayoutBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAllCustomerViewHolder {
         return ItemAllCustomerViewHolder(
-            AllCustomerItemLayoutBinding.inflate(
+            ItemAllCustomerLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

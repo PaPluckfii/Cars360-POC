@@ -161,11 +161,7 @@ class AdminViewModel @Inject constructor(
                     //TODO revert temp changes
                     if (response.body()?.error == true)
                         _insertOperation.postValue(
-                            Resource.Error(
-                                response.body()?.userInsertResponse?.get(
-                                    0
-                                )?.message
-                            )
+                            Resource.Error(response.body()?.message)
                         )
                     else {
                         val userId = response.body()?.userInsertResponse?.get(0)?.userId

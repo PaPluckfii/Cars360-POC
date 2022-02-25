@@ -22,13 +22,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
-import com.sumeet.cars360.data.local.preferences.UserType
+import com.sumeet.cars360.data.wrapper.UserType
 import com.sumeet.cars360.databinding.FragmentNewCustomerDetailsBinding
-import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerDetailsFragmentDirections
-import com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerViewModel
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil

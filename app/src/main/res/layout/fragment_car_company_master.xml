@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,8 +10,10 @@
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -204,21 +206,71 @@
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <View
+        android:id="@+id/vCustomerTransparentBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparentBlack"
+        android:clickable="true"
+        android:elevation="@dimen/_10sdp"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        app:iconifiedByDefault="false"
+        android:background="@drawable/rectangle_serach_edit_text_selector"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carCompanyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        android:visibility="gone"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch"
+        app:spanCount="3" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAddCar"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/clCarDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Car Brand"
-        style="@style/MyFilledButton"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_alignParentBottom="true"/>
+        android:elevation="@dimen/_15sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-</RelativeLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/carDetailsSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:behavior_hideable="true"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:layout_insetEdge="top">
+
+            <include
+                android:id="@+id/carDetailsBottomSheet"
+                layout="@layout/bottom_sheet_car_details" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddCarModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:backgroundTint="@color/secondaryRed"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="Add Car Brand" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

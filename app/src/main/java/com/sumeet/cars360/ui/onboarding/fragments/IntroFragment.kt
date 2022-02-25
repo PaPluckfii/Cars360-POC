@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.databinding.FragmentIntroBinding
 import com.sumeet.cars360.ui.customer.CustomerActivity

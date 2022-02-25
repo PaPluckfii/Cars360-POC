@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".ui.onboarding.fragments.new_customer.NewCustomerDetailsFragment">
+    tools:context=".ui.onboarding.fragments.customer.new_customer.NewCustomerDetailsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"

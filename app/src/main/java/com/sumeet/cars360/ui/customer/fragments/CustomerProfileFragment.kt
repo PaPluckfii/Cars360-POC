@@ -15,14 +15,12 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.auth.FirebaseAuth
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.local.preferences.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
 import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponse
-import com.sumeet.cars360.data.remote.old_model.Cars360Document
-import com.sumeet.cars360.databinding.CustomerProfileBottomSheetBinding
+import com.sumeet.cars360.databinding.BottomSheetCustomerDocumentBinding
 import com.sumeet.cars360.databinding.FragmentCustomerProfileBinding
-import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.customer.CustomerViewModel
 import com.sumeet.cars360.ui.customer.util.*
 import com.sumeet.cars360.ui.onboarding.OnBoardingActivity
@@ -33,13 +31,14 @@ import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomSheetItemClickListener {
+class
+CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomSheetItemClickListener {
 
     private lateinit var binding: FragmentCustomerProfileBinding
     private val viewModel: CustomerViewModel by activityViewModels()
 
     private lateinit var mCustomerBottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
-    private lateinit var bottomSheetLayoutBinding: CustomerProfileBottomSheetBinding
+    private lateinit var bottomSheetLayoutBinding: BottomSheetCustomerDocumentBinding
     private var isBottomSheetVisible: Boolean = false
     private lateinit var bottomSheetRecyclerAdapter: ProfileBottomSheetRecyclerAdapter
     private lateinit var readPrefs:ReadPrefs

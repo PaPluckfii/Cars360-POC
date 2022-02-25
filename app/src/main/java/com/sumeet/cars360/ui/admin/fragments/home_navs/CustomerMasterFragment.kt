@@ -10,12 +10,14 @@ import android.os.FileUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
@@ -41,8 +43,9 @@ class CustomerMasterFragment : Fragment() {
     private var isReadPermissionGranted = false
     private var isWritePermissionGranted = false
     private var permissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
-            isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE]
+                ?: isReadPermissionGranted
         }
 
     private val profilePicResultLauncher =
@@ -51,13 +54,14 @@ class CustomerMasterFragment : Fragment() {
                 val data: Intent? = result.data
                 val _uri: Uri? = data?.data
                 try {
-                    var filePath: String = "${ReadPrefs(requireContext()).readUserMobileNumber()}_profile_pic.jpg"
+                    var filePath: String =
+                        "${ReadPrefs(requireContext()).readUserMobileNumber()}_profile_pic.jpg"
                     Log.d("FILEPATH", "URI = $_uri")
                     if (_uri != null && "content" == _uri.scheme) {
                         val inputStream = requireActivity().contentResolver.openInputStream(_uri)
                             ?: throw IOException("Unable to obtain input stream from URI")
 
-                        userCaptureImage = File.createTempFile("Cars360",filePath)
+                        userCaptureImage = File.createTempFile("Cars360", filePath)
                         val outputStream = FileOutputStream(userCaptureImage)
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -67,7 +71,8 @@ class CustomerMasterFragment : Fragment() {
                         Glide.with(binding.root).load(_uri).into(binding.ivProfilePic)
                     }
 
-                }catch (e: Exception){}
+                } catch (e: Exception) {
+                }
             }
         }
     private var userCaptureImage: File? = null
@@ -76,7 +81,7 @@ class CustomerMasterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCustomerMasterBinding.inflate(inflater,container,false)
+        binding = FragmentCustomerMasterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -84,6 +89,12 @@ class CustomerMasterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.resetUserDataInViewModel()
         handleListeners()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().popBackStack()
+        return true
     }
 
     private fun handleListeners() {
@@ -91,16 +102,23 @@ class CustomerMasterFragment : Fragment() {
             dobDatePicker.maxDate = System.currentTimeMillis() - 1000
 
             btnSelectDOB.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked()) {
-                    binding.btnSelectDOB.background = ContextCompat.getDrawable(requireContext(),R.drawable.button_transparent_gradient)
+                if (ButtonClickHandler.buttonClicked()) {
+                    binding.btnSelectDOB.background = ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.button_transparent_gradient
+                    )
                     isDatePickerVisible = true
                     ViewVisibilityUtil.visible(llDatePickerView)
 
-                    if(viewModel.dob == "")
-                        dobDatePicker.updateDate(1990,1,1)
+                    if (viewModel.dob == "")
+                        dobDatePicker.updateDate(1990, 1, 1)
                     else {
                         val dates = viewModel.dob.split("-")
-                        dobDatePicker.updateDate(dates[0].toInt(), dates[1].toInt(),dates[2].toInt())
+                        dobDatePicker.updateDate(
+                            dates[0].toInt(),
+                            dates[1].toInt(),
+                            dates[2].toInt()
+                        )
                     }
 
                     btnSetDate.setOnClickListener {
@@ -121,15 +139,19 @@ class CustomerMasterFragment : Fragment() {
             }
 
             btnSelectDOM.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked()) {
+                if (ButtonClickHandler.buttonClicked()) {
                     isDatePickerVisible = true
                     ViewVisibilityUtil.visible(llDatePickerView)
 
-                    if(viewModel.dom == "")
-                        dobDatePicker.updateDate(2010,1,1)
+                    if (viewModel.dom == "")
+                        dobDatePicker.updateDate(2010, 1, 1)
                     else {
                         val dates = viewModel.dom.split("-")
-                        dobDatePicker.updateDate(dates[0].toInt(), dates[1].toInt(),dates[2].toInt())
+                        dobDatePicker.updateDate(
+                            dates[0].toInt(),
+                            dates[1].toInt(),
+                            dates[2].toInt()
+                        )
                     }
 
                     btnSetDate.setOnClickListener {
@@ -152,25 +174,41 @@ class CustomerMasterFragment : Fragment() {
                 chooseProfilePic()
             }
             btnAddNewCustomer.setOnClickListener {
-                if(ButtonClickHandler.buttonClicked()) {
-                    if(checkDataValidity()){
+                if (ButtonClickHandler.buttonClicked()) {
+                    if (checkDataValidity()) {
                         viewModel.insertNewUserData()
 
-                        viewModel.insertOperation.observe(viewLifecycleOwner,{
-                            when(it){
+                        viewModel.insertOperation.observe(viewLifecycleOwner) {
+                            when (it) {
                                 is Resource.Loading -> {
-                                    ViewVisibilityUtil.visibilityExchanger(binding.progressBar,binding.nestedScrollView)
+                                    ViewVisibilityUtil
+                                        .visibilityExchanger(
+                                            binding.progressBar,
+                                            binding.nestedScrollView
+                                        )
                                 }
                                 is Resource.Error -> {
-                                    ViewVisibilityUtil.gone(binding.progressBar)
-                                    Toast.makeText(context,"Error: ${it.message}",Toast.LENGTH_SHORT).show()
+                                    ViewVisibilityUtil
+                                        .visibilityExchanger(
+                                            binding.nestedScrollView,
+                                            binding.progressBar
+                                        )
+                                    Toast.makeText(
+                                        context,
+                                        "Error: ${it.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                                 is Resource.Success -> {
-                                    Toast.makeText(context,"Added Customer with id: ${it.data}",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        context,
+                                        "Added Customer with id: ${it.data}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     navigate(CustomerMasterFragmentDirections.actionCustomerMasterFragment2ToAdminNavigationHome())
                                 }
                             }
-                        })
+                        }
                     }
                 }
             }
@@ -195,32 +233,33 @@ class CustomerMasterFragment : Fragment() {
             binding.tilAddressPinCode.error = "Email Cannot be Empty"
             validity = false
         }
-        if(viewModel.dob == ""){
-            binding.btnSelectDOB.background = ContextCompat.getDrawable(requireContext(),R.color.secondaryRed)
+        if (viewModel.dob == "") {
+            binding.btnSelectDOB.background =
+                ContextCompat.getDrawable(requireContext(), R.color.secondaryRed)
             validity = false
         }
-        if(viewModel.dom == ""){
-            binding.btnSelectDOM.background = ContextCompat.getDrawable(requireContext(),R.color.secondaryRed)
+        if (viewModel.dom == "") {
+            binding.btnSelectDOM.background =
+                ContextCompat.getDrawable(requireContext(), R.color.secondaryRed)
             validity = false
         }
         return validity
     }
 
     private fun chooseProfilePic() {
-        if(isReadPermissionGranted || sdkCheck()) {
+        if (isReadPermissionGranted || sdkCheck()) {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
             profilePicResultLauncher.launch(intent)
-        }
-        else{
+        } else {
             requestPermission()
         }
     }
 
-    private fun sdkCheck() : Boolean{
+    private fun sdkCheck(): Boolean {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return true
         }
 
@@ -228,7 +267,7 @@ class CustomerMasterFragment : Fragment() {
 
     }
 
-    private fun requestPermission(){
+    private fun requestPermission() {
 
         val isReadPermission = ContextCompat.checkSelfPermission(
             requireContext(),
@@ -246,19 +285,18 @@ class CustomerMasterFragment : Fragment() {
         isWritePermissionGranted = isWritePermission || minSdkLevel
 
         val permissionRequest = mutableListOf<String>()
-        if (!isWritePermissionGranted){
+        if (!isWritePermissionGranted) {
 
             permissionRequest.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         }
-        if (!isReadPermissionGranted){
+        if (!isReadPermissionGranted) {
 
             permissionRequest.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
 
         }
 
-        if (permissionRequest.isNotEmpty())
-        {
+        if (permissionRequest.isNotEmpty()) {
             permissionLauncher.launch(permissionRequest.toTypedArray())
         }
 

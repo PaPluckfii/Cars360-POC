@@ -13,13 +13,13 @@ interface UserDao {
     @Insert
     suspend fun insertMyUser(user: UserEntity)
 
-    @Query("SELECT * FROM user WHERE id = 0")
+    @Query("SELECT * FROM users WHERE id = 0")
     fun getMyUser() : Flow<UserEntity>
 
     @Update
     suspend fun updateMyUser(user: UserEntity)
 
-    @Query("DELETE FROM user")
+    @Query("DELETE FROM users")
     suspend fun resetAllUsers()
 
 }

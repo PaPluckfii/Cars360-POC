@@ -219,7 +219,7 @@
 
             <include
                 android:id="@+id/customerProfileBottomSheetLayout"
-                layout="@layout/customer_profile_bottom_sheet" />
+                layout="@layout/bottom_sheet_customer_document" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

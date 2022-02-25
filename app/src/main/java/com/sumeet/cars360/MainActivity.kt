@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.sumeet.cars360.data.local.preferences.ReadPrefs
-import com.sumeet.cars360.data.local.preferences.UserType
+import com.sumeet.cars360.data.wrapper.UserType
+import com.sumeet.cars360.ui.admin.AdminActivity
 import com.sumeet.cars360.ui.customer.CustomerActivity
 import com.sumeet.cars360.ui.onboarding.OnBoardingActivity
-import com.sumeet.cars360.ui.staff.StaffActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     finish()
                 }
                 else -> startActivity(
-                    Intent(this, StaffActivity::class.java)
+                    Intent(this, AdminActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 ).also {

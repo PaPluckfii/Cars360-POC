@@ -1,7 +1,7 @@
 package com.sumeet.cars360.data.repository
 
 import android.util.Log
-import com.sumeet.cars360.data.ServiceLogStatus
+import com.sumeet.cars360.data.wrapper.ServiceLogStatus
 import com.sumeet.cars360.data.remote.ApiClient
 import com.sumeet.cars360.data.remote.model.car_entities.insert.BrandInsertOperation
 import com.sumeet.cars360.data.remote.model.car_entities.insert.ModelInsertOperation

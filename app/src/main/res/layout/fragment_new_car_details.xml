@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.fragments.new_customer.NewCarDetailsFragment">
+    tools:context=".ui.onboarding.fragments.customer.car_select.NewCarDetailsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -242,11 +242,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/_10sdp"
-        android:paddingTop="?attr/actionBarSize"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSearch"
         app:spanCount="3" />
@@ -268,7 +268,7 @@
 
             <include
                 android:id="@+id/carDetailsBottomSheet"
-                layout="@layout/car_details_bottom_sheet" />
+                layout="@layout/bottom_sheet_car_details" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

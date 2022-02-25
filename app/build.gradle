@@ -41,6 +41,22 @@ android {
     lintOptions{
         disable 'SetTextI18n' // to remove this Suppress add
     }
+    flavorDimensions "build"
+
+    productFlavors {
+        dev {
+            dimension "build"
+            applicationId "com.sumeet.cars360"
+        }
+        stage {
+            dimension "build"
+            applicationId "stage.cars360.itech_x_sumeet"
+        }
+        prod {
+            dimension "build"
+            applicationId "in.cars360.itech_x_sumeet"
+        }
+    }
 }
 
 def versions = [

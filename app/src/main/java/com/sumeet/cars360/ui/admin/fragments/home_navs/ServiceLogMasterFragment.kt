@@ -3,9 +3,9 @@ package com.sumeet.cars360.ui.admin.fragments.home_navs
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -14,7 +14,6 @@ import com.sumeet.cars360.databinding.FragmentServiceLogMasterBinding
 import com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogMasterViewModel
 import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
-import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,16 +34,22 @@ class ServiceLogMasterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpNavigation()
         setUpObserver()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController().popBackStack()
+        return true
     }
 
     private fun setUpObserver() {
-        viewModel.insertOperation.observe(viewLifecycleOwner,{
-            when(it){
+        viewModel.insertOperation.observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Success -> {
                     findNavController().navigate(R.id.action_serviceLogMasterFragment2_to_admin_navigation_home2)
                 }
             }
-        })
+        }
     }
 
     private fun setUpNavigation() {
