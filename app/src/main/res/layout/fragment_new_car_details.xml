@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.fragments.customer.car_select.NewCarDetailsFragment">
+    tools:context=".ui.onboarding.customer.car_select.NewCarDetailsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:elevation="@dimen/_5sdp"
+        app:queryHint="Search your car brand"
         app:iconifiedByDefault="false"
         android:background="@drawable/rectangle_serach_edit_text_selector"
         app:layout_constraintTop_toTopOf="parent" />

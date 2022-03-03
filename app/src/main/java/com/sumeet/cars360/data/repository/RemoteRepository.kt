@@ -1,13 +1,14 @@
 package com.sumeet.cars360.data.repository
 
-import android.util.Log
-import com.sumeet.cars360.data.wrapper.ServiceLogStatus
+import com.sumeet.cars360.data.local.Cars360RoomDatabase
 import com.sumeet.cars360.data.remote.ApiClient
+import com.sumeet.cars360.data.remote.form_data.ServiceLogFormData
 import com.sumeet.cars360.data.remote.model.car_entities.insert.BrandInsertOperation
 import com.sumeet.cars360.data.remote.model.car_entities.insert.ModelInsertOperation
 import com.sumeet.cars360.data.remote.model.service_logs.insert.ServiceLogInsertOperation
 import com.sumeet.cars360.data.remote.model.user.insert.UserInsertOperation
 import com.sumeet.cars360.data.remote.model.user_cars.insert.CarDetailsInsertOperation
+import com.sumeet.cars360.data.wrapper.ServiceLogStatus
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -16,8 +17,12 @@ import java.io.File
 import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(
-    private val apiClient: ApiClient
+    private val apiClient: ApiClient,
+    private val database: Cars360RoomDatabase
 ) {
+
+    private val carBrandDao = database.carBrandDao()
+    private val carModelDao = database.carModelDao()
 
     //USER DATA
 
@@ -63,13 +68,13 @@ class RemoteRepository @Inject constructor(
     }
 
     suspend fun getUserByUserId(userId: String) =
-        apiClient.getUserByUserId(LoginByFirebaseRequest(userId,""))
+        apiClient.getUserByUserId(LoginByFirebaseRequest(userId, ""))
 
-    suspend fun getCustomerByFirebaseId(userId:String) =
-        apiClient.getUserByUserId(LoginByFirebaseRequest("0",userId))
+    suspend fun getCustomerByFirebaseId(userId: String) =
+        apiClient.getUserByUserId(LoginByFirebaseRequest("0", userId))
 
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
-        apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
+        apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1", mobileNo))
 
     suspend fun getUserByUserTypeId(userTypeId: String) =
         apiClient.getUserByUserTypeId(userTypeId)
@@ -154,85 +159,72 @@ class RemoteRepository @Inject constructor(
     //SERVICE_LOGS
 
     suspend fun addNewServiceLog(
-        carId: String,
-        accessories: String,
-        serviceTypes: String,
-        estimates: String,
-        additionalDetails: String,
-        userCarRequest: String,
-        originalAmount: String,
-        estimatedAmount: String,
-        paidAmount: String,
-        paymentMode: String,
-        createdBy: String,
-        leftPic: File?,
-        rightPic: File?,
-        frontPic: File?,
-        backPic: File?,
-        fuelIndicator: File?,
-        carHealthReportFile: File?,
+        serviceLogFormData: ServiceLogFormData
     ): Response<ServiceLogInsertOperation> {
+        try {
 
-        Log.d("SERVICE_LOG_CHECK","$carId-----$accessories----$serviceTypes----$estimates----$additionalDetails")
+            val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("CarId", serviceLogFormData.carId)
+                .addFormDataPart("Accessories", serviceLogFormData.accessories)
+                .addFormDataPart("ServiceTypes", serviceLogFormData.serviceTypes)
+                .addFormDataPart("Estimates", serviceLogFormData.estimates)
+                .addFormDataPart("AdditionalDetail", serviceLogFormData.additionalDetails)
+                .addFormDataPart("UserCarRequests", serviceLogFormData.userCarRequest)
+                .addFormDataPart("OriginalAmount", "0")
+                .addFormDataPart("EstimatedAmount", serviceLogFormData.estimatedAmount)
+                .addFormDataPart("PaidAmount", "0")
+                .addFormDataPart("PaymentMode", serviceLogFormData.paymentMode)
+                .addFormDataPart("CreatedBy", serviceLogFormData.createdBy)
+                .addFormDataPart("InvoiceFile", "")
 
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("CarId", carId)
-            .addFormDataPart("Accessories", accessories)
-            .addFormDataPart("ServiceTypes", serviceTypes)
-            .addFormDataPart("Estimates", estimates)
-            .addFormDataPart("AdditionalDetail", additionalDetails)
-            .addFormDataPart("UserCarRequests", userCarRequest)
-            .addFormDataPart("OriginalAmount", "0")
-            .addFormDataPart("EstimatedAmount", estimatedAmount)
-            .addFormDataPart("PaidAmount", "0")
-            .addFormDataPart("PaymentMode", paymentMode)
-            .addFormDataPart("CreatedBy", createdBy)
-            .addFormDataPart("InvoiceFile","")
+            if (serviceLogFormData.leftPic != null)
+                requestBody.addFormDataPart(
+                    name = "LeftPic",
+                    filename = serviceLogFormData.leftPic!!.name,
+                    body = serviceLogFormData.leftPic!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if (leftPic != null)
-            requestBody.addFormDataPart(
-                name = "LeftPic",
-                filename = leftPic.name,
-                body = leftPic.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            if (serviceLogFormData.rightPic != null)
+                requestBody.addFormDataPart(
+                    name = "RightPic",
+                    filename = serviceLogFormData.rightPic!!.name,
+                    body = serviceLogFormData.rightPic!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if (rightPic != null)
-            requestBody.addFormDataPart(
-                name = "RightPic",
-                filename = rightPic.name,
-                body = rightPic.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            if (serviceLogFormData.frontPic != null)
+                requestBody.addFormDataPart(
+                    name = "FrontPic",
+                    filename = serviceLogFormData.frontPic!!.name,
+                    body = serviceLogFormData.frontPic!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if (frontPic != null)
-            requestBody.addFormDataPart(
-                name = "FrontPic",
-                filename = frontPic.name,
-                body = frontPic.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            if (serviceLogFormData.backPic != null)
+                requestBody.addFormDataPart(
+                    name = "BackPic",
+                    filename = serviceLogFormData.backPic!!.name,
+                    body = serviceLogFormData.backPic!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if (backPic != null)
-            requestBody.addFormDataPart(
-                name = "BackPic",
-                filename = backPic.name,
-                body = backPic.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            if (serviceLogFormData.fuelIndicator != null)
+                requestBody.addFormDataPart(
+                    name = "FuelIndicator",
+                    filename = serviceLogFormData.fuelIndicator!!.name,
+                    body = serviceLogFormData.fuelIndicator!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if (fuelIndicator != null)
-            requestBody.addFormDataPart(
-                name = "FuelIndicator",
-                filename = fuelIndicator.name,
-                body = fuelIndicator.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            if (serviceLogFormData.carHealthReportFile != null)
+                requestBody.addFormDataPart(
+                    name = "CarHealthReport",
+                    filename = serviceLogFormData.carHealthReportFile!!.name,
+                    body = serviceLogFormData.carHealthReportFile!!.asRequestBody("application/octet-stream".toMediaTypeOrNull())
+                )
 
-        if(carHealthReportFile != null)
-            requestBody.addFormDataPart(
-                name = "CarHealthReport",
-                filename = carHealthReportFile.name,
-                body = carHealthReportFile.asRequestBody("application/octet-stream".toMediaTypeOrNull())
-            )
+            return apiClient.addNewServiceLog(requestBody.build())
 
-        return apiClient.addNewServiceLog(requestBody.build())
+        } catch (e: Exception) {
+            throw e
+        }
     }
 
     suspend fun updateExistingServiceLog(
@@ -400,43 +392,18 @@ class RemoteRepository @Inject constructor(
         return apiClient.updateCarModel(requestBody)
     }
 
+    fun getCarModelsByBrandId(brandId: String) = carModelDao.getAllCarModelsForBrand(brandId)
+
     suspend fun getAllCarCollections() =
         apiClient.getAllCarEntities(GeneralRequest("11", "2"))
 
     suspend fun getAllCarBrands() =
-        apiClient.getAllCarBrands(GeneralRequest("11","1"))
+        apiClient.getAllCarBrands(GeneralRequest("11", "1"))
 
     suspend fun getAllCarModels() =
-        apiClient.getAllCarModels(GeneralRequest("11","1"))
+        apiClient.getAllCarModels(GeneralRequest("11", "1"))
 
     suspend fun getCustomerCarDetailsByMobileNumber(mobileNo: String) =
-        apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1",mobileNo))
+        apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1", mobileNo))
 
 }
-
-data class LoginByFirebaseRequest(
-    val UserId: String,
-    val FirebaseId: String
-)
-
-data class CarDetailsByMobileNumberRequest(
-    val UserTypeId: String,     //User Type Id for Customer = 3
-    val Mobile: String
-)
-
-data class GeneralRequest(
-    val UserId: String,
-    val UserTypeId: String
-)
-
-data class CarDetailsRequest(
-    val UserId: String,
-    val UserTypeId: String,
-    val CarId: String
-)
-
-data class ServiceStatusChangeRequest(
-    val CarServiceId: String,
-    val StatusId: String,
-    val ModifiedBy: String
-)

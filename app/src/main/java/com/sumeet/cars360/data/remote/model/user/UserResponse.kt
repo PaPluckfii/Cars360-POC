@@ -4,7 +4,8 @@ package com.sumeet.cars360.data.remote.model.user
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
-import com.sumeet.cars360.data.local.room.model.UserEntity
+import com.sumeet.cars360.data.local.room.model.CustomerEntity
+import com.sumeet.cars360.data.local.room.model.ServiceAdvisorEntity
 
 @Parcelize
 data class UserResponse(
@@ -43,22 +44,47 @@ data class UserResponse(
     @SerializedName("Message")
     var message: String?
 ) : Parcelable {
-    fun toUserEntity(): UserEntity{
-        return UserEntity(
-            responseId = responseId,
-            firebaseId = firebaseId,
-            userType = userTypeName,
-            name = name,
-            mobileNumber = mobile,
-            emailId = email,
-            address = address,
-            city = city,
-            state = state,
-            postalCode = postalCode,
-            dob = dOB,
-            dom = dOM,
-            gstIn = gSTIN,
-            userImageUrl = profileImage
-        )
+
+    fun toUserEntity(): CustomerEntity? {
+        return responseId?.let {
+            CustomerEntity(
+                userId = it,
+                firebaseId = firebaseId,
+                userType = userTypeName,
+                name = name,
+                mobileNumber = mobile,
+                emailId = email,
+                address = address,
+                city = city,
+                state = state,
+                postalCode = postalCode,
+                dob = dOB,
+                dom = dOM,
+                gstIn = gSTIN,
+                userImageUrl = profileImage
+            )
+        }
     }
+
+    fun toServiceAdvisorEntity(): ServiceAdvisorEntity? {
+        return responseId?.let {
+            ServiceAdvisorEntity(
+                userId = it,
+                firebaseId = firebaseId,
+                userType = userTypeName,
+                name = name,
+                mobileNumber = mobile,
+                emailId = email,
+                address = address,
+                city = city,
+                state = state,
+                postalCode = postalCode,
+                dob = dOB,
+                dom = dOM,
+                gstIn = gSTIN,
+                userImageUrl = profileImage
+            )
+        }
+    }
+
 }

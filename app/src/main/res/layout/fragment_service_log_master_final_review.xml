@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterFinalReviewFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_6_finalize_and_upload.ServiceLogMasterFinalReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

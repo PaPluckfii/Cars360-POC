@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.admin.fragments.home_navs.AddCarEntitiesFragment">
+    tools:context=".ui.admin.master_car.AddCarEntitiesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clImage"
@@ -68,7 +68,7 @@
         android:id="@+id/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload"
+        android:text="Update"
         android:layout_margin="@dimen/_10sdp"
         style="@style/MyFilledButton"/>
 

@@ -18,12 +18,12 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_background</item>
-        <item name="windowSplashScreenAnimationDuration">2000</item>
-        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@drawable/logo_cars360</item>
-        <item name="postSplashScreenTheme">@style/Theme.Cars360Raipur</item>
-    </style>
+<!--    <style name="SplashTheme" parent="Theme.SplashScreen">-->
+<!--        <item name="windowSplashScreenBackground">@color/black</item>-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_background</item>-->
+<!--        <item name="windowSplashScreenAnimationDuration">2000</item>-->
+<!--        <item name="android:windowSplashScreenBrandingImage" tools:targetApi="s">@drawable/logo_cars360</item>-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.Cars360Raipur</item>-->
+<!--    </style>-->
 
 </resources>

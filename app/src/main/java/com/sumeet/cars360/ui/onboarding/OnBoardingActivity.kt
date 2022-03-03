@@ -1,6 +1,7 @@
 package com.sumeet.cars360.ui.onboarding
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class OnBoardingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOnBoardingBinding
+    private val onBoardingViewModel: OnBoardingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

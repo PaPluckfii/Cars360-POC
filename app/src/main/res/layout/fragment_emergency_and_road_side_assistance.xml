@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.fragments.home_navs.EmergencyAndRoadSideAssistanceFragment">
+    tools:context=".ui.admin.dump.EmergencyAndRoadSideAssistanceFragment">
 
     <include layout="@layout/item_emergency_and_road_side_assistance_layout"/>
 

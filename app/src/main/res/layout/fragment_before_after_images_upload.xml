@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.admin.fragments.home_navs.BeforeAfterImagesUploadFragment">
+    tools:context=".ui.admin.dump.BeforeAfterImagesUploadFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beforeAfterRecyclerView"

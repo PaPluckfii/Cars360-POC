@@ -110,4 +110,8 @@ class SavePrefs(mContext: Context) {
         editor?.clear()?.commit()
     }
 
+    fun saveFuelType(fuelType: String) {
+        editor?.putString("CAR_FUEL_TYPE",fuelType)?.apply()
+    }
+
 }

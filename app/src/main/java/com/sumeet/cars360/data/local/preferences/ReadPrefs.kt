@@ -98,4 +98,8 @@ class ReadPrefs(mContext : Context) {
         return preferences?.getString("CAR_MODEL_ID","")
     }
 
+    fun readCustomerCarFuelType(): String? {
+        return preferences?.getString("CAR_FUEL_TYPE","")
+    }
+
 }

@@ -43,12 +43,12 @@ class AdminActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.serviceLogMasterFragment2 -> {
-                    ViewVisibilityUtil.gone(binding.navView)
-                }
-                else -> {
-                    ViewVisibilityUtil.visible(binding.navView)
-                }
+//                R.id.serviceLogMasterFragment2 -> {
+//                    ViewVisibilityUtil.gone(binding.navView)
+//                }
+//                else -> {
+//                    ViewVisibilityUtil.visible(binding.navView)
+//                }
             }
         }
 

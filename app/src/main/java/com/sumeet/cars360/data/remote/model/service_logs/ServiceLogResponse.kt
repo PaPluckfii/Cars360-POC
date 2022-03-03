@@ -1,9 +1,10 @@
 package com.sumeet.cars360.data.remote.model.service_logs
 
 
-import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import com.sumeet.cars360.data.local.room.model.ServiceLogEntity
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ServiceLogResponse(
@@ -51,4 +52,29 @@ data class ServiceLogResponse(
     var statusName: String?,
     @SerializedName("UserCarRequest")
     var userCarRequest: String?
-) : Parcelable
+) : Parcelable {
+
+    fun toServiceLogEntity() = carServiceId?.let {
+        ServiceLogEntity(
+            serviceLogId = it,
+            statusName = statusName,
+            accessories = accessories,
+            estimates = estimates,
+            additionalDetail = additionalDetail,
+            frontPic = frontPic,
+            backPic = backPic,
+            leftPic = leftPic,
+            rightPic = rightPic,
+            fuelIndicator = fuelIndicator,
+            carHealthReport = carHealthReport,
+            estimatedAmount = estimatedAmount,
+            originalAmount = originalAmount,
+            paidAmount = paidAmount,
+            paymentMode = paymentMode,
+            serviceTypes = serviceTypes,
+            userCarRequest = userCarRequest,
+            createdDate = createdDate
+        )
+    }
+
+}

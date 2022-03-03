@@ -5,63 +5,97 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.onboarding.fragments.IntroFragment">
+    tools:context=".ui.onboarding.intro_screen.IntroFragment">
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:scaleType="centerCrop"/>
 
     <com.yqritc.scalablevideoview.ScalableVideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <LinearLayout
+    <View
+        android:id="@+id/vTranslucent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/transparentBlack"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@color/transparentBlack"
         android:elevation="@dimen/_5sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnSkipLogin"
-            style="@style/MyFilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:elevation="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:gravity="end"
+            android:background="@color/transparentBlack"
             android:text="Skip Login And Continue" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnTour"
-            style="@style/MyFilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:elevation="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:gravity="end"
+            android:background="@color/transparentBlack"
             android:text="Just Take A Tour" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnLogin"
-            style="@style/MyFilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:elevation="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:gravity="end"
+            android:background="@color/transparentBlack"
             android:text="@string/login_sign_up" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnStaff"
-            style="@style/MyFilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:elevation="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:gravity="end"
+            android:background="@color/transparentBlack"
             android:text="Staff/Admin Login" />
 
     </LinearLayout>

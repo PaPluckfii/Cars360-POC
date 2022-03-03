@@ -24,15 +24,12 @@ import com.sumeet.cars360.databinding.FragmentCustomerProfileBinding
 import com.sumeet.cars360.ui.customer.CustomerViewModel
 import com.sumeet.cars360.ui.customer.util.*
 import com.sumeet.cars360.ui.onboarding.OnBoardingActivity
-import com.sumeet.cars360.util.ButtonClickHandler
-import com.sumeet.cars360.util.Resource
-import com.sumeet.cars360.util.ViewVisibilityUtil
-import com.sumeet.cars360.util.navigate
+import com.sumeet.cars360.util.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class
-CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomSheetItemClickListener {
+CustomerProfileFragment : Fragment(), ProfileBottomSheetItemClickListener {
 
     private lateinit var binding: FragmentCustomerProfileBinding
     private val viewModel: CustomerViewModel by activityViewModels()
@@ -114,9 +111,9 @@ CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomSheetIt
         viewModel.customerDetails.observeOnce(this, Observer {
             it?.let {
                 when(it){
-                    is Resource.Loading -> {}
-                    is Resource.Error -> {}
-                    is Resource.Success -> {
+                    is FormDataResource.Loading -> {}
+                    is FormDataResource.Error -> {}
+                    is FormDataResource.Success -> {
                         viewModel.setUserData(requireContext(),it.data?.userResponse!![0])
                         setUpProfileData()
                     }
@@ -278,26 +275,26 @@ CustomerProfileFragment : Fragment(), CarItemClickListener, ProfileBottomSheetIt
         viewModel.customerCarDetailsData.observe(viewLifecycleOwner, Observer {
 
             when(it){
-                is Resource.Loading -> {}
-                is Resource.Error -> {}
-                is Resource.Success -> {
-                    binding.customerCarsRecyclerView.apply {
-                        layoutManager = LinearLayoutManager(context)
-                        adapter = it.data?.carDetailsResponse?.let { data ->
-                            CarsRecyclerAdapter(
-                                data,
-                                this@CustomerProfileFragment
-                            )
-                        }
-                    }
+                is FormDataResource.Loading -> {}
+                is FormDataResource.Error -> {}
+                is FormDataResource.Success -> {
+//                    binding.customerCarsRecyclerView.apply {
+//                        layoutManager = LinearLayoutManager(context)
+//                        adapter = it.data?.carDetailsResponse?.let { data ->
+//                            CarEntityRecyclerAdapter(
+//                                data,
+//                                this@CustomerProfileFragment
+//                            )
+//                        }
+//                    }
                 }
             }
         })
     }
 
-    override fun onCarItemClicked(carDetailsResponse: CarDetailsResponse) {
-        //TODO("Not yet implemented")
-    }
+//    override fun onCarItemClicked(carDetailsResponse: CarDetailsResponse) {
+//        //TODO("Not yet implemented")
+//    }
 
     override fun onBottomSheetItemClicked() {
         //TODO("Not yet implemented")

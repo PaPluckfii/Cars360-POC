@@ -20,11 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cars360Raipur">
         <activity
-            android:name=".ui.admin.fragments.service_log.ServiceLogMasterImagePreviewActivity"
+            android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_2_images_capture.ServiceLogMasterImagePreviewActivity"
             android:exported="false"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".ui.admin.fragments.service_log.ServiceLogMasterCameraActivity"
+            android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_2_images_capture.ServiceLogMasterCameraActivity"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="landscape"
@@ -48,7 +48,6 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

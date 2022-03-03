@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterPicturesFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_2_images_capture.ServiceLogMasterPicturesFragment">
 
 
     <androidx.appcompat.widget.AppCompatButton

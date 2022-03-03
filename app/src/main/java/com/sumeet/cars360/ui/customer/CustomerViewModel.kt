@@ -12,7 +12,7 @@ import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.Constants.NO_INTERNET_CONNECTION
 import com.sumeet.cars360.util.Constants.hasInternetConnection
-import com.sumeet.cars360.util.Resource
+import com.sumeet.cars360.util.FormDataResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,11 +22,11 @@ class CustomerViewModel @Inject constructor(
     private val remoteRepository: RemoteRepository
 ): ViewModel() {
 
-    private val _customerDetails = MutableLiveData<Resource<UsersByFirebaseIdResponse>>()
-    val customerDetails:LiveData<Resource<UsersByFirebaseIdResponse>> = _customerDetails
+    private val _customerDetails = MutableLiveData<FormDataResource<UsersByFirebaseIdResponse>>()
+    val customerDetails:LiveData<FormDataResource<UsersByFirebaseIdResponse>> = _customerDetails
 
-    private val _customerCarDetailsData = MutableLiveData<Resource<CarDetailsResponseByUserId>>()
-    val customerCarDetailsData: LiveData<Resource<CarDetailsResponseByUserId>> = _customerCarDetailsData
+    private val _customerCarDetailsData = MutableLiveData<FormDataResource<CarDetailsResponseByUserId>>()
+    val customerCarDetailsData: LiveData<FormDataResource<CarDetailsResponseByUserId>> = _customerCarDetailsData
 
     fun setUserData(context: Context,userResponse: UserResponse) {
         SavePrefs(context).apply {
@@ -46,37 +46,37 @@ class CustomerViewModel @Inject constructor(
 
 
     fun getCustomerByUserId(userId:String){
-        _customerDetails.postValue(Resource.Loading())
+        _customerDetails.postValue(FormDataResource.Loading())
         viewModelScope.launch {
             if (hasInternetConnection()){
                 val response = remoteRepository.getCustomerByFirebaseId(userId)
                 if (response.isSuccessful && response.body() != null)
                     if (response.body()?.error == false)
-                        _customerDetails.postValue(Resource.Success(response.body()))
+                        _customerDetails.postValue(FormDataResource.Success(response.body()))
                     else
-                        _customerDetails.postValue(Resource.Error(response.body()?.message))
+                        _customerDetails.postValue(FormDataResource.Error(response.body()?.message))
                 else
-                    _customerDetails.postValue(Resource.Error(response.message()))
+                    _customerDetails.postValue(FormDataResource.Error(response.message()))
             }else{
-                _customerDetails.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+                _customerDetails.postValue(FormDataResource.Error(NO_INTERNET_CONNECTION))
             }
         }
     }
 
     fun getCustomerCarDetailsByMobileNumber(mobileNo: String) {
-        _customerCarDetailsData.postValue(Resource.Loading())
+        _customerCarDetailsData.postValue(FormDataResource.Loading())
         viewModelScope.launch {
             if (hasInternetConnection()){
                 val response = remoteRepository.getCustomerCarDetailsByMobileNumber(mobileNo)
                 if (response.isSuccessful && response.body() != null)
                     if (response.body()?.error == false)
-                        _customerCarDetailsData.postValue(Resource.Success(response.body()))
+                        _customerCarDetailsData.postValue(FormDataResource.Success(response.body()))
                     else
-                        _customerCarDetailsData.postValue(Resource.Error(response.body()?.message))
+                        _customerCarDetailsData.postValue(FormDataResource.Error(response.body()?.message))
                 else
-                    _customerCarDetailsData.postValue(Resource.Error(response.message()))
+                    _customerCarDetailsData.postValue(FormDataResource.Error(response.message()))
             }else{
-                _customerCarDetailsData.postValue(Resource.Error(NO_INTERNET_CONNECTION))
+                _customerCarDetailsData.postValue(FormDataResource.Error(NO_INTERNET_CONNECTION))
             }
         }
     }

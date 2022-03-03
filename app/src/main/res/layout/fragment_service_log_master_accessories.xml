@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterAccessoriesFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_3_accessories.ServiceLogMasterAccessoriesFragment">
 
     <TextView
         android:id="@+id/tvPleaseTick"

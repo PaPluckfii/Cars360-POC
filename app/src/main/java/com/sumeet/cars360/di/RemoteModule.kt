@@ -1,5 +1,6 @@
 package com.sumeet.cars360.di
 
+import com.sumeet.cars360.data.local.Cars360RoomDatabase
 import com.sumeet.cars360.data.remote.ApiClient
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.Constants
@@ -25,6 +26,9 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideRemoteRepository(apiClient: ApiClient) : RemoteRepository = RemoteRepository(apiClient)
+    fun provideRemoteRepository(
+        apiClient: ApiClient,
+        database: Cars360RoomDatabase
+    ) : RemoteRepository = RemoteRepository(apiClient,database)
 
 }
