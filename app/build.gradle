@@ -41,6 +41,22 @@ android {
     lintOptions{
         disable 'SetTextI18n' // to remove this Suppress add
     }
+    flavorDimensions "build"
+
+    productFlavors {
+        dev {
+            dimension "build"
+            applicationId "com.sumeet.cars360"
+        }
+        stage {
+            dimension "build"
+            applicationId "stage.cars360.itech_x_sumeet"
+        }
+        prod {
+            dimension "build"
+            applicationId "in.cars360.itech_x_sumeet"
+        }
+    }
 }
 
 def versions = [
@@ -59,8 +75,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
@@ -77,8 +93,8 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.jetpack_hilt"
     implementation "androidx.hilt:hilt-work:1.0.0"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     kapt "com.google.dagger:hilt-android-compiler:$versions.hilt"
     kapt "androidx.hilt:hilt-compiler:$versions.jetpack_hilt"
 
@@ -119,4 +135,11 @@ dependencies {
 
     //Searchable Spinner
     implementation 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
+
+    //CameraView Library
+    implementation 'com.otaliastudios:cameraview:2.7.2'
+
+    //Lottie Animation
+    implementation "com.airbnb.android:lottie:4.2.2"
+
 }

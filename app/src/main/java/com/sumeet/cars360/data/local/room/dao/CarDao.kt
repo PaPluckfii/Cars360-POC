@@ -11,15 +11,15 @@ import kotlinx.coroutines.flow.Flow
 interface CarDao {
 
     @Insert
-    suspend fun insertMyCar(carEntity: CarEntity)
+    suspend fun insertAllCars(carEntities: List<CarEntity>)
 
     @Query("SELECT * FROM cars")
-    fun getMyCars(): Flow<List<CarEntity>>
+    fun getAllCars(): Flow<List<CarEntity>>
 
-    @Update
-    suspend fun updateMyCar(carEntity: CarEntity)
+    @Query("SELECT * FROM cars WHERE userId = :userId")
+    fun getCarsByCustomerId(userId: String): Flow<List<CarEntity>>
 
     @Query("DELETE FROM cars")
-    suspend fun resetAllCars()
+    suspend fun deleteALlCars()
 
 }

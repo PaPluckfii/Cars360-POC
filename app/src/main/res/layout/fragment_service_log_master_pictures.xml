@@ -4,163 +4,209 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterPicturesFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_2_images_capture.ServiceLogMasterPicturesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOpenCamera"
+        style="@style/MyFilledButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:paddingBottom="@dimen/_10sdp">
+        android:layout_marginEnd="28dp"
+        android:elevation="@dimen/_20sdp"
+        android:text="Start Capturing Images"
+        android:layout_centerInParent="true"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/frontView"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:paddingBottom="@dimen/_10sdp">-->
 
-            <TextView
-                android:id="@+id/tvFrontView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="Front View"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/frontView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/_50sdp"-->
+<!--            android:layout_margin="@dimen/_10sdp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="@dimen/_5sdp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline12"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-        </androidx.cardview.widget.CardView>
+<!--            <TextView-->
+<!--                android:id="@+id/tvFrontView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingStart="@dimen/_20sdp"-->
+<!--                android:text="Front View"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/leftSideView"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frontView">
+<!--        </androidx.cardview.widget.CardView>-->
 
-            <TextView
-                android:id="@+id/tvLeftView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="Left View"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/leftSideView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/_50sdp"-->
+<!--            android:layout_margin="@dimen/_10sdp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="@dimen/_5sdp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline12"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/frontView">-->
 
-        </androidx.cardview.widget.CardView>
+<!--            <TextView-->
+<!--                android:id="@+id/tvLeftView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingStart="@dimen/_20sdp"-->
+<!--                android:text="Left View"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/rightSideView"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/leftSideView">
+<!--        </androidx.cardview.widget.CardView>-->
 
-            <TextView
-                android:id="@+id/tvRightView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="Right View"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/rightSideView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/_50sdp"-->
+<!--            android:layout_margin="@dimen/_10sdp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="@dimen/_5sdp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline12"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/leftSideView">-->
 
-        </androidx.cardview.widget.CardView>
+<!--            <TextView-->
+<!--                android:id="@+id/tvRightView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingStart="@dimen/_20sdp"-->
+<!--                android:text="Right View"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/backView"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rightSideView">
+<!--        </androidx.cardview.widget.CardView>-->
 
-            <TextView
-                android:id="@+id/tvBackView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border"
-                android:gravity="center_vertical"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="Back View"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/backView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/_50sdp"-->
+<!--            android:layout_margin="@dimen/_10sdp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="@dimen/_5sdp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline12"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/rightSideView">-->
 
-        </androidx.cardview.widget.CardView>
+<!--            <TextView-->
+<!--                android:id="@+id/tvBackView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingStart="@dimen/_20sdp"-->
+<!--                android:text="Back View"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnFront"
-            style="@style/MyFilledButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
-            android:elevation="@dimen/_20sdp"
-            android:text="Capture"
-            app:layout_constraintBottom_toBottomOf="@+id/frontView"
-            app:layout_constraintEnd_toEndOf="@+id/frontView"
-            app:layout_constraintStart_toEndOf="@+id/frontView"
-            app:layout_constraintTop_toTopOf="@+id/frontView" />
+<!--        </androidx.cardview.widget.CardView>-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnLeft"
-            style="@style/MyFilledButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_20sdp"
-            android:text="Capture"
-            app:layout_constraintBottom_toBottomOf="@+id/leftSideView"
-            app:layout_constraintEnd_toEndOf="@+id/leftSideView"
-            app:layout_constraintStart_toEndOf="@+id/leftSideView"
-            app:layout_constraintTop_toTopOf="@+id/leftSideView" />
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/fuelIndicator"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="@dimen/_50sdp"-->
+<!--            android:layout_margin="@dimen/_10sdp"-->
+<!--            app:cardBackgroundColor="@color/white"-->
+<!--            app:cardCornerRadius="@dimen/_5sdp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/guideline12"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/backView">-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnRight"
-            style="@style/MyFilledButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_20sdp"
-            android:text="Capture"
-            app:layout_constraintBottom_toBottomOf="@+id/rightSideView"
-            app:layout_constraintEnd_toEndOf="@+id/rightSideView"
-            app:layout_constraintStart_toEndOf="@+id/rightSideView"
-            app:layout_constraintTop_toTopOf="@+id/rightSideView" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvFuelIndicator"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/border"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingStart="@dimen/_20sdp"-->
+<!--                android:text="Odometer"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnBack"
-            style="@style/MyFilledButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_20sdp"
-            android:text="Capture"
-            app:layout_constraintBottom_toBottomOf="@+id/backView"
-            app:layout_constraintEnd_toEndOf="@+id/backView"
-            app:layout_constraintStart_toEndOf="@+id/backView"
-            app:layout_constraintTop_toTopOf="@+id/backView" />
+<!--        </androidx.cardview.widget.CardView>-->
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnFront"-->
+<!--            style="@style/MyFilledButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="28dp"-->
+<!--            android:elevation="@dimen/_20sdp"-->
+<!--            android:text="Capture"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/frontView"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/frontView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/frontView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/frontView" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnLeft"-->
+<!--            style="@style/MyFilledButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="@dimen/_20sdp"-->
+<!--            android:text="Capture"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/leftSideView"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/leftSideView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/leftSideView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/leftSideView" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnRight"-->
+<!--            style="@style/MyFilledButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="@dimen/_20sdp"-->
+<!--            android:text="Capture"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/rightSideView"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/rightSideView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/rightSideView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/rightSideView" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnBack"-->
+<!--            style="@style/MyFilledButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="@dimen/_20sdp"-->
+<!--            android:text="Capture"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/backView"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/backView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/backView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/backView" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnFuelIndicator"-->
+<!--            style="@style/MyFilledButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="@dimen/_20sdp"-->
+<!--            android:text="Capture"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/fuelIndicator"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/backView"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/backView"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/fuelIndicator" />-->
+
+<!--        <androidx.constraintlayout.widget.Guideline-->
+<!--            android:id="@+id/guideline12"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintGuide_percent="0.8" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNext"

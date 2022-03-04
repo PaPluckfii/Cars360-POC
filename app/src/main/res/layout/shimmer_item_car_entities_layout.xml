@@ -11,17 +11,17 @@
     <ImageView
         android:id="@+id/ivIcon"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="@dimen/_100sdp"
         android:background="@color/gray"
         android:scaleType="fitCenter"/>
 
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:textColor="@color/black"/>
+<!--    <TextView-->
+<!--        android:id="@+id/tvText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/gray"-->
+<!--        android:layout_marginTop="@dimen/_8sdp"-->
+<!--        android:textAppearance="@android:style/TextAppearance.Medium"-->
+<!--        android:textColor="@color/black"/>-->
 
 </LinearLayout>

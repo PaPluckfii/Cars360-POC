@@ -128,7 +128,7 @@
 
             <include
                 android:id="@+id/customerServicesBottomSheetLayout"
-                layout="@layout/customer_services_bottom_sheet_layout" />
+                layout="@layout/bottom_sheet_customer_services" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

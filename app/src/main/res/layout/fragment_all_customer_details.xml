@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.fragments.home_navs.AllCustomerDetailsFragment">
+    tools:context=".ui.admin.data_presenter.all_customers.AllCustomerDetailsFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivProfileImage"

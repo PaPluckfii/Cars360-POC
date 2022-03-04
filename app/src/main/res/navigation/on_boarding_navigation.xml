@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.IntroFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.intro_screen.IntroFragment"
         android:label="Intro"
         tools:layout="@layout/fragment_intro" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/customerLoginFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.CustomerLoginFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.customer.login.CustomerLoginFragment"
         android:label=""
         tools:layout="@layout/fragment_customer_login" >
         <action
@@ -30,17 +30,8 @@
             app:destination="@id/newCustomerDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/OTPFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.customer.OTPFragment"
-        android:label=""
-        tools:layout="@layout/fragment_o_t_p" >
-        <action
-            android:id="@+id/action_OTPFragment_to_newCustomerDetailsFragment"
-            app:destination="@id/newCustomerDetailsFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/newCustomerDetailsFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.customer.new_customer.NewCustomerDetailsFragment"
         android:label="New User Registration"
         tools:layout="@layout/fragment_new_customer_details" >
         <action
@@ -52,17 +43,17 @@
     </fragment>
     <fragment
         android:id="@+id/staffLoginFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.staff.StaffLoginFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.staff.StaffLoginFragment"
         android:label="Staff Login"
         tools:layout="@layout/fragment_staff_login" />
     <fragment
         android:id="@+id/newCarDetailsFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCarDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.customer.car_select.NewCarDetailsFragment"
         android:label="Select Your Car"
         tools:layout="@layout/fragment_new_car_details" />
     <fragment
         android:id="@+id/newCustomerAdditionalDetailsFragment"
-        android:name="com.sumeet.cars360.ui.onboarding.fragments.new_customer.NewCustomerAdditionalDetailsFragment"
+        android:name="com.sumeet.cars360.ui.onboarding.customer.new_customer.NewCustomerAdditionalDetailsFragment"
         android:label="Additional Details"
         tools:layout="@layout/fragment_new_customer_additional_details" />
 </navigation>

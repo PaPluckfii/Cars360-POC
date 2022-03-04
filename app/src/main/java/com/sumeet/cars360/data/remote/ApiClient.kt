@@ -1,6 +1,8 @@
 package com.sumeet.cars360.data.remote
 
 import com.sumeet.cars360.data.remote.model.car_entities.CarEntitiesResponse
+import com.sumeet.cars360.data.remote.model.car_entities.car_brand.AllCarBrandsResponse
+import com.sumeet.cars360.data.remote.model.car_entities.car_model.AllCarModelResponse
 import com.sumeet.cars360.data.remote.model.car_entities.insert.BrandInsertOperation
 import com.sumeet.cars360.data.remote.model.car_entities.insert.ModelInsertOperation
 import com.sumeet.cars360.data.remote.model.service_logs.ServiceLogsByUserIdResponse
@@ -108,11 +110,14 @@ interface ApiClient {
         @Body generalRequest: GeneralRequest
     ): Response<CarEntitiesResponse>
 
-    //TODO individual model and brand list and delete
-//    @POST("ModelList.php")
-//    suspend fun getAllCarModels(
-//        @Body UserId: String,
-//        @Body UserTypeId: String
-//    ): Response<CarEntitiesResponse>
+    @POST("BrandList.php")
+    suspend fun getAllCarBrands(
+        @Body generalRequest: GeneralRequest
+    ): Response<AllCarBrandsResponse>
+
+    @POST("ModelList.php")
+    suspend fun getAllCarModels(
+        @Body generalRequest: GeneralRequest
+    ): Response<AllCarModelResponse>
 
 }

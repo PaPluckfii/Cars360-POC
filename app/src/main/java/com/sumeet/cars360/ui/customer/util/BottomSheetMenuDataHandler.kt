@@ -13,14 +13,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import com.bumptech.glide.Glide
 import com.sumeet.cars360.R
-import com.sumeet.cars360.databinding.CustomerServicesBottomSheetLayoutBinding
+import com.sumeet.cars360.databinding.BottomSheetCustomerServicesBinding
 import com.sumeet.cars360.databinding.ItemBulletTextLayoutBinding
 import com.sumeet.cars360.util.ViewVisibilityUtil
 
 class BottomSheetMenuDataHandler {
 
     enum class MenuType {
-        MECHANICAL_SERVICES,
+        PERIODIC_SERVICES,
         CUSTOM_SERVICES,
         CAR_DETAILING,
         LIFE_LONG_CARE,
@@ -30,7 +30,7 @@ class BottomSheetMenuDataHandler {
         ACCESSORIES
     }
 
-    lateinit var binding: CustomerServicesBottomSheetLayoutBinding
+    lateinit var binding: BottomSheetCustomerServicesBinding
 
     fun resetData() {
         binding.apply {
@@ -46,11 +46,11 @@ class BottomSheetMenuDataHandler {
     @SuppressLint("SetTextI18n")
     fun populateData(context: Context, menuType: MenuType) {
         when (menuType) {
-            MenuType.MECHANICAL_SERVICES -> {
+            MenuType.PERIODIC_SERVICES -> {
                 binding.tvTitle.text = "Periodical Maintenance Service"
 
-                Glide.with(binding.root).load(R.drawable.image_mechanical_repair_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_mechanical_repair_menu)
+//                    .into(binding.ivServiceImage)
 
                 ViewVisibilityUtil.visible(binding.periodicServiceLayout.root)
                 binding.periodicServiceLayout.apply {
@@ -200,8 +200,8 @@ class BottomSheetMenuDataHandler {
                             "Lastly, the interior glass is also cleaned and polished."
                 }
 
-                Glide.with(binding.root).load(R.drawable.image_car_detailing_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_car_detailing_menu)
+//                    .into(binding.ivServiceImage)
 
                 binding.llPointersContent.apply {
                     addView(bullet1.root)
@@ -226,8 +226,8 @@ class BottomSheetMenuDataHandler {
                         "No Data Right Now"
                 }
 
-                Glide.with(binding.root).load(R.drawable.image_life_long_care_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_life_long_care_menu)
+//                    .into(binding.ivServiceImage)
 
                 binding.llPointersContent.apply {
                     addView(descIntro.root)
@@ -352,8 +352,8 @@ class BottomSheetMenuDataHandler {
                                 " tires. Nitrogen is completely dry, so it eliminates the potential for condensation."
                 }
 
-                Glide.with(binding.root).load(R.drawable.image_tyres_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_tyres_menu)
+//                    .into(binding.ivServiceImage)
 
                 binding.llPointersContent.apply {
                     addView(descIntro.root)
@@ -468,8 +468,8 @@ class BottomSheetMenuDataHandler {
                             "from adhering to the vehicle surface during the installation process."
                 }
 
-                Glide.with(binding.root).load(R.drawable.image_car_wrapping_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_car_wrapping_menu)
+//                    .into(binding.ivServiceImage)
 
                 binding.llPointersContent.apply {
                     addView(descIntro.root)
@@ -511,8 +511,8 @@ class BottomSheetMenuDataHandler {
                                 " It's a second skin for our 4wheeled friends."
                 }
 
-                Glide.with(binding.root).load(R.drawable.image_car_modification_menu)
-                    .into(binding.ivServiceImage)
+//                Glide.with(binding.root).load(R.drawable.image_car_modification_menu)
+//                    .into(binding.ivServiceImage)
 
                 binding.llPointersContent.apply {
                     addView(descIntro.root)

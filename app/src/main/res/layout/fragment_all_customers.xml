@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.admin.fragments.home_navs.AllCustomersFragment">
+    tools:context=".ui.admin.data_presenter.all_customers.AllCustomersFragment">
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/allCustomerRecyclerview"

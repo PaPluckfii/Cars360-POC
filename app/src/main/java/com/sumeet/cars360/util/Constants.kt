@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat
 
 object Constants {
 
+    const val BASE_URL = "https://rmcg.in/V1/API/"
+
     const val BACK_BUTTON_TIME_INTERVAL = 2000L
 
     const val AUTH_LOGS = "AUTH_LOGS"

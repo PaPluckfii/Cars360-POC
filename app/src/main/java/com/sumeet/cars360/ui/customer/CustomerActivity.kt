@@ -14,7 +14,7 @@ import com.sumeet.cars360.data.local.preferences.SavePrefs
 import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.databinding.ActivityCustomerBinding
 import com.sumeet.cars360.ui.customer.util.observeOnce
-import com.sumeet.cars360.util.Resource
+import com.sumeet.cars360.util.FormDataResource
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,9 +39,9 @@ class CustomerActivity : AppCompatActivity() {
         viewModel.customerDetails.observeOnce(this, Observer {
             it?.let {
                 when(it){
-                    is Resource.Loading -> {}
-                    is Resource.Error -> {}
-                    is Resource.Success -> {
+                    is FormDataResource.Loading -> {}
+                    is FormDataResource.Error -> {}
+                    is FormDataResource.Success -> {
                         viewModel.setUserData(this,it.data?.userResponse!![0])
                     }
                 }

@@ -3,7 +3,8 @@ package com.sumeet.cars360.data.local.preferences
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
+import com.sumeet.cars360.data.wrapper.UserType
 import java.lang.Exception
 
 class SavePrefs(mContext: Context) {
@@ -107,6 +108,10 @@ class SavePrefs(mContext: Context) {
 
     fun resetAppData(){
         editor?.clear()?.commit()
+    }
+
+    fun saveFuelType(fuelType: String) {
+        editor?.putString("CAR_FUEL_TYPE",fuelType)?.apply()
     }
 
 }

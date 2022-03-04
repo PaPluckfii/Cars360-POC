@@ -1,7 +1,6 @@
 package com.sumeet.cars360.util
 
 import android.os.Handler
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 
 fun ViewPager2.autoScroll(interval: Long) {

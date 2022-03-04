@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.onboarding.fragments.new_customer.NewCustomerAdditionalDetailsFragment">
+    tools:context=".ui.onboarding.customer.new_customer.NewCustomerAdditionalDetailsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/border">
+                android:background="@drawable/silver_border_box">
 
                 <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
                     android:id="@+id/stateSpinner"

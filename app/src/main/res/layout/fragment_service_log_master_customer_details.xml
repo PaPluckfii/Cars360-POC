@@ -1,201 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterCustomerDetailsFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterCustomerDetailsFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilSearch"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:hint="Enter Customer Mobile Number"
-        app:hintTextColor="@color/primaryRed"
-        app:prefixText="+91 ">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSearch"
-        style="@style/MyFilledButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tilSearch"
-        android:layout_centerHorizontal="true"
-        android:text="Search" />
+        android:background="@drawable/rectangle_serach_edit_text_selector"
+        android:elevation="@dimen/_5sdp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Search customer by name/number" />
 
     <LinearLayout
-        android:id="@+id/llCustomerData"
+        android:id="@+id/llProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:elevation="-1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/_2sdp"
         android:visibility="gone"
-        android:layout_below="@id/btnSearch">
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_2sdp"
-            app:cardElevation="@dimen/_5sdp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:padding="@dimen/_10sdp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivProfileImage"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:src="@drawable/ic_dummy_profile_pic"
-                    app:civ_border_color="@color/primaryRed"
-                    app:civ_border_width="@dimen/_1sdp" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_10sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-                    app:layout_constraintTop_toTopOf="@+id/ivProfileImage">
-
-                    <TextView
-                        android:id="@+id/tvName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Sumeet Das"
-                        android:textAppearance="@android:style/TextAppearance.Large"
-                        android:textColor="@color/primaryRed"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvMobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="+91 9669867977"
-                        android:textAppearance="@android:style/TextAppearance.Large"
-                        android:textColor="@color/primaryRed" />
-
-                    <TextView
-                        android:id="@+id/tvEmailId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        tools:text="sumeet1996das@gmail.com"
-                        android:textAppearance="@android:style/TextAppearance.Small"
-                        android:textColor="@color/black"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/tvAddressLine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        tools:text="Flat no -20,\n5th Floor,\nA-13, Chouhan Green Valley"
-                        android:textAppearance="@android:style/TextAppearance.Small"
-                        android:textColor="@color/black" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvCity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_5sdp"
-                            tools:text="Bhilai,"
-                            android:textAppearance="@android:style/TextAppearance.Small"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:id="@+id/tvState"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="Chhattisgarh"
-                            android:textAppearance="@android:style/TextAppearance.Small"
-                            android:textColor="@color/black" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvPostalCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        tools:text="Pin Code - 490020"
-                        android:textAppearance="@android:style/TextAppearance.Small"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            android:indeterminateDrawable="@drawable/progress_bar_red" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tvUpdate"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:text="Choose Car"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:textColor="@color/primaryRed"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/primaryRed" />
-
-        <Spinner
-            android:id="@+id/carsSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:spinnerMode="dropdown" />
+            android:layout_margin="@dimen/_5sdp"
+            android:text="Updating Customers"
+            android:textColor="@color/primaryRed" />
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnNext"
-        style="@style/MyFilledButton"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvNoUserFound"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
         android:layout_margin="@dimen/_10sdp"
-        android:text="Next"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:gravity="center"
+        android:text="No User Found"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:textColor="@color/primaryRed"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/llProgress" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customersRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnSearch"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:elevation="@dimen/_10sdp"
-        android:layout_centerHorizontal="true"
-        android:indeterminateDrawable="@drawable/progress_bar_red"
-        android:visibility="gone" />
+        android:layout_margin="@dimen/_10sdp"
+        android:contentDescription="Add Customer"
+        android:src="@drawable/ic_baseline_add_24"
+        app:backgroundTint="@color/primaryRed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@android:color/white" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.admin.fragments.service_log.ServiceLogMasterRequestedRepairsFragment">
+    tools:context=".ui.admin.master_service_log.form_screens.part_5_request_repairs.ServiceLogMasterRequestedRepairsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"

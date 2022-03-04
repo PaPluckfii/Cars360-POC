@@ -14,11 +14,11 @@ fun Fragment.navigate(directions: NavDirections) {
         controller.navigate(directions)
     }
 }
-fun Fragment.navigate(directions: Int) {
-    val controller = findNavController()
-    val currentDestination = (controller.currentDestination as? FragmentNavigator.Destination)?.className
-        ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
-    if (currentDestination == this.javaClass.name) {
-        controller.navigate(directions)
-    }
-}
+//fun Fragment.navigate(directions: Int) {
+//    val controller = findNavController()
+//    val currentDestination = (controller.currentDestination as? FragmentNavigator.Destination)?.className
+//        ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
+//    if (currentDestination == this.javaClass.name) {
+//        controller.navigate(directions)
+//    }
+//}

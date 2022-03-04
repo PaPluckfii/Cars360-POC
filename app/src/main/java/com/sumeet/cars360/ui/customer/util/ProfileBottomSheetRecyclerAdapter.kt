@@ -3,7 +3,6 @@ package com.sumeet.cars360.ui.customer.util
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sumeet.cars360.data.remote.old_model.Cars360Document
 import com.sumeet.cars360.databinding.ItemProfileBottomSheetBinding
 
 class ProfileBottomSheetRecyclerAdapter(
@@ -13,12 +12,12 @@ class ProfileBottomSheetRecyclerAdapter(
     inner class ProfileBottomSheetViewHolder(val binding: ItemProfileBottomSheetBinding)
         : RecyclerView.ViewHolder(binding.root)
 
-    private var list = emptyList<Cars360Document>()
+//    private var list = emptyList<Cars360Document>()
 
-    fun setStaticList(listOfDocs: List<Cars360Document>){
-        list = listOfDocs
-        notifyDataSetChanged()
-    }
+//    fun setStaticList(listOfDocs: List<Cars360Document>){
+//        list = listOfDocs
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,12 +37,12 @@ class ProfileBottomSheetRecyclerAdapter(
             root.setOnClickListener {
                 profileBottomSheetItemClickListener.onBottomSheetItemClicked()
             }
-            tvDate.text = list[position].documentCreatedDate
+//            tvDate.text = list[position].documentCreatedDate
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return 0//list.size
     }
 
 }

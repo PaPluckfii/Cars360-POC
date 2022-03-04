@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.fragments.new_customer.NewCarDetailsFragment">
+    tools:context=".ui.onboarding.customer.car_select.NewCarDetailsFragment">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -24,17 +24,30 @@
         android:layout_height="match_parent"
         android:background="@color/transparentBlack"
         android:clickable="true"
-        android:elevation="@dimen/_1sdp"
+        android:elevation="@dimen/_10sdp"
         android:focusable="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:elevation="@dimen/_5sdp"
+        app:queryHint="Search your car brand"
+        app:iconifiedByDefault="false"
+        android:background="@drawable/rectangle_serach_edit_text_selector"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerFrameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -230,19 +243,20 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/carsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/_10sdp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearch"
         app:spanCount="3" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/clCarDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="2dp"
+        android:elevation="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -255,7 +269,7 @@
 
             <include
                 android:id="@+id/carDetailsBottomSheet"
-                layout="@layout/car_details_bottom_sheet" />
+                layout="@layout/bottom_sheet_car_details" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

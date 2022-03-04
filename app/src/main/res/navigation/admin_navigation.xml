@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/admin_navigation_home"
-        android:name="com.sumeet.cars360.ui.admin.fragments.bottom_navs.AdminHomeFragment"
+        android:name="com.sumeet.cars360.ui.admin.home.AdminHomeFragment"
         android:label="Administration"
         tools:layout="@layout/fragment_admin_home" >
         <action
@@ -18,12 +18,12 @@
             app:destination="@id/admin_navigation_service_logs" />
         <action
             android:id="@+id/action_admin_navigation_home_to_carCompanyMasterFragment2"
-            app:destination="@id/carCompanyMasterFragment2" />
+            app:destination="@id/carCompanyMasterFragment" />
         <action
-            android:id="@+id/action_admin_navigation_home_to_customerMasterFragment2"
-            app:destination="@id/customerMasterFragment2" />
+            android:id="@+id/action_admin_navigation_home_to_customerMasterFragment"
+            app:destination="@id/customerMasterFragment" />
         <action
-            android:id="@+id/action_admin_navigation_home_to_serviceLogMasterFragment2"
+            android:id="@+id/action_admin_navigation_home_to_serviceLogMasterFragment"
             app:destination="@id/serviceLogMasterFragment2" />
         <action
             android:id="@+id/action_admin_navigation_home_to_serviceAdvisorMasterFragment2"
@@ -55,15 +55,18 @@
         <action
             android:id="@+id/action_admin_navigation_home_to_adBannerFragment"
             app:destination="@id/adBannerFragment" />
+        <action
+            android:id="@+id/action_admin_navigation_home_to_serviceLogMasterCustomerDetailsFragment"
+            app:destination="@id/serviceLogMasterCustomerDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/admin_navigation_statistics"
-        android:name="com.sumeet.cars360.ui.admin.fragments.bottom_navs.AdminStatisticsFragment"
+        android:name="com.sumeet.cars360.ui.admin.data_presenter.statistics.AdminStatisticsFragment"
         android:label="Statistics"
         tools:layout="@layout/fragment_admin_statistics" />
     <fragment
         android:id="@+id/admin_navigation_service_logs"
-        android:name="com.sumeet.cars360.ui.admin.fragments.bottom_navs.AdminServiceLogsFragment"
+        android:name="com.sumeet.cars360.ui.admin.data_presenter.all_service_logs.AdminServiceLogsFragment"
         android:label="Service Logs"
         tools:layout="@layout/fragment_admin_service_logs" >
         <action
@@ -71,26 +74,26 @@
             app:destination="@id/serviceLogDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/carCompanyMasterFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CarCompanyMasterFragment"
+        android:id="@+id/carCompanyMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_car.CarCompanyMasterFragment"
         android:label="Car Company Master"
         tools:layout="@layout/fragment_car_company_master" >
         <action
-            android:id="@+id/action_carCompanyMasterFragment2_to_addCarEntitiesFragment"
-            app:destination="@id/addCarEntitiesFragment" />
+            android:id="@+id/action_carCompanyMasterFragment_to_carModelMasterFragment"
+            app:destination="@id/carModelMasterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/customerMasterFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CustomerMasterFragment"
+        android:id="@+id/customerMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_customer.CustomerMasterFragment"
         android:label="Customer Master"
         tools:layout="@layout/fragment_customer_master" >
         <action
-            android:id="@+id/action_customerMasterFragment2_to_admin_navigation_home"
+            android:id="@+id/action_customerMasterFragment_to_admin_navigation_home"
             app:destination="@id/admin_navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/serviceLogMasterFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceLogMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.ServiceLogMasterFragment"
         android:label="Service Log Master"
         tools:layout="@layout/fragment_service_log_master" >
         <action
@@ -99,7 +102,7 @@
     </fragment>
     <fragment
         android:id="@+id/serviceAdvisorMasterFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.ServiceAdvisorMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_advisor.ServiceAdvisorMasterFragment"
         android:label="Service Advisor Master"
         tools:layout="@layout/fragment_service_advisor_master" >
         <action
@@ -113,32 +116,32 @@
         tools:layout="@layout/fragment_notification_master" />
     <fragment
         android:id="@+id/postServiceFollowUpFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.PostServiceFollowUpFragment"
+        android:name="com.sumeet.cars360.ui.admin.dump.PostServiceFollowUpFragment"
         android:label="Post Service Follow Up"
         tools:layout="@layout/fragment_post_service_follow_up" />
     <fragment
         android:id="@+id/carHealthReportFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.CarHealthReportFragment"
+        android:name="com.sumeet.cars360.ui.admin.dump.CarHealthReportFragment"
         android:label="Car Health Report"
         tools:layout="@layout/fragment_car_health_report" />
     <fragment
         android:id="@+id/invoicesUploadFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.InvoicesUploadFragment"
+        android:name="com.sumeet.cars360.ui.admin.dump.InvoicesUploadFragment"
         android:label="Upload Invoice"
         tools:layout="@layout/fragment_invoices_upload" />
     <fragment
         android:id="@+id/enquiryAndComlaintFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.EnquiryAndComlaintFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_enquiry_and_complaint.EnquiryAndComplaintFragment"
         android:label="Enquiry And Complaints"
-        tools:layout="@layout/fragment_enquiry_and_comlaint" />
+        tools:layout="@layout/fragment_enquiry_and_complaint" />
     <fragment
         android:id="@+id/beforeAfterImagesUploadFragment2"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.BeforeAfterImagesUploadFragment"
+        android:name="com.sumeet.cars360.ui.admin.dump.BeforeAfterImagesUploadFragment"
         android:label="Before And After Images"
         tools:layout="@layout/fragment_before_after_images_upload" />
     <fragment
         android:id="@+id/allCustomersFragment"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllCustomersFragment"
+        android:name="com.sumeet.cars360.ui.admin.data_presenter.all_customers.AllCustomersFragment"
         android:label="All Customers"
         tools:layout="@layout/fragment_all_customers" >
         <action
@@ -151,7 +154,7 @@
     </fragment>
     <fragment
         android:id="@+id/allServiceAdvisorsFragment"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllServiceAdvisorsFragment"
+        android:name="com.sumeet.cars360.ui.admin.data_presenter.all_service_advisors.AllServiceAdvisorsFragment"
         android:label="All Services"
         tools:layout="@layout/fragment_all_service_advisors" >
         <action
@@ -167,36 +170,154 @@
         android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AdBannerFragment"
         android:label="Advertisement Banners"
         tools:layout="@layout/fragment_ad_banner" />
-    <fragment
+    <dialog
         android:id="@+id/addCarEntitiesFragment"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AddCarEntitiesFragment"
-        android:label="fragment_add_car_entities"
+        android:name="com.sumeet.cars360.ui.admin.master_car.AddCarEntitiesFragment"
+        android:label="Add Car"
         tools:layout="@layout/fragment_add_car_entities">
         <argument
-            android:name="type"
-            app:argType="integer"
-            android:defaultValue="0"/>
+            android:name="modelEntity"
+            app:argType="com.sumeet.cars360.data.local.room.model.CarModelEntity" />
         <action
             android:id="@+id/action_addCarEntitiesFragment_to_admin_navigation_home"
             app:destination="@id/admin_navigation_home" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/serviceLogDetailsFragment"
-        android:name="com.sumeet.cars360.ui.admin.fragments.service_log.ServiceLogDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.ServiceLogDetailsFragment"
         android:label="Service Log"
         tools:layout="@layout/fragment_service_log_details" >
         <argument
             android:name="servicelog"
             app:argType="com.sumeet.cars360.data.remote.model.service_logs.ServiceLogResponse" />
     </fragment>
-    <include app:graph="@navigation/service_log_master_navigation" />
     <fragment
         android:id="@+id/allCustomerDetailsFragment"
-        android:name="com.sumeet.cars360.ui.admin.fragments.home_navs.AllCustomerDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.data_presenter.all_customers.AllCustomerDetailsFragment"
         android:label="fragment_all_customer_details"
         tools:layout="@layout/fragment_all_customer_details" >
         <argument
-            android:name="userResponse"
-            app:argType="com.sumeet.cars360.data.remote.model.user.UserResponse" />
+            android:name="customerEntity"
+            app:argType="com.sumeet.cars360.data.local.room.model.CustomerEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/carModelMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_car.CarModelMasterFragment"
+        android:label="Car Company Master"
+        tools:layout="@layout/fragment_car_model_master">
+        <argument
+            android:name="carBrandId"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_carModelMasterFragment_to_addCarEntitiesFragment"
+            app:destination="@id/addCarEntitiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterAccessoriesFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_3_accessories.ServiceLogMasterAccessoriesFragment"
+        android:label="fragment_service_log_master_accessories"
+        tools:layout="@layout/fragment_service_log_master_accessories" >
+        <action
+            android:id="@+id/action_serviceLogMasterAccessoriesFragment_to_serviceLogMasterTypesOfServicesFragment"
+            app:destination="@id/serviceLogMasterTypesOfServicesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterFinalReviewFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_6_finalize_and_upload.ServiceLogMasterFinalReviewFragment"
+        android:label="fragment_service_log_master_final_review"
+        tools:layout="@layout/fragment_service_log_master_final_review" />
+    <fragment
+        android:id="@+id/serviceLogMasterPicturesFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_2_images_capture.ServiceLogMasterPicturesFragment"
+        android:label="fragment_service_log_master_pictures"
+        tools:layout="@layout/fragment_service_log_master_pictures" >
+        <action
+            android:id="@+id/action_serviceLogMasterPicturesFragment_to_serviceLogMasterAccessoriesFragment"
+            app:destination="@id/serviceLogMasterAccessoriesFragment" />
+        <argument
+            android:name="serviceLogFormData"
+            app:argType="com.sumeet.cars360.data.remote.form_data.ServiceLogFormData"/>
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterRequestedRepairsFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_5_request_repairs.ServiceLogMasterRequestedRepairsFragment"
+        android:label="fragment_service_log_master_requested_repairs"
+        tools:layout="@layout/fragment_service_log_master_requested_repairs" >
+        <action
+            android:id="@+id/action_serviceLogMasterRequestedRepairsFragment_to_serviceLogMasterFinalReviewFragment"
+            app:destination="@id/serviceLogMasterFinalReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterTypesOfServicesFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_4_service_types.ServiceLogMasterTypesOfServicesFragment"
+        android:label="fragment_service_log_master_types_of_services"
+        tools:layout="@layout/fragment_service_log_master_types_of_services" >
+        <action
+            android:id="@+id/action_serviceLogMasterTypesOfServicesFragment_to_serviceLogMasterRequestedRepairsFragment"
+            app:destination="@id/serviceLogMasterRequestedRepairsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterCarDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterCarDetailsFragment"
+        android:label="fragment_service_log_master_car_details"
+        tools:layout="@layout/fragment_service_log_master_car_details" >
+        <action
+            android:id="@+id/action_serviceLogMasterCarDetailsFragment_to_serviceLogMasterPicturesFragment"
+            app:destination="@id/serviceLogMasterPicturesFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string"/>
+        <argument
+            android:name="userName"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_serviceLogMasterCarDetailsFragment_to_serviceLogMasterCarSelectBottomSheet"
+            app:destination="@id/serviceLogMasterCarSelectBottomSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/serviceLogMasterCarSelectBottomSheet"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterCarBrandSelectBottomSheet"
+        android:label="ServiceLogMasterCarSelectBottomSheet" >
+        <argument
+            android:name="userId"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_serviceLogMasterCarSelectBottomSheet_to_serviceLogMasterNewCarDetailsBottomSheet"
+            app:destination="@id/serviceLogMasterNewCarDetailsBottomSheet" />
+    </dialog>
+    <dialog
+        android:id="@+id/serviceLogMasterNewCarDetailsBottomSheet"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterNewCarDetailsBottomSheet"
+        android:label="ServiceLogMasterNewCarDetailsBottomSheet" >
+        <action
+            android:id="@+id/action_serviceLogMasterNewCarDetailsBottomSheet_to_serviceLogMasterPicturesFragment"
+            app:destination="@id/serviceLogMasterPicturesFragment" />
+        <argument
+            android:name="userId"
+            app:argType="string"/>
+        <argument
+            android:name="brandId"
+            app:argType="string"/>
+    </dialog>
+    <fragment
+        android:id="@+id/serviceLogMasterCustomerDetailsFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterCustomerDetailsFragment"
+        android:label="fragment_service_log_master_customer_details"
+        tools:layout="@layout/fragment_service_log_master_customer_details" >
+        <action
+            android:id="@+id/action_serviceLogMasterCustomerDetailsFragment_to_serviceLogMasterCarDetailsFragment"
+            app:destination="@id/serviceLogMasterCarDetailsFragment" />
+        <action
+            android:id="@+id/action_serviceLogMasterCustomerDetailsFragment_to_serviceLogMasterCustomerMasterFragment"
+            app:destination="@id/serviceLogMasterCustomerMasterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serviceLogMasterCustomerMasterFragment"
+        android:name="com.sumeet.cars360.ui.admin.master_service_log.form_screens.part_1_customer_and_car_details.ServiceLogMasterCustomerMasterFragment"
+        android:label="Customer Master"
+        tools:layout="@layout/fragment_customer_master" >
+        <action
+            android:id="@+id/action_serviceLogMasterCustomerMasterFragment_to_serviceLogMasterCarSelectBottomSheet"
+            app:destination="@id/serviceLogMasterCarSelectBottomSheet" />
     </fragment>
 </navigation>
