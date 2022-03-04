@@ -49,7 +49,7 @@ class CustomerViewModel @Inject constructor(
         _customerDetails.postValue(FormDataResource.Loading())
         viewModelScope.launch {
             if (hasInternetConnection()){
-                val response = remoteRepository.getCustomerByFirebaseId(userId)
+                val response = remoteRepository.getCustomerByMobileNumber(userId)
                 if (response.isSuccessful && response.body() != null)
                     if (response.body()?.error == false)
                         _customerDetails.postValue(FormDataResource.Success(response.body()))

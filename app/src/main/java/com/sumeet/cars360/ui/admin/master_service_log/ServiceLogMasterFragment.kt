@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.sumeet.cars360.R
-import com.sumeet.cars360.data.remote.form_data.ServiceLogFormData
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterBinding
 import com.sumeet.cars360.util.FormDataResource
 import com.sumeet.cars360.util.ViewVisibilityUtil

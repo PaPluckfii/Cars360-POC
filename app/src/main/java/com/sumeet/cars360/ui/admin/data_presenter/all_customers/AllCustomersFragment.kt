@@ -1,23 +1,21 @@
 package com.sumeet.cars360.ui.admin.data_presenter.all_customers
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sumeet.cars360.data.local.room.model.CustomerEntity
-import com.sumeet.cars360.data.remote.model.user.UserResponse
 import com.sumeet.cars360.databinding.FragmentAllCustomersBinding
 import com.sumeet.cars360.ui.admin.AdminViewModel
 import com.sumeet.cars360.ui.admin.util.AllCustomerRecyclerAdapter
 import com.sumeet.cars360.ui.admin.util.CustomerEntityClickListener
 import com.sumeet.cars360.util.Constants
-import com.sumeet.cars360.util.FormDataResource
+import com.sumeet.cars360.util.Resource
 import com.sumeet.cars360.util.ViewVisibilityUtil
 import com.sumeet.cars360.util.navigate
 
@@ -33,7 +31,7 @@ class AllCustomersFragment : Fragment(), CustomerEntityClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAllCustomersBinding.inflate(inflater,container,false)
+        binding = FragmentAllCustomersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,6 +47,40 @@ class AllCustomersFragment : Fragment(), CustomerEntityClickListener {
     }
 
     private fun setUpRecyclerData() {
+
+        viewModel.customers.observe(viewLifecycleOwner) { customers ->
+            when (customers) {
+                is Resource.Loading -> {
+                    ViewVisibilityUtil.visibilityExchanger(
+                        visible = binding.progressBar, gone = binding.allCustomerRecyclerview
+                    )
+                    ViewVisibilityUtil.gone(binding.errorMessage)
+                }
+                is Resource.Error -> {
+                    ViewVisibilityUtil.gone(binding.allCustomerRecyclerview)
+                    ViewVisibilityUtil.gone(binding.progressBar)
+                    ViewVisibilityUtil.visible(binding.errorMessage)
+
+                    if (customers.error?.message.equals(Constants.NO_INTERNET_CONNECTION))
+                        binding.tvError.text = Constants.NO_INTERNET_CONNECTION
+                    else
+                        binding.tvError.text = customers.error?.message
+                }
+                is Resource.Success -> {
+                    ViewVisibilityUtil.visibilityExchanger(
+                        visible = binding.allCustomerRecyclerview, gone = binding.progressBar
+                    )
+                    ViewVisibilityUtil.gone(binding.errorMessage)
+                    binding.allCustomerRecyclerview.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        adapter = AllCustomerRecyclerAdapter(
+                            customers.data as ArrayList<CustomerEntity>,
+                            this@AllCustomersFragment
+                        )
+                    }
+                }
+            }
+        }
 
 //        viewModel.getAllCustomerByUserId("2")
 //        viewModel.allCustomers.observe(viewLifecycleOwner, Observer {
@@ -87,6 +119,10 @@ class AllCustomersFragment : Fragment(), CustomerEntityClickListener {
     }
 
     override fun onCustomerEntityItemClicked(customerEntity: CustomerEntity) {
-        navigate(AllCustomersFragmentDirections.actionAllCustomersFragmentToAllCustomerDetailsFragment(customerEntity))
+        navigate(
+            AllCustomersFragmentDirections.actionAllCustomersFragmentToAllCustomerDetailsFragment(
+                customerEntity
+            )
+        )
     }
 }

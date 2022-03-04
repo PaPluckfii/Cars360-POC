@@ -1,7 +1,7 @@
 package com.sumeet.cars360.ui.admin.master_service_log
 
 import androidx.lifecycle.*
-import com.sumeet.cars360.data.remote.form_data.ServiceLogFormData
+import com.sumeet.cars360.data.remote.request_data.ServiceLogFormData
 import com.sumeet.cars360.data.repository.CacheRepository
 import com.sumeet.cars360.data.repository.RemoteRepository
 import com.sumeet.cars360.util.FormDataResource
@@ -17,7 +17,8 @@ class ServiceLogMasterViewModel @Inject constructor(
 
     val customers = cacheRepository.getAllCustomers().asLiveData()
 
-    fun getAllCarsByCustomerId(userId: String) = cacheRepository.getCarsByCustomerId(userId).asLiveData()
+    fun getAllCarsByCustomerId(userId: String) =
+        cacheRepository.getCarsByCustomerId(userId).asLiveData()
 
     private val _insertOperation = MutableLiveData<FormDataResource<String>>()
     val insertOperation: LiveData<FormDataResource<String>>
@@ -40,6 +41,50 @@ class ServiceLogMasterViewModel @Inject constructor(
                     )
             } else
                 _insertOperation.postValue(FormDataResource.Error(response.message()))
+        }
+    }
+
+    private val _carInsertOperation = MutableLiveData<FormDataResource<String>>()
+    val carInsertOperation: LiveData<FormDataResource<String>>
+        get() = _carInsertOperation
+
+    fun insertNewCarIntoDatabase(
+        userId: String,
+        modelId: String,
+        brandId: String,
+        vehicleNo: String,
+        bodyColor: String,
+        fuelType: String,
+        insuranceCompany: String,
+        insuranceExpiryDate: String
+    ) {
+        _carInsertOperation.postValue(FormDataResource.Loading())
+        viewModelScope.launch {
+            val response = remoteRepository.addNewCarDetails(
+                userId = userId,
+                modelId = modelId,
+                brandId = brandId,
+                vehicleNo = vehicleNo,
+                bodyColor = bodyColor,
+                plateNo = "",
+                fuelType = fuelType,
+                insuranceCompany = insuranceCompany,
+                insuranceExpiryDate = insuranceExpiryDate,
+                createdBy = "2"
+            )
+            if (response.isSuccessful && response.body() != null) {
+                if (response.body()?.error == true)
+                    _carInsertOperation.postValue(FormDataResource.Error(response.body()?.message))
+                else
+                    _carInsertOperation.postValue(
+                        FormDataResource.Success(
+                            response.body()?.carInsertResponse?.get(
+                                0
+                            )?.carId
+                        )
+                    )
+            } else
+                _carInsertOperation.postValue(FormDataResource.Error(response.message()))
         }
     }
 

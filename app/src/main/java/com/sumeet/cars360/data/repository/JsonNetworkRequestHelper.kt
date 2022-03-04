@@ -2,7 +2,8 @@ package com.sumeet.cars360.data.repository
 
 data class LoginByFirebaseRequest(
     val UserId: String,
-    val FirebaseId: String
+    val FirebaseId: String,
+    val Mobile: String
 )
 
 data class CarDetailsByMobileNumberRequest(

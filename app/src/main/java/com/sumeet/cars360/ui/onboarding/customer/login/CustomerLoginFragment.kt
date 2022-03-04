@@ -164,9 +164,9 @@ class CustomerLoginFragment : Fragment() {
 
     private fun checkUserDataInServer() {
 
-        mAuth.currentUser?.uid?.let {
-            savePrefs.saveFirebaseId(it)
-            viewModel.findUserByFirebaseId(it)
+        mAuth.currentUser?.apply {
+            uid.let { savePrefs.saveFirebaseId(it) }
+            phoneNumber?.let { viewModel.findUserByMobileNumber(it) }
         }
 
         viewModel.userDataFromServer.observe(viewLifecycleOwner) { user ->

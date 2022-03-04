@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterTypesOfServicesBinding
 import com.sumeet.cars360.ui.admin.master_service_log.ServiceLogMasterViewModel
 import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
@@ -19,6 +20,7 @@ class ServiceLogMasterTypesOfServicesFragment : Fragment() {
 
     private lateinit var binding: FragmentServiceLogMasterTypesOfServicesBinding
     private val viewModel: ServiceLogMasterViewModel by activityViewModels()
+    private val args: ServiceLogMasterTypesOfServicesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +35,24 @@ class ServiceLogMasterTypesOfServicesFragment : Fragment() {
 
         binding.btnNext.setOnClickListener {
             if(ButtonClickHandler.buttonClicked() && checkDataValidity()){
-                createTypesOfServices()
-                navigate(ServiceLogMasterTypesOfServicesFragmentDirections.actionServiceLogMasterTypesOfServicesFragmentToServiceLogMasterRequestedRepairsFragment())
+//                createTypesOfServices()
+                navigate(ServiceLogMasterTypesOfServicesFragmentDirections
+                    .actionServiceLogMasterTypesOfServicesFragmentToServiceLogMasterRequestedRepairsFragment(
+                        args.serviceLogFormData.apply {
+                            serviceTypes = createTypesOfServices()
+                        }
+                    ))
             }
         }
     }
 
-    private fun createTypesOfServices(){
+    private fun createTypesOfServices(): String{
         val str = StringBuilder()
         if (binding.rbYesRepeat.isChecked) str.append("Repeat Job,")
         if (binding.rbYesRoadTest.isChecked) str.append("Time & Cost Estimate Explained for all Listed jobs,")
         if (binding.rbYesTimeNCost.isChecked) str.append("Road Test Done Alongwith Customer")
         if (binding.rbYesCNG.isChecked) str.append("CNG/LPG Fitted")
-        ServiceLogCreationHelper.serviceLogDTO.serviceTypes = str.toString()
+        return str.toString()
     }
 
     private fun checkDataValidity(): Boolean {

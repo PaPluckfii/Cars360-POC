@@ -11,6 +11,7 @@ import com.sumeet.cars360.data.remote.model.user.UsersByFirebaseIdResponse
 import com.sumeet.cars360.data.remote.model.user.insert.UserInsertOperation
 import com.sumeet.cars360.data.remote.model.user_cars.CarDetailsResponseByUserId
 import com.sumeet.cars360.data.remote.model.user_cars.insert.CarDetailsInsertOperation
+import com.sumeet.cars360.data.remote.request_data.CarEntityJsonRequest
 import com.sumeet.cars360.data.repository.*
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -43,7 +44,7 @@ interface ApiClient {
     //User Car Details
     @POST("CarDetailSave.php")
     suspend fun addNewCar(
-        @Body requestBody: RequestBody
+        @Body carEntityJsonRequest: CarEntityJsonRequest
     ): Response<CarDetailsInsertOperation>
 
     @POST("CarDetailUpdate.php")

@@ -14,6 +14,7 @@ import com.yqritc.scalablevideoview.ScalableType
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -32,16 +33,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun playAnimationAfterSplashScreen() {
         try {
-            systemUIHandler.hideSystemUI()
-            binding.intoAnimationPlayer.apply {
-                setRawData(R.raw.cars_360_into_animation)
-                setScalableType(ScalableType.CENTER_CROP)
-                isLooping = false
-                prepare { start() }
-                setOnCompletionListener {
+            //TODO add on deployment
+//            systemUIHandler.hideSystemUI()
+//            binding.intoAnimationPlayer.apply {
+//                setRawData(R.raw.cars_360_into_animation)
+//                setScalableType(ScalableType.CENTER_CROP)
+//                isLooping = false
+//                prepare { start() }
+//                setOnCompletionListener {
                     checkLoginStatus()
-                }
-            }
+//                }
+//            }
         } catch (e: IOException) {
             e.printStackTrace()
             checkLoginStatus()

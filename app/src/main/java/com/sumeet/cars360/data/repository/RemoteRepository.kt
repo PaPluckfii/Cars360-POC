@@ -2,12 +2,13 @@ package com.sumeet.cars360.data.repository
 
 import com.sumeet.cars360.data.local.Cars360RoomDatabase
 import com.sumeet.cars360.data.remote.ApiClient
-import com.sumeet.cars360.data.remote.form_data.ServiceLogFormData
+import com.sumeet.cars360.data.remote.request_data.ServiceLogFormData
 import com.sumeet.cars360.data.remote.model.car_entities.insert.BrandInsertOperation
 import com.sumeet.cars360.data.remote.model.car_entities.insert.ModelInsertOperation
 import com.sumeet.cars360.data.remote.model.service_logs.insert.ServiceLogInsertOperation
 import com.sumeet.cars360.data.remote.model.user.insert.UserInsertOperation
 import com.sumeet.cars360.data.remote.model.user_cars.insert.CarDetailsInsertOperation
+import com.sumeet.cars360.data.remote.request_data.CarEntityJsonRequest
 import com.sumeet.cars360.data.wrapper.ServiceLogStatus
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -67,11 +68,11 @@ class RemoteRepository @Inject constructor(
         return apiClient.addNewUserToServer(requestBody.build())
     }
 
-    suspend fun getUserByUserId(userId: String) =
-        apiClient.getUserByUserId(LoginByFirebaseRequest(userId, ""))
+//    suspend fun getUserByUserId(userId: String) =
+//        apiClient.getUserByUserId(LoginByFirebaseRequest(userId, ""))
 
-    suspend fun getCustomerByFirebaseId(userId: String) =
-        apiClient.getUserByUserId(LoginByFirebaseRequest("0", userId))
+    suspend fun getCustomerByMobileNumber(mobileNo: String) =
+        apiClient.getUserByUserId(LoginByFirebaseRequest("0", "", mobileNo))
 
     suspend fun getCarDetailsByMobileNumber(mobileNo: String) =
         apiClient.getUserCarDetailsByMobileNumber(CarDetailsByMobileNumberRequest("1", mobileNo))
@@ -95,21 +96,32 @@ class RemoteRepository @Inject constructor(
         createdBy: String
     ): Response<CarDetailsInsertOperation> {
 
-        val requestBody = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addFormDataPart("UserId", userId)
-            .addFormDataPart("ModelId", modelId)
-            .addFormDataPart("BrandId", brandId)
-            .addFormDataPart("VehicleNo", vehicleNo)
-            .addFormDataPart("Color", bodyColor)
-            .addFormDataPart("PlateNo", plateNo)
-            .addFormDataPart("FuelType", fuelType)
-            .addFormDataPart("InsuranceCompany", insuranceCompany)
-            .addFormDataPart("ExpiryDate", insuranceExpiryDate)
-            .addFormDataPart("CreatedBy", createdBy)
-            .build()
+//        val requestBody = MultipartBody.Builder()
+//            .setType(MultipartBody.FORM)
+//            .addFormDataPart("UserId", userId)
+//            .addFormDataPart("ModelId", modelId)
+//            .addFormDataPart("BrandId", brandId)
+//            .addFormDataPart("VehicleNo", vehicleNo)
+//            .addFormDataPart("Color", bodyColor)
+//            .addFormDataPart("PlateNo", plateNo)
+//            .addFormDataPart("FuelType", fuelType)
+//            .addFormDataPart("InsuranceCompany", insuranceCompany)
+//            .addFormDataPart("ExpiryDate", insuranceExpiryDate)
+//            .addFormDataPart("CreatedBy", createdBy)
+//            .build()
 
-        return apiClient.addNewCar(requestBody)
+        return apiClient.addNewCar(CarEntityJsonRequest(
+            userId,
+            modelId,
+            brandId,
+            vehicleNo,
+            bodyColor,
+            plateNo,
+            fuelType,
+            insuranceCompany,
+            insuranceExpiryDate,
+            createdBy
+        ))
     }
 
     suspend fun updateExistingCar(

@@ -25,7 +25,7 @@ class StaffLoginViewModel @Inject constructor(
         viewModelScope.launch {
             _userDataFromServer.postValue(FormDataResource.Loading())
             if (Constants.hasInternetConnection()){
-                val response = remoteRepository.getCustomerByFirebaseId(firebaseId)
+                val response = remoteRepository.getCustomerByMobileNumber(firebaseId)
                 if (response.isSuccessful && response.body() != null) {
                     if(response.body()?.error == false)
                         _userDataFromServer.postValue(FormDataResource.Success(response.body()))

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterAccessoriesBinding
 import com.sumeet.cars360.ui.admin.master_service_log.ServiceLogMasterViewModel
@@ -21,6 +22,7 @@ class ServiceLogMasterAccessoriesFragment : Fragment(), CheckBoxClickListener {
 
     private lateinit var binding: FragmentServiceLogMasterAccessoriesBinding
     private val viewModel: ServiceLogMasterViewModel by activityViewModels()
+    private val args: ServiceLogMasterAccessoriesFragmentArgs by navArgs()
 
     private lateinit var accessoriesAdapter: AccessoriesItemAdapter
     private val listOfAccessories = mutableListOf<String>()
@@ -43,10 +45,14 @@ class ServiceLogMasterAccessoriesFragment : Fragment(), CheckBoxClickListener {
     private fun handleListeners() {
         binding.btnNext.setOnClickListener {
             if (ButtonClickHandler.buttonClicked()) {
-                ServiceLogCreationHelper.serviceLogDTO.accessories = getAccessoriesData()
+//                ServiceLogCreationHelper.serviceLogDTO.accessories = getAccessoriesData()
                 navigate(
                     ServiceLogMasterAccessoriesFragmentDirections
-                        .actionServiceLogMasterAccessoriesFragmentToServiceLogMasterTypesOfServicesFragment()
+                        .actionServiceLogMasterAccessoriesFragmentToServiceLogMasterTypesOfServicesFragment(
+                            args.serviceLogFormData.apply {
+                                accessories = getAccessoriesData()
+                            }
+                        )
                 )
             }
         }

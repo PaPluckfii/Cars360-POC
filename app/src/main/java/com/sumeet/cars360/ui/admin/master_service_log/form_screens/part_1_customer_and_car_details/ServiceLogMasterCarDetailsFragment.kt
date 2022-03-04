@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.room.model.CarEntity
-import com.sumeet.cars360.data.remote.form_data.ServiceLogFormData
+import com.sumeet.cars360.data.remote.request_data.ServiceLogFormData
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterCarDetailsBinding
 import com.sumeet.cars360.ui.admin.master_service_log.ServiceLogMasterViewModel
 import com.sumeet.cars360.util.*

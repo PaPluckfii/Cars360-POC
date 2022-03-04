@@ -16,8 +16,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.local.preferences.SavePrefs
+import com.sumeet.cars360.data.wrapper.CustomerLoginType
 import com.sumeet.cars360.data.wrapper.UserType
 import com.sumeet.cars360.databinding.FragmentCustomerLoginBinding
 import com.sumeet.cars360.ui.onboarding.AuthViewModel
@@ -29,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
-class CustomerLoginFromProfile: Fragment() {
+class CustomerLoginFromProfile : Fragment() {
 
     private lateinit var binding: FragmentCustomerLoginBinding
     private val viewModel: AuthViewModel by activityViewModels()
@@ -38,7 +38,7 @@ class CustomerLoginFromProfile: Fragment() {
     private var verifyingMobileNumber = ""
     private var isMobileEnterScreen = true
     private var sentCode: String? = null
-    private var resendToken:  PhoneAuthProvider.ForceResendingToken? = null
+    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
     private lateinit var savePrefs: SavePrefs
 
     private val mCallbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -157,17 +157,16 @@ class CustomerLoginFromProfile: Fragment() {
         }
         if (options != null) {
             PhoneAuthProvider.verifyPhoneNumber(options)
-            Toast.makeText(context,"Resending OTP",Toast.LENGTH_SHORT).show()
-        }
-        else
-            Toast.makeText(context,"Something Wrong In resending OTP",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Resending OTP", Toast.LENGTH_SHORT).show()
+        } else
+            Toast.makeText(context, "Something Wrong In resending OTP", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkUserDataInServer() {
 
-        mAuth.currentUser?.uid?.let {
-            savePrefs.saveFirebaseId(it)
-            viewModel.findUserByFirebaseId(it)
+        mAuth.currentUser?.apply {
+            uid.let { savePrefs.saveFirebaseId(it) }
+            phoneNumber?.let { viewModel.findUserByMobileNumber(it) }
         }
 
         viewModel.userDataFromServer.observe(viewLifecycleOwner) { user ->
@@ -267,7 +266,14 @@ class CustomerLoginFromProfile: Fragment() {
 
     private fun editTextInput() {
         binding.etC1.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC1.error = null
                 if (s.isEmpty())
@@ -279,7 +285,14 @@ class CustomerLoginFromProfile: Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
         binding.etC2.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC2.error = null
                 if (s.isEmpty())
@@ -291,7 +304,14 @@ class CustomerLoginFromProfile: Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
         binding.etC3.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC3.error = null
                 if (s.isEmpty())
@@ -303,7 +323,14 @@ class CustomerLoginFromProfile: Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
         binding.etC4.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC4.error = null
                 if (s.isEmpty())
@@ -315,7 +342,14 @@ class CustomerLoginFromProfile: Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
         binding.etC5.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC5.error = null
                 if (s.isEmpty())
@@ -327,7 +361,14 @@ class CustomerLoginFromProfile: Fragment() {
             override fun afterTextChanged(s: Editable) {}
         })
         binding.etC6.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 binding.etC6.error = null
                 if (s.isEmpty())

@@ -21,11 +21,11 @@ class CustomerLoginViewModel @Inject constructor(
     val userDataFromServer: LiveData<FormDataResource<UsersByFirebaseIdResponse>>
         get() = _userDataFromServer
 
-    fun findUserByFirebaseId(firebaseId: String) {
+    fun findUserByMobileNumber(mobileNumber: String) {
         viewModelScope.launch {
             _userDataFromServer.postValue(FormDataResource.Loading())
             if (Constants.hasInternetConnection()){
-                val response = remoteRepository.getCustomerByFirebaseId(firebaseId)
+                val response = remoteRepository.getCustomerByMobileNumber(mobileNumber)
                 if (response.isSuccessful && response.body() != null) {
                     if(response.body()?.error == false)
                         _userDataFromServer.postValue(FormDataResource.Success(response.body()))

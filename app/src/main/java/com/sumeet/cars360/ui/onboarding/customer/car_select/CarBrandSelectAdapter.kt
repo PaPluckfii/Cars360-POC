@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sumeet.cars360.R
 import com.sumeet.cars360.data.local.room.model.CarBrandEntity
 import com.sumeet.cars360.data.local.room.model.CarModelEntity
 import com.sumeet.cars360.databinding.ItemNewCarLayoutBinding
@@ -100,6 +101,8 @@ class CarModelSelectAdapter(
     private val listener: CarModelSelectListener
 ) : RecyclerView.Adapter<CarSelectViewHolder>() {
 
+    private var shouldHighlight = false
+
     interface CarModelSelectListener {
         fun onCarItemSelected(modelEntity: CarModelEntity)
     }
@@ -114,6 +117,10 @@ class CarModelSelectAdapter(
         )
     }
 
+    fun highlightSelection(boolean: Boolean){
+        shouldHighlight = boolean
+    }
+
     override fun onBindViewHolder(holder: CarSelectViewHolder, position: Int) {
         holder.binding.tvText.text = listOfModels[position].modelName
         Glide.with(holder.binding.root).load(listOfModels[position].modelLogo)
@@ -122,6 +129,7 @@ class CarModelSelectAdapter(
         holder.binding.rlCarEntity.setOnClickListener {
             if (ButtonClickHandler.buttonClicked()) {
                 listener.onCarItemSelected(listOfModels[position])
+                if(shouldHighlight) it.setBackgroundResource(R.drawable.red_border_box)
             }
         }
     }

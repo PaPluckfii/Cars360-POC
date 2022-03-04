@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.sumeet.cars360.data.remote.request_data.ServiceLogFormData
 import com.sumeet.cars360.databinding.DialogRequestedServiceBinding
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterRequestedRepairsBinding
 import com.sumeet.cars360.databinding.ItemRequestedServiceBinding
@@ -19,6 +21,7 @@ import com.sumeet.cars360.ui.admin.util.ServiceLogCreationHelper
 import com.sumeet.cars360.util.ButtonClickHandler
 import com.sumeet.cars360.util.FormDataResource
 import com.sumeet.cars360.util.ViewVisibilityUtil
+import com.sumeet.cars360.util.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +29,7 @@ class ServiceLogMasterRequestedRepairsFragment : Fragment() {
 
     private lateinit var binding: FragmentServiceLogMasterRequestedRepairsBinding
     private val viewModel: ServiceLogMasterViewModel by activityViewModels()
+    private val args: ServiceLogMasterRequestedRepairsFragmentArgs by navArgs()
 
     private lateinit var recyclerAdapter: RequestedRepairAdapter
 
@@ -69,10 +73,15 @@ class ServiceLogMasterRequestedRepairsFragment : Fragment() {
                         ViewVisibilityUtil.gone(binding.llButtons)
                         ViewVisibilityUtil.visible(binding.progressBar)
 
-                        ServiceLogCreationHelper.serviceLogDTO.additionalDetails = createData()
-                        ServiceLogCreationHelper.serviceLogDTO.estimatedAmount = getTotalEstimate()
+//                        ServiceLogCreationHelper.serviceLogDTO.additionalDetails = createData()
+//                        ServiceLogCreationHelper.serviceLogDTO.estimatedAmount = getTotalEstimate()
 
-//                        viewModel.insertNewServiceLog()
+                        viewModel.insertNewServiceLog(
+                            args.serviceLogFormData.apply {
+                                additionalDetails = createData()
+                                estimatedAmount = getTotalEstimate()
+                            }
+                        )
 
                         viewModel.insertOperation.observe(viewLifecycleOwner) {
                             when (it) {
@@ -83,6 +92,7 @@ class ServiceLogMasterRequestedRepairsFragment : Fragment() {
                                         "Oops ${it.message}",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    navigate(ServiceLogMasterRequestedRepairsFragmentDirections.actionServiceLogMasterRequestedRepairsFragmentToAdminNavigationHome())
                                 }
                                 is FormDataResource.Success -> {
                                     Toast.makeText(
@@ -90,6 +100,7 @@ class ServiceLogMasterRequestedRepairsFragment : Fragment() {
                                         "Uploaded Service Log with ID : ${it.data}",
                                         Toast.LENGTH_SHORT
                                     ).show()
+                                    navigate(ServiceLogMasterRequestedRepairsFragmentDirections.actionServiceLogMasterRequestedRepairsFragmentToAdminNavigationHome())
                                 }
                             }
                         }

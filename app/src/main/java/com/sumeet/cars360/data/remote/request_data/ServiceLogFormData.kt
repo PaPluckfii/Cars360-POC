@@ -1,4 +1,4 @@
-package com.sumeet.cars360.data.remote.form_data
+package com.sumeet.cars360.data.remote.request_data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

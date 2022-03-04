@@ -11,6 +11,8 @@ import com.sumeet.cars360.data.local.room.model.ServiceAdvisorEntity
 data class UserResponse(
     @SerializedName("ResponseId")
     var responseId: String?,
+    @SerializedName("UserId")
+    var userId: String?,
     @SerializedName("FirebaseId")
     var firebaseId: String?,
     @SerializedName("UserTypeId")
@@ -46,7 +48,7 @@ data class UserResponse(
 ) : Parcelable {
 
     fun toUserEntity(): CustomerEntity? {
-        return responseId?.let {
+        return userId?.let {
             CustomerEntity(
                 userId = it,
                 firebaseId = firebaseId,
@@ -67,7 +69,7 @@ data class UserResponse(
     }
 
     fun toServiceAdvisorEntity(): ServiceAdvisorEntity? {
-        return responseId?.let {
+        return userId?.let {
             ServiceAdvisorEntity(
                 userId = it,
                 firebaseId = firebaseId,

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.sumeet.cars360.databinding.FragmentServiceLogMasterPicturesBinding
 import com.sumeet.cars360.ui.admin.master_service_log.ServiceLogMasterViewModel
 import com.sumeet.cars360.ui.admin.util.CurrentPics
@@ -20,6 +21,7 @@ class ServiceLogMasterPicturesFragment : Fragment() {
 
     private lateinit var binding: FragmentServiceLogMasterPicturesBinding
     private val viewModel: ServiceLogMasterViewModel by activityViewModels()
+    private val args: ServiceLogMasterPicturesFragmentArgs by navArgs()
 
     private var areAllImagesCaptured = false
 
@@ -118,7 +120,14 @@ class ServiceLogMasterPicturesFragment : Fragment() {
 //                        rightPic = CurrentPics.picturesDTO.rightPic
 //                        backPic = CurrentPics.picturesDTO.backPic
 //                    }
-                    navigate(ServiceLogMasterPicturesFragmentDirections.actionServiceLogMasterPicturesFragmentToServiceLogMasterAccessoriesFragment())
+                    navigate(ServiceLogMasterPicturesFragmentDirections.actionServiceLogMasterPicturesFragmentToServiceLogMasterAccessoriesFragment(
+                        args.serviceLogFormData.apply {
+                            frontPic = CurrentPics.picturesDTO.frontPic
+                            leftPic = CurrentPics.picturesDTO.leftPic
+                            rightPic = CurrentPics.picturesDTO.rightPic
+                            backPic = CurrentPics.picturesDTO.backPic
+                        }
+                    ))
                 } else {
                     Toast.makeText(
                         context,
