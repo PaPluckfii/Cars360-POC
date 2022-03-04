@@ -14,10 +14,7 @@ import com.sumeet.cars360.R
 import com.sumeet.cars360.databinding.FragmentNewCustomerAdditionalDetailsBinding
 import com.sumeet.cars360.ui.customer.dump.NewCustomerAdditionalDetailsFromProfileDirections
 import com.sumeet.cars360.ui.onboarding.customer.NewCustomerViewModel
-import com.sumeet.cars360.util.ButtonClickHandler
-import com.sumeet.cars360.util.CityStateManagementTool
-import com.sumeet.cars360.util.ViewVisibilityUtil
-import com.sumeet.cars360.util.navigate
+import com.sumeet.cars360.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import gr.escsoft.michaelprimez.searchablespinner.interfaces.OnItemSelectedListener
 
@@ -167,8 +164,14 @@ class NewCustomerAdditionalDetailsFragment : Fragment() {
                         pinCode = etAddressPinCode.text.toString()
                         gstIn = etGstIn.text.toString()
                     }
-
-                    navigate(NewCustomerAdditionalDetailsFromProfileDirections.actionNewCustomerAdditionalDetailsFromProfileToNavigationProfile())
+                    viewModel.insertNewUserData()
+                    viewModel.insertOperation.observe(viewLifecycleOwner){
+                        when(it){
+                            is FormDataResource.Success -> {
+                                navigate(NewCustomerAdditionalDetailsFragmentDirections.actionNewCustomerAdditionalDetailsFragmentToNewCarDetailsFragment())
+                            }
+                        }
+                    }
 
                 }
 

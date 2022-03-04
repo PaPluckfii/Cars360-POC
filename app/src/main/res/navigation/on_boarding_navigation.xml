@@ -55,5 +55,9 @@
         android:id="@+id/newCustomerAdditionalDetailsFragment"
         android:name="com.sumeet.cars360.ui.onboarding.customer.new_customer.NewCustomerAdditionalDetailsFragment"
         android:label="Additional Details"
-        tools:layout="@layout/fragment_new_customer_additional_details" />
+        tools:layout="@layout/fragment_new_customer_additional_details" >
+        <action
+            android:id="@+id/action_newCustomerAdditionalDetailsFragment_to_newCarDetailsFragment"
+            app:destination="@id/newCarDetailsFragment" />
+    </fragment>
 </navigation>
