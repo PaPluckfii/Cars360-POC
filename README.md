@@ -1,6 +1,9 @@
-# Cars360-Raipur
+# Cars360-POC
 
-Note: Development has the latest code
+This application is a proof of concept for a car servicing application.
+Customers can register their car/cars and book slots for diffrent types of services, check status of on-going services and download bills of the services.
+Service Advisors (Servicing company workers) can use the app to fill in details of the customer and car and the type and details of services to be done.
+
 General Flow of app :
 
 4 activitites - Main, OnBoarding, Admin and Customer
