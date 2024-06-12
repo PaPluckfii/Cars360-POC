@@ -21,5 +21,5 @@ Customer - All services and offers based on selected car, service history and ot
 Data layer - Local (Room) - cahced data from networkBoundResource function in util package
              Remote(Retrofit) - all request in ApiClient interface
               
-              Cacheitory - cahce for getting data and cahcing to room
+Cacheitory - cahce for getting data and cahcing to room
               
